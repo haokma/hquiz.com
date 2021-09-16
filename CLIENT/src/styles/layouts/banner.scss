@@ -1,0 +1,41 @@
+.banner{
+  background-image: url('https://kquiz.vn/img/home/blackbg.jpg');
+  width: 100%;
+  min-height: 95vh;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  clip-path: polygon(0 0,100% 0,100% 65%,0 100%);
+  background-size: cover;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  &-title{
+    color: $color-white;
+    line-height: 1.5;
+    strong{
+      color: $color-primary;
+
+    }
+  }
+  &-desc{
+    color: $color-white;
+    font-size: 16px;
+    margin-top: 32px;
+    line-height: 1.6;
+  }
+  &-button{
+    margin-top: 15px;
+    a{
+      color: $color-white;
+      padding: 8px 15px;
+      background-color: $color-primary;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 3px;
+      transition: .2s ease;
+      &:hover{
+        opacity: .8;
+      }
+    }
+  }
+}
