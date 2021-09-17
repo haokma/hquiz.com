@@ -1,6 +1,7 @@
 import { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import data from '../../data/category.json';
 
 const SCROLL = 150;
 
@@ -31,24 +32,11 @@ const Header: NextPage = () => {
             </div>
             <div className={toggle ? 'header-navbar active' : 'header-navbar'}>
               <ul className="header-list">
-                <li className="header-item">
-                  <Link href="/">Luyện tập</Link>
-                </li>
-                <li className="header-item">
-                  <Link href="/de-thi">Đề thi</Link>
-                </li>
-                <li className="header-item">
-                  <Link href="/">Kết quả thi</Link>
-                </li>
-                <li className="header-item">
-                  <Link href="/"> Bảng xếp hạn </Link>
-                </li>
-                <li className="header-item">
-                  <Link href="/"> Bài viết</Link>
-                </li>
-                <li className="header-item">
-                  <Link href="/"> Về KMA </Link>
-                </li>
+                {data.category.map((item, index) => (
+                  <li className="header-item" key={index}>
+                    <Link href={`/${item.slug}`}>{item.title}</Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

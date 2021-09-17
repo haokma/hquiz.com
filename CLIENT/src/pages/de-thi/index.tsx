@@ -1,11 +1,12 @@
 import { NextPage } from 'next';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TopicItem from '../../components/topic/TopicItem';
 import data from '../../data/topic.json';
 
 const Topic: NextPage = () => {
   const [isActive, setIsActive] = useState(true);
+
   return (
     <div className="topic">
       <div className={isActive ? 'sidebar active' : 'sidebar'}></div>
