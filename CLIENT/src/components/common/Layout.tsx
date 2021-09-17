@@ -1,5 +1,4 @@
 import React from 'react';
-import Banner from './Banner';
 import Footer from './Footer';
 import Header from './Header';
 
@@ -11,7 +10,6 @@ const Layout = ({ children }: IPropsLayout) => {
   return (
     <>
       <Header />
-      <Banner />
       {children}
       <Footer />
     </>
