@@ -1,12 +1,14 @@
 import { NextPage } from 'next';
+import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import TopicItem from '../../components/topic/TopicItem';
 import data from '../../data/topic.json';
 
 const Topic: NextPage = () => {
   const [isActive, setIsActive] = useState(true);
-
+  const router = useRouter();
+  const page = Number(router.query.page) || 1;
   return (
     <div className="topic">
       <div className={isActive ? 'sidebar active' : 'sidebar'}></div>
@@ -54,6 +56,19 @@ const Topic: NextPage = () => {
                 );
               })}
             </div>
+          </div>
+          <div className="topic-pagination">
+            <ul className="pagination-list">
+              {[1, 2].map((item) => {
+                return (
+                  <li className={item === page ? 'pagination-item active' : 'pagination-item'}>
+                    <Link href={`/de-thi/?page=${item}`}>
+                      <a>{item}</a>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </div>
       </div>
