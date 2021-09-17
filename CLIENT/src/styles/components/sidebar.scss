@@ -1,7 +1,10 @@
 .sidebar{
-
+  --tw-shadow: 0 10px 15px -3px rgba(0,0,0,0.1),0 4px 6px -2px rgba(0,0,0,0.05);
+  --tw-ring-offset-shadow: 0 0 transparent;
+  --tw-ring-shadow: 0 0 transparent;
   height: 100vh;
-  background-color: red;
+  background-color: rgba(255,250,241,1);
+      box-shadow: var(--tw-ring-offset-shadow,0 0 transparent),var(--tw-ring-shadow,0 0 transparent),var(--tw-shadow);
   width: 0;
   transition: .2s ease;
   &.active{
