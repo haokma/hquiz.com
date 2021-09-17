@@ -10,7 +10,7 @@ const Layout = ({ children }: IPropsLayout) => {
   return (
     <>
       <Header />
-      {children}
+      <div className="home">{children}</div>
       <Footer />
     </>
   );

@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 const SCROLL = 150;
 
@@ -24,16 +25,30 @@ const Header: NextPage = () => {
           </div>
           <div className="header-left">
             <div className="header-logo">
-              <img src="https://kquiz.vn/img/kquiz.png" alt="" />
+              <Link href="/">
+                <img src="https://kquiz.vn/img/kquiz.png" alt="" />
+              </Link>
             </div>
             <div className={toggle ? 'header-navbar active' : 'header-navbar'}>
               <ul className="header-list">
-                <li className="header-item">Luyện tập</li>
-                <li className="header-item">Đề thi</li>
-                <li className="header-item">Kết quả thi</li>
-                <li className="header-item">Bảng xếp hạng</li>
-                <li className="header-item">Bài viết</li>
-                <li className="header-item">Về KMA</li>
+                <li className="header-item">
+                  <Link href="/">Luyện tập</Link>
+                </li>
+                <li className="header-item">
+                  <Link href="/de-thi">Đề thi</Link>
+                </li>
+                <li className="header-item">
+                  <Link href="/">Kết quả thi</Link>
+                </li>
+                <li className="header-item">
+                  <Link href="/"> Bảng xếp hạn </Link>
+                </li>
+                <li className="header-item">
+                  <Link href="/"> Bài viết</Link>
+                </li>
+                <li className="header-item">
+                  <Link href="/"> Về KMA </Link>
+                </li>
               </ul>
             </div>
           </div>
