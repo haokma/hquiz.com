@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import data from '../../data/category.json';
 
 const SCROLL = 150;
@@ -33,7 +33,14 @@ const Header: NextPage = () => {
             <div className={toggle ? 'header-navbar active' : 'header-navbar'}>
               <ul className="header-list">
                 {data.category.map((item, index) => (
-                  <li className="header-item" key={index}>
+                  <li
+                    className="header-item"
+                    key={index}
+                    onClick={() => {
+                      setToggle(false);
+                      console.log('object');
+                    }}
+                  >
                     <Link href={`/${item.slug}`}>{item.title}</Link>
                   </li>
                 ))}
