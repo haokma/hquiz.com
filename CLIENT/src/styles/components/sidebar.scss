@@ -7,12 +7,117 @@
       box-shadow: var(--tw-ring-offset-shadow,0 0 transparent),var(--tw-ring-shadow,0 0 transparent),var(--tw-shadow);
   width: 0;
   transition: .2s ease;
+  padding-top: 102px;
+  overflow: hidden;
   &.active{
     width: 16.6666667%;
     left: 0;
     top: 0;
     position: fixed;
     z-index: 3;
+  }
+  &-content{
+    padding: 0px 20px;
+    display: none;
+  }
+  &.active{
+    .sidebar-content{
+      display: block;
+    }
+  }
+  h4 {
+    font-size: 14px;
+    font-weight: 500;
+    color: $color-text;
+  }
+  &-search{
+    input{
+      width: 100%;
+      padding: 12px;
+      color: $color-text;
+      background-color: $color-white;
+      outline: none;
+      border: none;
+      margin-top: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      border: 1px solid transparent;
+      transition: .2s ease;
+      &:focus{
+        border: 1px solid $color-primary;
+      }
+    }
+  }
+  &-select{
+    margin-top: 20px;
+    width: 100%;
+    position: relative;
+    div{
+      width: 100%;
+      margin-top: 12px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: $color-white;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    ul{
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: $color-white;
+      width: 100%;
+      overflow: hidden;
+      max-height: 0;
+      transition: .2s ease;
+      z-index: 20;
+      opacity: 0;
+    }
+    li{
+      padding: 12px 8px;
+      text-align: left;
+      font-size: 14px;
+      font-weight: 500;
+      transition: .4s ease;
+      cursor: pointer;
+      color: $color-text;
+      &:hover{
+        color: $color-white;
+        background-color: $color-primary;
+      }
+    }
+
+    &.active{
+      ul{
+        max-height: 100vh;
+        overflow: unset;
+        transition: .4s ease;
+        opacity: 1;
+      }
+    }
+  }
+  &-button {
+    margin-top: 16px;
+    button {
+      width: 100%;
+      text-align: center;
+      padding: 12px 0;
+      background-color: $color-primary;
+      color: $color-white;
+      border: none;
+      outline: none;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: .2s ease;
+      &:hover{
+        opacity: .8;
+      }
+    }
   }
 }
 

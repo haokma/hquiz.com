@@ -2,6 +2,7 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
 import { useState } from 'react';
+import Sidebar from '../../components/topic/Sidebar';
 import TopicItem from '../../components/topic/TopicItem';
 import data from '../../data/topic.json';
 
@@ -11,7 +12,9 @@ const Topic: NextPage = () => {
   const page = Number(router.query.page) || 1;
   return (
     <div className="topic">
-      <div className={isActive ? 'sidebar active' : 'sidebar'}></div>
+      <div className={isActive ? 'sidebar active' : 'sidebar'}>
+        <Sidebar />
+      </div>
       <div className={isActive ? 'modal active' : 'modal'} onClick={() => setIsActive(false)}></div>
       <div className={isActive ? 'topic-left active' : 'topic-left'}></div>
       <div className="topic-wrap">
