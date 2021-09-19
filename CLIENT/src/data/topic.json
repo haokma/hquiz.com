@@ -9,7 +9,7 @@
       "image":"https://api.kquiz.vn/Upload/Test/637668956482219984_js.png"
     },
     {
-      "_id": 1,
+      "_id": 2,
       "title": "Bài viết số 2",
       "time": 60,
       "view": 9,
@@ -17,7 +17,7 @@
       "image": "https://api.kquiz.vn/Upload/Test/637673730598275658_images.png"
     },
     {
-      "_id": 1,
+      "_id": 3,
       "title": "Bài viết số 3",
       "time": 35,
       "view": 45,
@@ -25,21 +25,21 @@
       "image": "https://api.kquiz.vn/Upload/Test/637666600500638134_javascript.jpg"
     },
     {
-      "_id": 1,
+      "_id": 4,
       "title": "Bài viết số 4",
       "time": 40,
       "view": 19,
       "totalQuestion": 25,
       "image": "https://api.kquiz.vn/Upload/Test/637673730598275658_images.png"
     },{
-      "_id": 1,
+      "_id": 5,
       "title": "Bài viết số 5",
       "time": 30,
       "view": 19,
       "totalQuestion": 20,
       "image": "https://api.kquiz.vn/Upload/Test/637666600500638134_javascript.jpg"
     },{
-      "_id": 1,
+      "_id": 6,
       "title": "Bài viết số 6",
       "time": 50,
       "view": 92,
