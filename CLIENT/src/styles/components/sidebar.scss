@@ -121,6 +121,15 @@
   }
 }
 
+@media (max-width:1200px) {
+  .sidebar {
+    &.active {
+      width: 25%;
+    }
+  }
+}
+
+
 @media (max-width:1024px) {
   .sidebar{
     &.active{

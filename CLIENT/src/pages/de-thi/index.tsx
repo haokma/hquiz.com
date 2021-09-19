@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Sidebar from '../../components/topic/Sidebar';
 import TopicItem from '../../components/topic/TopicItem';
 import data from '../../data/topic.json';
@@ -10,6 +10,19 @@ const Topic: NextPage = () => {
   const [isActive, setIsActive] = useState(true);
   const router = useRouter();
   const page = Number(router.query.page) || 1;
+
+  useEffect(() => {
+    const width = window.innerWidth;
+    if (width < 1024) {
+      setIsActive(false);
+    }
+    window.addEventListener('resize', () => {
+      const width = window.innerWidth;
+      if (width < 1024 && isActive) {
+        setIsActive(false);
+      }
+    });
+  }, []);
   return (
     <div className="topic">
       <div className={isActive ? 'sidebar active' : 'sidebar'}>
@@ -28,15 +41,15 @@ const Topic: NextPage = () => {
                 <svg
                   stroke="currentColor"
                   fill="currentColor"
-                  stroke-width="0"
+                  strokeWidth="0"
                   viewBox="0 0 16 16"
                   height="1em"
                   width="1em"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M10.072 8.024L5.715 3.667l.618-.62L11 7.716v.618L6.333 13l-.618-.619 4.357-4.357z"
                   ></path>
                 </svg>
@@ -53,8 +66,8 @@ const Topic: NextPage = () => {
             <div className="row">
               {data.topic.map((item, index) => {
                 return (
-                  <div className="col-xl-6">
-                    <TopicItem topic={item} key={index} />
+                  <div className="col-xl-6" key={index}>
+                    <TopicItem topic={item} />
                   </div>
                 );
               })}
@@ -62,9 +75,12 @@ const Topic: NextPage = () => {
           </div>
           <div className="topic-pagination">
             <ul className="pagination-list">
-              {[1, 2].map((item) => {
+              {[1, 2].map((item, index) => {
                 return (
-                  <li className={item === page ? 'pagination-item active' : 'pagination-item'}>
+                  <li
+                    key={index}
+                    className={item === page ? 'pagination-item active' : 'pagination-item'}
+                  >
                     <Link href={`/de-thi/?page=${item}`}>
                       <a>{item}</a>
                     </Link>

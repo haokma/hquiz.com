@@ -13,7 +13,7 @@ const Banner: NextPage = () => {
               </h1>
               <p className="banner-desc">
                 Ngân hàng đề thi trắc nghiệm đa dạng, dành riêng cho cộng đồng lập trình từ cơ bản
-                đến nâng cao. Cùng Kquiz: "Luyện tập, thử thách, không ngại khó!"
+                đến nâng cao. Cùng Kquiz: Luyện tập, thử thách, không ngại khó!
               </p>
               <div className="banner-button">
                 <Link href="/">Thi nhanh</Link>
