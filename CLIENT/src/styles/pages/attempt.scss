@@ -39,19 +39,19 @@
     margin-top: 30px;
     input{
       display: none;
-      &:checked {
-        label{
-          background-color: $color-primary;
-        }
-      }
     }
-    label{
+    div{
       border: 1px solid $color-white;
-      padding: 10px 20px;
+
       margin-bottom: 20px;
       border-radius: 4px;
       cursor: pointer;
       width: 100%;
+    }
+    label{
+      padding: 10px 20px;
+      display: block;
+      cursor: pointer;
     }
   }
   &-info{
@@ -184,7 +184,7 @@
       color: $color-white;
       cursor: pointer;
       &.active{
-        color: $color-text;
+        color: $color-primary;
       }
     }
   }
@@ -230,6 +230,10 @@
     }
   }
 }
-.slick-slide h3{
+.slick-slide {
   color: #fff;
+  text-align: center;
+}
+input:checked ~ label {
+  background-color: $color-primary;
 }
