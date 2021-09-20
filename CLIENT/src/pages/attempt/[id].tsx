@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import LayoutAttempt from '../../components/common/LayoutAttempt';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -45,6 +45,29 @@ const settings = {
 const Attempt: any = () => {
   const [questionIndex, setQuestionIndex] = useState(1);
   const [answers, setAnswers] = useState([1, 0, 1, 0, 1, 1]);
+  const [minutes, setMinutes] = useState(1);
+  const [seconds, setSeconds] = useState(2);
+
+  const formatTime = (time: number) => {
+    return time < 10 ? '0' + time : time;
+  };
+
+  useEffect(() => {
+    if (seconds === 0 && minutes === 0) return;
+
+    const timer = setTimeout(() => {
+      setSeconds(seconds - 1);
+
+      if (seconds === 0 && minutes > 0) {
+        setMinutes(minutes - 1);
+        setSeconds(5);
+      }
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  });
 
   const checkAnswer = (index: number): boolean => {
     if (!answers[index]) return false;
@@ -76,12 +99,12 @@ const Attempt: any = () => {
                 Giả sử thư viện math đã được khai báo trước. Giá trị của 2 biến s1, s2 lần lượt là:{' '}
               </span>
               <div className="attempt-answer">
-                {[1, 2, 3, 4].map((item) => {
+                {[1, 2, 3, 4].map((item, index) => {
                   return (
-                    <>
-                      <input type="checkbox" id={`answer_${item}`} />
-                      <label htmlFor={`answer_${item}`}>{item}</label>
-                    </>
+                    <div key={index}>
+                      <input type="checkbox" id={`answer_${index}`} />
+                      <label htmlFor={`answer_${index}`}>{item}</label>
+                    </div>
                   );
                 })}
               </div>
@@ -122,13 +145,13 @@ const Attempt: any = () => {
                 <div className="attempt-cricle">
                   <div className="attempt-cricle-text">
                     <div>
-                      <span>29</span>
+                      <span>{formatTime(minutes)}</span>
                     </div>
                     <div>
                       <span>:</span>
                     </div>
                     <div>
-                      <span>29</span>
+                      <span>{formatTime(seconds)}</span>
                     </div>
                   </div>
                 </div>
