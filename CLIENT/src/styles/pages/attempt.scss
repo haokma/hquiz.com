@@ -10,6 +10,7 @@
     color: $color-white;
     width: 100%;
     cursor: pointer;
+    margin-bottom: 20px;
     span{
       display: flex;
       align-items: center;
@@ -75,7 +76,9 @@
       display: flex;
       align-items: center;
       span{
-        margin: 0 20px 0 0;
+        margin: 0 5px 0 0;
+        height: 20px;
+        line-height: 20px;
       }
     }
   }
@@ -129,6 +132,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      span{
+        margin: 0 2px;
+      }
     }
     &-picture{
       display: flex;
@@ -236,4 +242,7 @@
 }
 input:checked ~ label {
   background-color: $color-primary;
+}
+form{
+  width: 100%;
 }

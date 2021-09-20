@@ -4,6 +4,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 
+import data from '../../data/question.json';
+
 const settings = {
   dots: false,
   infinite: false,
@@ -44,9 +46,11 @@ const settings = {
 
 const Attempt: any = () => {
   const [questionIndex, setQuestionIndex] = useState(1);
-  const [answers, setAnswers] = useState([1, 0, 1, 0, 1, 1]);
-  const [minutes, setMinutes] = useState(1);
-  const [seconds, setSeconds] = useState(2);
+  const [answers, setAnswers] = useState(Array.from(Array(data.questions.length)).fill(0));
+  const [minutes, setMinutes] = useState(30);
+  const [seconds, setSeconds] = useState(0);
+
+  const [checked, setChecked] = useState(false);
 
   const formatTime = (time: number) => {
     return time < 10 ? '0' + time : time;
@@ -60,7 +64,7 @@ const Attempt: any = () => {
 
       if (seconds === 0 && minutes > 0) {
         setMinutes(minutes - 1);
-        setSeconds(5);
+        setSeconds(59);
       }
     }, 1000);
 
@@ -68,10 +72,15 @@ const Attempt: any = () => {
       clearTimeout(timer);
     };
   });
-
   const checkAnswer = (index: number): boolean => {
     if (!answers[index]) return false;
     return true;
+  };
+
+  const handleAnswer = (index: number) => {
+    const newAnswers = [...answers];
+    newAnswers[questionIndex - 1] = index;
+    setAnswers(newAnswers);
   };
   return (
     <div className="attempt">
@@ -95,18 +104,23 @@ const Attempt: any = () => {
         <div className="row-reverse ">
           <div className="col-xl-9 col-lg-8">
             <div className="attempt-question">
-              <span className="attempt-title">
-                Giả sử thư viện math đã được khai báo trước. Giá trị của 2 biến s1, s2 lần lượt là:{' '}
-              </span>
+              <span className="attempt-title">{data.questions[questionIndex - 1].title}</span>
               <div className="attempt-answer">
-                {[1, 2, 3, 4].map((item, index) => {
-                  return (
-                    <div key={index}>
-                      <input type="checkbox" id={`answer_${index}`} />
-                      <label htmlFor={`answer_${index}`}>{item}</label>
-                    </div>
-                  );
-                })}
+                <form name={`question_${questionIndex}`}>
+                  {data.questions[questionIndex - 1].answers.map((item, index) => {
+                    return (
+                      <div key={index}>
+                        <input
+                          type="radio"
+                          id={`answer_${index}`}
+                          name={`answer_${questionIndex}`}
+                          onChange={() => handleAnswer(index + 1)}
+                        />
+                        <label htmlFor={`answer_${index}`}>{item}</label>
+                      </div>
+                    );
+                  })}
+                </form>
               </div>
             </div>
           </div>
@@ -162,13 +176,13 @@ const Attempt: any = () => {
                   <div>
                     <span>0</span>
                     <span>/</span>
-                    <span>20</span>
+                    <span>{data.questions.length}</span>
                   </div>
                 </div>
                 <div className="attempt-map-picture">
-                  {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => {
+                  {Array.from(Array(data.questions.length).keys()).map((item, index) => {
                     let className = '';
-                    if (item === questionIndex) {
+                    if (index + 1 === questionIndex) {
                       className += ' active';
                     }
                     if (checkAnswer(index)) {
@@ -177,7 +191,7 @@ const Attempt: any = () => {
                     return (
                       <div
                         className={className}
-                        onClick={() => setQuestionIndex(item)}
+                        onClick={() => setQuestionIndex(index + 1)}
                         key={index}
                       ></div>
                     );
@@ -189,12 +203,16 @@ const Attempt: any = () => {
               </div>
               <div className="attempt-question-mobile">
                 <Slider {...settings}>
-                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item, index) => {
+                  {Array.from(Array(data.questions.length).keys()).map((item, index) => {
                     let className = '';
-                    if (item === questionIndex) className += 'active';
+                    if (item + 1 === questionIndex) className += 'active';
                     return (
-                      <div className={className} onClick={() => setQuestionIndex(item)} key={index}>
-                        Câu {item}
+                      <div
+                        className={className}
+                        onClick={() => setQuestionIndex(item + 1)}
+                        key={index}
+                      >
+                        Câu {item + 1}
                       </div>
                     );
                   })}
