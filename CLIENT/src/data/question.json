@@ -3,140 +3,107 @@
     {
       "_id": 1,
       "title": "Cau 1",
-      "answers": [1,2,3,4]
+      "answers": [{
+        "_id": 1,
+        "value":1
+      },
+      {
+        "_id": 2,
+        "value":2
+      },
+      {
+        "_id": 3,
+        "value":3
+      },
+      {
+        "_id": 4,
+        "value":4
+      }
+    ]
     },
     {
       "_id": 2,
       "title": "Cau 2",
-      "answers": [11,23,34,4]
+      "answers": [{
+        "_id": 5,
+        "value":5
+      },
+      {
+        "_id": 6,
+        "value":6
+      },
+      {
+        "_id": 7,
+        "value":7
+      },
+      {
+        "_id": 8,
+        "value":8
+      }
+    ]
     },
     {
       "_id": 3,
       "title": "Cau 3",
-      "answers": [17,26,53,47]
+     "answers": [{
+        "_id": 9,
+        "value":9
+      },
+      {
+        "_id": 10,
+        "value":10
+      },
+      {
+        "_id": 11,
+        "value":11
+      },
+      {
+        "_id": 12,
+        "value":12
+      }
+    ]
     },
     {
       "_id": 4,
       "title": "Cau 4",
-      "answers": [175,6362,363,64]
+      "answers": [{
+        "_id": 13,
+        "value":13
+      },
+      {
+        "_id": 14,
+        "value":14
+      },
+      {
+        "_id": 15,
+        "value":15
+      },
+      {
+        "_id": 16,
+        "value":16
+      }
+    ]
     },
     {
       "_id": 1,
       "title": "Cau 1",
-      "answers": [1,2,3,4]
-    },
-    {
-      "_id": 2,
-      "title": "Cau 2",
-      "answers": [11,23,34,4]
-    },
-    {
-      "_id": 3,
-      "title": "Cau 3",
-      "answers": [17,26,53,47]
-    },
-    {
-      "_id": 4,
-      "title": "Cau 4",
-      "answers": [175,6362,363,64]
-    },
-    {
-      "_id": 1,
-      "title": "Cau 1",
-      "answers": [1,2,3,4]
-    },
-    {
-      "_id": 2,
-      "title": "Cau 2",
-      "answers": [11,23,34,4]
-    },
-    {
-      "_id": 3,
-      "title": "Cau 3",
-      "answers": [17,26,53,47]
-    },
-    {
-      "_id": 4,
-      "title": "Cau 4",
-      "answers": [175,6362,363,64]
-    },
-    {
-      "_id": 1,
-      "title": "Cau 1",
-      "answers": [1,2,3,4]
-    },
-    {
-      "_id": 2,
-      "title": "Cau 2",
-      "answers": [11,23,34,4]
-    },
-    {
-      "_id": 3,
-      "title": "Cau 3",
-      "answers": [17,26,53,47]
-    },
-    {
-      "_id": 4,
-      "title": "Cau 4",
-      "answers": [175,6362,363,64]
-    },
-    {
-      "_id": 1,
-      "title": "Cau 1",
-      "answers": [1,2,3,4]
-    },
-    {
-      "_id": 2,
-      "title": "Cau 2",
-      "answers": [11,23,34,4]
-    },
-    {
-      "_id": 3,
-      "title": "Cau 3",
-      "answers": [17,26,53,47]
-    },
-    {
-      "_id": 4,
-      "title": "Cau 4",
-      "answers": [175,6362,363,64]
-    },{
-      "_id": 1,
-      "title": "Cau 1",
-      "answers": [1,2,3,4]
-    },
-    {
-      "_id": 2,
-      "title": "Cau 2",
-      "answers": [11,23,34,4]
-    },
-    {
-      "_id": 3,
-      "title": "Cau 3",
-      "answers": [17,26,53,47]
-    },
-    {
-      "_id": 4,
-      "title": "Cau 4",
-      "answers": [175,6362,363,64]
-    },{
-      "_id": 1,
-      "title": "Cau 1",
-      "answers": [1,2,3,4]
-    },
-    {
-      "_id": 2,
-      "title": "Cau 2",
-      "answers": [11,23,34,4]
-    },
-    {
-      "_id": 3,
-      "title": "Cau 3",
-      "answers": [17,26,53,47]
-    },
-    {
-      "_id": 4,
-      "title": "Cau 4",
-      "answers": [175,6362,363,64]
+      "answers": [{
+        "_id": 17,
+        "value":17
+      },
+      {
+        "_id": 18,
+        "value":18
+      },
+      {
+        "_id": 19,
+        "value":19
+      },
+      {
+        "_id": 20,
+        "value":20
+      }
+    ]
     }
   ]
 }

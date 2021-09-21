@@ -5,6 +5,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 
 import data from '../../data/question.json';
+import { useRouter } from 'next/dist/client/router';
 
 const settings = {
   dots: false,
@@ -45,17 +46,16 @@ const settings = {
 };
 
 const Attempt: any = () => {
+  const router = useRouter();
+
   const [questionIndex, setQuestionIndex] = useState(1);
   const [answers, setAnswers] = useState(Array.from(Array(data.questions.length)).fill(0));
   const [minutes, setMinutes] = useState(30);
   const [seconds, setSeconds] = useState(0);
 
-  const [checked, setChecked] = useState(false);
-
   const formatTime = (time: number) => {
     return time < 10 ? '0' + time : time;
   };
-
   useEffect(() => {
     if (seconds === 0 && minutes === 0) return;
 
@@ -71,7 +71,8 @@ const Attempt: any = () => {
     return () => {
       clearTimeout(timer);
     };
-  });
+  }, []);
+
   const checkAnswer = (index: number): boolean => {
     if (!answers[index]) return false;
     return true;
@@ -82,6 +83,11 @@ const Attempt: any = () => {
     newAnswers[questionIndex - 1] = index;
     setAnswers(newAnswers);
   };
+
+  const selectQuestion = (index: number) => {
+    setQuestionIndex(index);
+  };
+
   return (
     <div className="attempt">
       <div className="container-fluid">
@@ -109,14 +115,14 @@ const Attempt: any = () => {
                 <form name={`question_${questionIndex}`}>
                   {data.questions[questionIndex - 1].answers.map((item, index) => {
                     return (
-                      <div key={index}>
+                      <div key={item._id}>
                         <input
                           type="radio"
                           id={`answer_${index}`}
                           name={`answer_${questionIndex}`}
                           onChange={() => handleAnswer(index + 1)}
                         />
-                        <label htmlFor={`answer_${index}`}>{item}</label>
+                        <label htmlFor={`answer_${index}`}>{item.value}</label>
                       </div>
                     );
                   })}
@@ -191,7 +197,7 @@ const Attempt: any = () => {
                     return (
                       <div
                         className={className}
-                        onClick={() => setQuestionIndex(index + 1)}
+                        onClick={() => selectQuestion(index + 1)}
                         key={index}
                       ></div>
                     );
@@ -209,7 +215,7 @@ const Attempt: any = () => {
                     return (
                       <div
                         className={className}
-                        onClick={() => setQuestionIndex(item + 1)}
+                        onClick={() => selectQuestion(item + 1)}
                         key={index}
                       >
                         Câu {item + 1}
