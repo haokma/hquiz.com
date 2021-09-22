@@ -154,11 +154,14 @@
   }
 
 }
+@media (max-width:1200px){
+  .topic {
+    &-wrap {
+      padding: 0;
+    }
 
-@media (max-width:1024px) {
-  .topic{
-    .modal{
-      &.active{
+    .modal {
+      &.active {
         display: block;
       }
     }

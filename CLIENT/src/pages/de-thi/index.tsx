@@ -29,7 +29,7 @@ const Topic: NextPage = () => {
         <Sidebar />
       </div>
       <div className={isActive ? 'modal active' : 'modal'} onClick={() => setIsActive(false)}></div>
-      <div className={isActive ? 'topic-left active' : 'topic-left'}></div>
+
       <div className="topic-wrap">
         <div className="topic-content">
           <div className="topic-heading">
@@ -91,6 +91,7 @@ const Topic: NextPage = () => {
           </div>
         </div>
       </div>
+      <div className={isActive ? 'topic-left active' : 'topic-left'}></div>
     </div>
   );
 };
