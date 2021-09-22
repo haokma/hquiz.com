@@ -1,10 +1,8 @@
-import { useEffect, useState } from 'react';
-import LayoutAttempt from '../../components/common/LayoutAttempt';
-import Slider from 'react-slick';
 import Head from 'next/head';
-
+import { useEffect, useState } from 'react';
+import Slider from 'react-slick';
+import LayoutAttempt from '../../components/common/LayoutAttempt';
 import data from '../../data/question.json';
-import { useRouter } from 'next/dist/client/router';
 
 const settings = {
   dots: false,
@@ -45,8 +43,6 @@ const settings = {
 };
 
 const Attempt: any = () => {
-  const router = useRouter();
-
   const [questionIndex, setQuestionIndex] = useState(1);
   const [answers, setAnswers] = useState(Array.from(Array(data.questions.length)).fill(0));
   const [minutes, setMinutes] = useState(30);
@@ -70,7 +66,7 @@ const Attempt: any = () => {
     return () => {
       clearTimeout(timer);
     };
-  }, []);
+  }, [minutes, seconds]);
 
   const checkAnswer = (index: number): boolean => {
     if (!answers[index]) return false;

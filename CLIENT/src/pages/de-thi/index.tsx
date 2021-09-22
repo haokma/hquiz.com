@@ -23,7 +23,7 @@ const Topic: NextPage = () => {
         setIsActive(false);
       }
     });
-  }, []);
+  }, [isActive]);
   return (
     <>
       <Head>

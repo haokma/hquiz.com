@@ -45,9 +45,9 @@ const PostHightLight: NextPage = () => {
       <h2 className="post-heading">Bài viết nổi bật</h2>
       <div className="post-slider">
         <Slider {...settings}>
-          {[1, 2, 3, 4, 5, 6].map(() => {
+          {[1, 2, 3, 4, 5, 6].map((item, index) => {
             return (
-              <div className="post-item">
+              <div className="post-item" key={index}>
                 <Link href="/de-thi/1">
                   <a>
                     <img
