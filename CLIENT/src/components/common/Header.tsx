@@ -4,47 +4,24 @@ import { useEffect, useState } from 'react';
 import data from '../../data/category.json';
 
 const SCROLL = 150;
+interface PROPS {
+  setIsActive: any;
+}
 
-const Header: NextPage = () => {
-  const [toggle, setToggle] = useState(false);
-  const [active, setActive] = useState(false);
-  useEffect(() => {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > SCROLL) {
-        setActive(true);
-      } else if (window.scrollY < SCROLL) {
-        setActive(false);
-      }
-    });
-  }, []);
+const Header: NextPage<PROPS> = (props: PROPS) => {
+  const { setIsActive } = props;
   return (
-    <div className={active ? 'header active' : 'header'}>
+    <div className="header">
       <div className="container-fluid">
         <div className="header-content">
-          <div className="header-toggle" onClick={() => setToggle(!toggle)}>
+          <div className="header-toggle" onClick={() => setIsActive(true)}>
             <i className="bx bx-menu"></i>
           </div>
           <div className="header-left">
             <div className="header-logo">
               <Link href="/">
-                <img src="https://kquiz.vn/img/kquiz.png" alt="" />
+                <img src="https://fullstack.edu.vn/assets/icon/f8_icon.png" alt="" />
               </Link>
-            </div>
-            <div className={toggle ? 'header-navbar active' : 'header-navbar'}>
-              <ul className="header-list">
-                {data.category.map((item, index) => (
-                  <li
-                    className="header-item"
-                    key={index}
-                    onClick={() => {
-                      setToggle(false);
-                      console.log('object');
-                    }}
-                  >
-                    <Link href={`/${item.slug}`}>{item.title}</Link>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
           <div className="header-right">
