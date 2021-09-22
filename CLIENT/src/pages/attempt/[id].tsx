@@ -1,8 +1,9 @@
-import { useRouter } from 'next/dist/client/router';
 import { useEffect, useState } from 'react';
-import Slider from 'react-slick';
 import LayoutAttempt from '../../components/common/LayoutAttempt';
+import Slider from 'react-slick';
+
 import data from '../../data/question.json';
+import { useRouter } from 'next/dist/client/router';
 
 const settings = {
   dots: false,
