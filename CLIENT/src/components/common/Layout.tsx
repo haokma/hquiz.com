@@ -15,8 +15,11 @@ const Layout = ({ children }: IPropsLayout) => {
       <Header setIsActive={setIsActive} />
       <div className="home">
         <Sidebar />
-        <div className="content">{children}</div>
-        <Footer />
+        <div className="content">
+          {children}
+          <Footer />
+        </div>
+
         <MenuMobile isActive={isActive} setIsActive={setIsActive} />
       </div>
     </>
