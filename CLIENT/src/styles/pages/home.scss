@@ -98,3 +98,156 @@
     }
   }
 }
+.work{
+  padding: 30px 0 100px 0;
+  text-align: center;
+  &-title{
+    text-align: center;
+    margin-bottom: 16px;
+    font-size: 28px;
+    color: $color-title;
+    font-weight: 700;
+  }
+  &-desc{
+    margin-bottom: 30px;
+  }
+  &-item{
+    margin: 20px 0;
+    &-img{
+      img {
+        width: 40px;
+      }
+      background-color: $color-primary;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 10px auto;
+    }
+    &-title{
+      margin-bottom: 8px;
+      color: $color-title;
+    }
+    &-desc{
+      font-size: 14px;
+      line-height: 1.6;
+    }
+  }
+}
+.post{
+  margin-top: 50px;
+  &-heading {
+    margin-bottom: 32px;
+    font-size: 28px;
+    color: $color-title;
+  }
+  .slider {
+    margin: 0 -10px;
+  }
+
+  &-item {
+    padding: 0 10px;
+    scroll-snap-align: start;
+    margin-bottom: 40px;
+    width: 100%;
+  }
+  &-thumbnail {
+    object-fit: cover;
+    border-radius: 8px;
+    max-height: 180px;
+  }
+  &-title {
+    font-size: 16px;
+    margin-top: 8px;
+    color: $color-title;
+    line-height: 1.5;
+    text-align: left;
+    font-weight: 600;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+  &-view {
+    margin-left: -10px;
+    text-align: left;
+    margin-top: 12px;
+    color: $color-title;
+    display: flex;
+    justify-content: flex-start;
+    div{
+      margin: 0 10px;
+    }
+    span {
+      margin-left: 8px;
+    }
+  }
+  .slick-dots {
+    bottom: -35px;
+    left: 0;
+
+    li {
+      width: 40px;
+
+      &.slick-active {
+        width: 60px;
+
+        button {
+          background-color: #9aa6af;
+          width: 60px;
+        }
+      }
+
+      button {
+        width: 40px;
+        height: 8px;
+        background-color: #dce0e3;
+        border-radius: 4px;
+        padding: 0px;
+
+        &::before {
+          content: '';
+        }
+      }
+    }
+  }
+
+  .slick-slider {
+    position: relative;
+
+    .slick-arrow {
+      position: absolute;
+      background-color: $color-white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      z-index: 20;
+
+      &::before {
+        color: #000;
+      }
+
+      &.slick-prev {
+        &::before {
+          content: '<';
+        }
+
+        left: 0;
+        top: 35%;
+        transform: translate(-50%);
+      }
+
+      &.slick-next {
+        &::before {
+          content: '>';
+        }
+
+        top: 35%;
+        transform: translate(-50%);
+        right: -25px;
+      }
+    }
+  }
+}
