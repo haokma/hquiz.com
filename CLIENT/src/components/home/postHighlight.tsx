@@ -31,7 +31,7 @@ const settings = {
       },
     },
     {
-      breakpoint: 650,
+      breakpoint: 600,
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -51,7 +51,7 @@ const PostHightLight: NextPage = () => {
                 <Link href="/de-thi/1">
                   <a>
                     <img
-                      src="https://cdn4.vectorstock.com/i/1000x1000/26/33/javascript-concept-banner-header-vector-24192633.jpg"
+                      src="https://i1.wp.com/hocjavascript.net/wp-content/uploads/2020/10/Doi-tuong-String-trong-JavaScript.png?resize=750%2C458&ssl=1"
                       alt=""
                       className="post-thumbnail"
                     />

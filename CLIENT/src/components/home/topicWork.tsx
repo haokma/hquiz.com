@@ -10,7 +10,7 @@ const TopicWork: NextPage = () => {
       </p>
       <div className="container">
         <div className="row">
-          <div className="col-xl-4 col-lg-4 col-md-6">
+          <div className="col-xl-4 col-lg-6 col-md-6">
             <div className="work-item">
               <div className="work-item-img">
                 <img src="https://s.tracnghiem.net/assets/images/home/smart1.png" alt="" />
@@ -23,7 +23,7 @@ const TopicWork: NextPage = () => {
             </div>
           </div>
 
-          <div className="col-xl-4 col-lg-4 col-md-6">
+          <div className="col-xl-4 col-lg-6 col-md-6">
             <div className="work-item">
               <div className="work-item-img">
                 <img src="https://s.tracnghiem.net/assets/images/home/smart2.png" alt="" />
@@ -35,7 +35,7 @@ const TopicWork: NextPage = () => {
               </p>
             </div>
           </div>
-          <div className="col-xl-4 col-lg-4 col-md-6">
+          <div className="col-xl-4 col-lg-6 col-md-6">
             <div className="work-item">
               <div className="work-item-img">
                 <img src="https://s.tracnghiem.net/assets/images/home/smart3.png" alt="" />
