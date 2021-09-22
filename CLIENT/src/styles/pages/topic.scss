@@ -159,7 +159,11 @@
     &-wrap {
       padding: 0;
     }
-
+    &-left{
+      &.active{
+        width: 0;
+      }
+    }
     .modal {
       &.active {
         display: block;
