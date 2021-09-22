@@ -1,11 +1,8 @@
-import { useEffect, useState } from 'react';
-import LayoutAttempt from '../../components/common/LayoutAttempt';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import Slider from 'react-slick';
-
-import data from '../../data/question.json';
 import { useRouter } from 'next/dist/client/router';
+import { useEffect, useState } from 'react';
+import Slider from 'react-slick';
+import LayoutAttempt from '../../components/common/LayoutAttempt';
+import data from '../../data/question.json';
 
 const settings = {
   dots: false,
