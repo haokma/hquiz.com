@@ -121,8 +121,16 @@
 
 @media (max-width: 992px){
   .banner{
+    .slick-slider{
+      .slick-arrow.slick-prev,
+      .slick-arrow.slick-next
+      {
+        display: none;
+        left: -100000%;
+      }
+    }
     &-item{
-      padding: 15px;
+      padding: 40px;
     }
     &-right{
       display: none;
