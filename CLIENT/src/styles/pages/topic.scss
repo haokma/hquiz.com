@@ -2,7 +2,8 @@
   position: relative;
   width: 100%;
   display: flex;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   &-left{
     width: 0;
     &.active{
@@ -11,7 +12,6 @@
   }
   &-wrap{
     flex: 1;
-    height: 100vh;
     padding: 20px 40px;
     z-index: 1;
   }
