@@ -7,6 +7,9 @@
   .slider{
     margin:  0 -10px;
   }
+  &-content {
+    padding: 5px 10px;
+  }
   &-item{
     padding:  0 10px;
     scroll-snap-align: start;
@@ -19,6 +22,17 @@
   &-thumbnail{
     object-fit: cover;
     border-radius: 8px;
+    overflow: hidden;
+    img{
+      min-height: 220px;
+      max-height: 220px;
+      border-radius: 8px;
+      transition: .2s ease;
+      height: 100%;
+      &:hover{
+        transform: scale(1.1);
+      }
+    }
   }
   &-title{
     font-size: 16px;
@@ -27,6 +41,10 @@
     line-height: 1.5;
     text-align: left;
     font-weight: 600;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
     &:hover{
       color: $color-primary;
     }
@@ -140,16 +158,18 @@
   }
 }
 .post{
-  margin-top: 50px;
+  margin-top: 10px;
   &-heading {
     margin-bottom: 32px;
     font-size: 28px;
     color: $color-title;
   }
-  .slider {
+  &-slider {
     margin: 0 -10px;
   }
-
+  &-content{
+    padding: 5px 10px;
+  }
   &-item {
     padding: 0 10px;
     scroll-snap-align: start;
@@ -163,6 +183,19 @@
   &-thumbnail {
     object-fit: cover;
     border-radius: 8px;
+    overflow: hidden;
+
+    img {
+      min-height: 220px;
+      max-height: 220px;
+      border-radius: 8px;
+      transition: .2s ease;
+      height: 100%;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
   }
   &-title {
     font-size: 16px;
@@ -171,7 +204,10 @@
     line-height: 1.5;
     text-align: left;
     font-weight: 600;
-
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
     &:hover {
       color: $color-primary;
     }

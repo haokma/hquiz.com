@@ -1,9 +1,6 @@
 import { NextPage } from 'next';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import data from '../../data/category.json';
 
-const SCROLL = 150;
 interface PROPS {
   setIsActive: any;
 }
@@ -48,7 +45,9 @@ const Header: NextPage<PROPS> = (props: PROPS) => {
               <a href="">Đăng nhập/Đăng ký</a>
             </div>
             <div className="header-quiz">
-              <a href="">Thi nhanh</a>
+              <Link href="/attempt/1">
+                <a>Thi nhanh</a>
+              </Link>
             </div>
           </div>
         </div>

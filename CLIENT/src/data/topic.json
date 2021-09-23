@@ -2,47 +2,47 @@
   "topic" : [
     {
       "_id": 1,
-      "title": "Bài viết số 1",
+      "title": "HTML5 table feature (Từ kiến thức đến bài tập áp dụng)",
       "time": 30,
-      "view": 9,
+      "view": 95454,
       "totalQuestion": 20,
       "image":"https://api.kquiz.vn/Upload/Test/637668956482219984_js.png"
     },
     {
       "_id": 2,
-      "title": "Bài viết số 2",
+      "title": "Python simple test (oop version)",
       "time": 60,
-      "view": 9,
+      "view": 95454,
       "totalQuestion": 30,
       "image": "https://api.kquiz.vn/Upload/Test/637673730598275658_images.png"
     },
     {
       "_id": 3,
-      "title": "Bài viết số 3",
+      "title": "Ôn tập C# cơ bản",
       "time": 35,
-      "view": 45,
+      "view": 4533,
       "totalQuestion": 50,
       "image": "https://api.kquiz.vn/Upload/Test/637666600500638134_javascript.jpg"
     },
     {
       "_id": 4,
-      "title": "Bài viết số 4",
+      "title": "Bộ Đề Câu Hỏi Phỏng Vấn Javascript (Đề bài và hướng dẫn chi tiết)",
       "time": 40,
-      "view": 19,
+      "view": 2419,
       "totalQuestion": 25,
       "image": "https://api.kquiz.vn/Upload/Test/637673730598275658_images.png"
     },{
       "_id": 5,
-      "title": "Bài viết số 5",
+      "title": "Nhập môn JavaScript",
       "time": 30,
-      "view": 19,
+      "view": 1459,
       "totalQuestion": 20,
       "image": "https://api.kquiz.vn/Upload/Test/637666600500638134_javascript.jpg"
     },{
       "_id": 6,
-      "title": "Bài viết số 6",
+      "title": "20 Bài Tập Kiểm Tra, Rèn Luyện Kiến Thức Javascript (Câu hỏi và hướng dẫn chi tiết) 20 Bài Tập Kiểm Tra, Rèn Luyện Kiến Thức Javascript (Câu hỏi và hướng dẫn chi tiết)",
       "time": 50,
-      "view": 92,
+      "view": 93452,
       "totalQuestion": 45,
       "image":"https://api.kquiz.vn/Upload/Test/637668956482219984_js.png"
     }
