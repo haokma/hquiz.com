@@ -42,7 +42,9 @@ const Header: NextPage<PROPS> = (props: PROPS) => {
           </div>
           <div className="header-right">
             <div className="header-login">
-              <a href="">Đăng nhập/Đăng ký</a>
+              <Link href="/authentication/login">
+                <a>Đăng nhập/Đăng ký</a>
+              </Link>
             </div>
             <div className="header-quiz">
               <Link href="/attempt/1">
