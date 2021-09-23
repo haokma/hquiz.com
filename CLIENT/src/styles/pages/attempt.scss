@@ -4,23 +4,35 @@
   min-height: 100vh;
   padding: 20px 0;
   &-heading{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    color: $color-white;
     width: 100%;
     cursor: pointer;
     margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
     span{
       display: flex;
       align-items: center;
       line-height: 19px;
       margin: 0 2px;
     }
+    a{
+      color: $color-white;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    &-time{
+      display: none;
+      color: $color-primary;
+      span{
+        font-size: 18px;
+        font-weight: 600;
+      }
+    }
   }
   &-question{
     text-align: center;
-    padding: 50px 0;
+    padding: 30px 0;
     color: $color-white;
     display: flex;
     justify-content: center;
@@ -142,6 +154,7 @@
       justify-content: flex-start;
       flex-wrap: wrap;
       margin-top: 20px;
+      width: 100%;
       div{
         width: 45px;
         height: 45px;
@@ -197,12 +210,22 @@
 }
 @media (max-width:992px){
   .attempt{
-    padding: 5px;
+    padding: 5px 0;&
+    &-heading{
+      padding: 20px 0;
+      margin-bottom: 0;
+      background-color: #1C1C1C;
+      &-time{
+        display: flex;
+      }
+    }
+    &-map{
+      &-picture {
+        flex: 1;
+      }
+    }
     &-question-mobile{
       display: block;
-    }
-    &-title {
-      display: none;
     }
     &-info{
       padding: 10px 15px;
@@ -232,7 +255,16 @@
       }
     }
     &-button{
-      display: none;
+      position: fixed;
+      bottom: 50px;
+      margin: 0;
+      display: flex;
+      justify-content: flex-end;
+      button{
+        background-color: $color-primary;
+        color: $color-white;
+        margin-right: 50px;
+      }
     }
   }
 }

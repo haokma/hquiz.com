@@ -67,7 +67,6 @@
         &.active {
           background-color: #e8ebed;
         }
-
         &:hover {
           background-color: #e8ebed;
         }
@@ -85,6 +84,14 @@
           color: #333333;
         }
       }
+    }
+  }
+}
+
+@media (max-width:320px){
+  .menu-mobile{
+    &-body{
+      width: 260px;
     }
   }
 }

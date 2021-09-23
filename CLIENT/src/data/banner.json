@@ -1,0 +1,32 @@
+{
+  "banner": [
+    {
+      "_id":1,
+      "title": "Trắc nghiệm THPT",
+      "description":"Tổng hợp đề thi trắc nghiệm online THPT QG của các môn Toán, Tiếng Anh, Vật lý, Hóa học, Sinh học, Địa lý, Lịch sử, GDCD kèm đáp án và lời giải chi tiết",
+      "image":"https://cdn.fullstack.edu.vn/f8-learning/banners/Banner_04_2.png",
+      "button":"Thi ngay",
+      "link":"/",
+      "className":"banner-item one"
+    },
+    {
+      "_id":2,
+      "title": "Blog Về KMA",
+      "description":"Chia Sẻ IT là blog về công nghệ thông tin, tin tức công nghệ, máy tính, thủ thuật IT, kiến thức tin học, kiếm tiền trên mạng, kiếm tiền online, thủ thuật ...",
+      "image":"https://cdn.fullstack.edu.vn/f8-learning/banners/Banner_01_2.png",
+      "button":"Đọc ngay",
+      "link":"https://www.kmait.tk/",
+      "className":"banner-item two"
+    },
+    {
+      "_id":3,
+      "title": "Shop Giày",
+      "description":"Chính hãng 100% - Ship COD toàn quốc chỉ - Mẫu mã đa dạng - Đổi trả miễn phí 15 ngày. Trả góp 0% - Miễn phí ship nội thành - Bảo hành chính hãng 1 năm.",
+      "image":"https://cdn.fullstack.edu.vn/f8-learning/banners/Banner_04_2.png",
+      "button":"Xem ngay",
+      "link":"http://haolux.tk/",
+      "className":"banner-item three"
+    }
+
+  ]
+}
