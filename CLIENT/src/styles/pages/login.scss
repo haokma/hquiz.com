@@ -1,0 +1,98 @@
+.login{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url('https://cdn.fullstack.edu.vn/f8-learning/manual_uploads/f8_bg_auth_1366.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  &-body{
+    background-color: $color-white;
+    --width: 640px;
+    min-height: 600px;
+    border-radius: 8px;
+    background: #fff;
+    padding: 48px 16px;
+    width: var(--width);
+    max-width: calc(100vw - 32px);
+    position: relative;
+  }
+  &-logo{
+    text-align: center;
+    img{
+      width: 44px;
+      cursor: pointer;
+    }
+  }
+  &-title{
+    text-align: center;
+    font-size: 24px;
+    margin-top: 10px;
+  }
+  &-form{
+    margin-top: 50px;
+    &-group{
+      margin-top: 20px;
+      input{
+        max-width: 400px;
+        width: 100%;
+        outline: none;
+        height: 45px;
+        border-radius: 8px;
+        border: 1px solid #dce0e3;
+        margin: 0 auto;
+        display: block;
+        padding: 8px 20px;
+        font-size: 16px;
+        &:focus{
+          border-color: $color-primary;
+        }
+        &::placeholder{
+          font-size: 16px;
+        }
+      }
+      button{
+        max-width: 400px;
+        width: 100%;
+        outline: none;
+        height: 45px;
+        border-radius: 8px;
+        border: 1px solid #dce0e3;
+        margin: 0 auto;
+        display: block;
+        padding: 8px 20px;
+        font-size: 16px;
+        color: $color-white;
+        background-color: $color-primary;
+        transition: .2s ease;
+        cursor: pointer;
+        &:hover{
+          opacity: .8;
+        }
+      }
+    }
+    .error{
+      color: red;
+      text-align: left;
+      max-width: 400px;
+      width: 100%;
+      margin: 0 auto;
+      margin-top: 8px;
+      padding-left: 8px;
+      font-size: 14px;
+
+    }
+
+  }
+  &-footer {
+    text-align: center;
+    margin-top: 40px;
+    a{
+      margin-left: 5px;
+      color: $color-primary;
+      font-weight: 600;
+    }
+  }
+}
+
