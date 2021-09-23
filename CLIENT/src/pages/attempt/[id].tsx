@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import LayoutAttempt from '../../components/common/LayoutAttempt';
 import data from '../../data/question.json';
+import Link from 'next/link';
 
 const settings = {
   dots: false,
@@ -91,20 +92,29 @@ const Attempt: any = () => {
       <div className="attempt">
         <div className="container-fluid">
           <div className="attempt-heading">
-            <span>
-              <svg
-                stroke="currentColor"
-                fill="currentColor"
-                strokeWidth="0"
-                viewBox="0 0 24 24"
-                height="1em"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M21 11H6.83l3.58-3.59L9 6l-6 6 6 6 1.41-1.41L6.83 13H21z"></path>
-              </svg>
-            </span>
-            <span>Trang chủ</span>
+            <Link href="/">
+              <a>
+                <span>
+                  <svg
+                    stroke="currentColor"
+                    fill="currentColor"
+                    strokeWidth="0"
+                    viewBox="0 0 24 24"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M21 11H6.83l3.58-3.59L9 6l-6 6 6 6 1.41-1.41L6.83 13H21z"></path>
+                  </svg>
+                </span>
+                <span>Trang chủ</span>
+              </a>
+            </Link>
+            <div className="attempt-heading-time">
+              <span>{formatTime(minutes)}</span>
+              <span>:</span>
+              <span>{formatTime(seconds)}</span>
+            </div>
           </div>
           <div className="row-reverse ">
             <div className="col-xl-9 col-lg-8">

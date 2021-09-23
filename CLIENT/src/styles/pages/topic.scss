@@ -41,6 +41,9 @@
         color: $color-text;
         font-size: 14px;
         font-weight: 500;
+        &:hover{
+          color: $color-primary;
+        }
       }
     }
   }
@@ -79,8 +82,7 @@
   }
   &-img{
     img{
-      width: 64px;
-      height: 64px;
+      height: 80px;
     }
   }
   &-title{
@@ -103,6 +105,9 @@
       span{
         padding: 0 3px;
         display: block;
+      }
+      span:nth-child(1){
+        display: flex;
       }
     }
   }
@@ -167,6 +172,16 @@
     .modal {
       &.active {
         display: block;
+      }
+    }
+  }
+}
+
+@media (max-width:768px){
+  .topic{
+    &-img{
+      img{
+        max-height: 64px;
       }
     }
   }

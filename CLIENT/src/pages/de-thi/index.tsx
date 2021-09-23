@@ -23,7 +23,7 @@ const Topic: NextPage = () => {
         setIsActive(false);
       }
     });
-  }, [isActive]);
+  }, []);
   return (
     <>
       <Head>
@@ -63,7 +63,7 @@ const Topic: NextPage = () => {
                   </svg>
                 </li>
                 <li>
-                  <Link href="/">Đề thi</Link>
+                  <Link href="/de-thi">Đề thi</Link>
                 </li>
               </ul>
               <div className="topic-toggle">

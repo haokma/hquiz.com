@@ -88,3 +88,11 @@
     }
   }
 }
+
+@media (max-width:320px){
+  .menu-mobile{
+    &-body{
+      width: 260px;
+    }
+  }
+}
