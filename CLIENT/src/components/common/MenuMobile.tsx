@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import Link from 'next/link';
+import ActiveLink from './ActiveLink';
 interface PROPS {
   isActive: boolean;
   setIsActive: any;
@@ -37,7 +38,7 @@ const MenuMobile: NextPage<PROPS> = (props: PROPS) => {
         </div>
         <ul className="menu-mobile-list">
           <li onClick={() => setIsActive(false)}>
-            <Link href="/">
+            <ActiveLink activeClassName="active" href="/">
               <a>
                 <svg
                   aria-hidden="true"
@@ -56,10 +57,10 @@ const MenuMobile: NextPage<PROPS> = (props: PROPS) => {
                 </svg>
                 <span>Home</span>
               </a>
-            </Link>
+            </ActiveLink>
           </li>
           <li onClick={() => setIsActive(false)}>
-            <Link href="/de-thi">
+            <ActiveLink activeClassName="active" href="/de-thi">
               <a>
                 <svg
                   style={{ width: '15px' }}
@@ -79,10 +80,10 @@ const MenuMobile: NextPage<PROPS> = (props: PROPS) => {
                 </svg>
                 <span>Đề thi</span>
               </a>
-            </Link>
+            </ActiveLink>
           </li>
           <li onClick={() => setIsActive(false)}>
-            <Link href="/">
+            <ActiveLink activeClassName="active" href="/ket-qua">
               <a href="">
                 <svg
                   style={{ width: '15px' }}
@@ -102,10 +103,10 @@ const MenuMobile: NextPage<PROPS> = (props: PROPS) => {
                 </svg>
                 <span>Kết quả thi</span>
               </a>
-            </Link>
+            </ActiveLink>
           </li>
           <li onClick={() => setIsActive(false)}>
-            <Link href="/">
+            <ActiveLink activeClassName="active" href="/bang-xep-hang">
               <a>
                 <svg
                   aria-hidden="true"
@@ -124,10 +125,10 @@ const MenuMobile: NextPage<PROPS> = (props: PROPS) => {
                 </svg>
                 <span>Bảng xếp hạng</span>
               </a>
-            </Link>
+            </ActiveLink>
           </li>
           <li onClick={() => setIsActive(false)}>
-            <Link href="/">
+            <ActiveLink activeClassName="active" href="https://www.kmait.tk/">
               <a>
                 <svg
                   aria-hidden="true"
@@ -146,10 +147,10 @@ const MenuMobile: NextPage<PROPS> = (props: PROPS) => {
                 </svg>
                 <span>Bài viết</span>
               </a>
-            </Link>
+            </ActiveLink>
           </li>
           <li onClick={() => setIsActive(false)}>
-            <Link href="/">
+            <ActiveLink activeClassName="active" href="https://www.kmait.tk/">
               <a>
                 <svg
                   aria-hidden="true"
@@ -168,7 +169,7 @@ const MenuMobile: NextPage<PROPS> = (props: PROPS) => {
                 </svg>
                 <span>Về KMA</span>
               </a>
-            </Link>
+            </ActiveLink>
           </li>
         </ul>
       </div>

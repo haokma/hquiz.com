@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import Link from 'next/link';
+import ActiveLink from './ActiveLink';
 
 const Sidebar: NextPage = () => {
   return (
@@ -7,7 +7,7 @@ const Sidebar: NextPage = () => {
       <div className="sidebar-app-content">
         <ul className="sidebar-app-list">
           <li>
-            <Link href="/">
+            <ActiveLink activeClassName="active" href="/">
               <a>
                 <svg
                   aria-hidden="true"
@@ -26,10 +26,10 @@ const Sidebar: NextPage = () => {
                 </svg>
                 <span>Home</span>
               </a>
-            </Link>
+            </ActiveLink>
           </li>
           <li>
-            <Link href="/de-thi">
+            <ActiveLink activeClassName="active" href="/de-thi">
               <a>
                 <svg
                   style={{ width: '15px' }}
@@ -49,10 +49,10 @@ const Sidebar: NextPage = () => {
                 </svg>
                 <span>Đề thi</span>
               </a>
-            </Link>
+            </ActiveLink>
           </li>
           <li>
-            <Link href="/">
+            <ActiveLink activeClassName="active" href="/ket-qua">
               <a href="">
                 <svg
                   style={{ width: '15px' }}
@@ -72,10 +72,10 @@ const Sidebar: NextPage = () => {
                 </svg>
                 <span>Kết quả thi</span>
               </a>
-            </Link>
+            </ActiveLink>
           </li>
           <li>
-            <Link href="/">
+            <ActiveLink activeClassName="active" href="/bang-xep-hang">
               <a>
                 <svg
                   aria-hidden="true"
@@ -94,10 +94,10 @@ const Sidebar: NextPage = () => {
                 </svg>
                 <span>Bảng xếp hạng</span>
               </a>
-            </Link>
+            </ActiveLink>
           </li>
           <li>
-            <Link href="/">
+            <ActiveLink activeClassName="active" href="https://www.kmait.tk/">
               <a>
                 <svg
                   aria-hidden="true"
@@ -116,10 +116,10 @@ const Sidebar: NextPage = () => {
                 </svg>
                 <span>Bài viết</span>
               </a>
-            </Link>
+            </ActiveLink>
           </li>
           <li>
-            <Link href="/">
+            <ActiveLink activeClassName="active" href="https://www.kmait.tk/">
               <a>
                 <svg
                   aria-hidden="true"
@@ -138,7 +138,7 @@ const Sidebar: NextPage = () => {
                 </svg>
                 <span>Về KMA</span>
               </a>
-            </Link>
+            </ActiveLink>
           </li>
         </ul>
       </div>

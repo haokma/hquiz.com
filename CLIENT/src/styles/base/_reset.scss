@@ -40,15 +40,21 @@ img {
   max-width: calc(100% - 96px);
   flex: 1 1;
   margin-top: 18px;
-  padding: 0 20px;
+  padding: 0 40px;
 }
 .home-wrap{
-  padding: 20px 40px;
+  padding: 20px 0;
   margin-top: 50px;
+}
+
+
+.pb-4{
+  padding-bottom: 20px;
 }
 @media (max-width: 992px) {
   .content {
     max-width: 100%;
+    padding: 0 20px;
   }
   .home-wrap{
     padding: 20px 0;

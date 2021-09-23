@@ -74,7 +74,7 @@ const Topic: NextPage = () => {
               <div className="row">
                 {data.topic.map((item, index) => {
                   return (
-                    <div className="col-xl-6" key={index}>
+                    <div className="col-xl-6 col-lg-6 pb-4" key={index}>
                       <TopicItem topic={item} />
                     </div>
                   );
