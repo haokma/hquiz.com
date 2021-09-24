@@ -119,7 +119,14 @@ const Attempt: any = () => {
           <div className="row-reverse ">
             <div className="col-xl-9 col-lg-8">
               <div className="attempt-question">
-                <span className="attempt-title">{data.questions[questionIndex - 1].title}</span>
+                <div className="attempt-title">
+                  <span>
+                    Câu {questionIndex}: {data.questions[questionIndex - 1].title}
+                  </span>
+                  {data.questions[questionIndex - 1].image && (
+                    <img src={data.questions[questionIndex - 1].image} alt="" />
+                  )}
+                </div>
                 <div className="attempt-answer">
                   <form name={`question_${questionIndex}`}>
                     {data.questions[questionIndex - 1].answers.map((item, index) => {
@@ -131,7 +138,10 @@ const Attempt: any = () => {
                             name={`answer_${questionIndex}`}
                             onChange={() => handleAnswer(index + 1)}
                           />
-                          <label htmlFor={`answer_${index}`}>{item.value}</label>
+                          <label htmlFor={`answer_${index}`}>
+                            <span>{item.value}</span>
+                            {item.image && <img src={item.image} alt="" />}
+                          </label>
                         </div>
                       );
                     })}

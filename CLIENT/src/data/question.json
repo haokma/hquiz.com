@@ -2,252 +2,312 @@
   "questions" : [
     {
       "_id": 1,
-      "title": "Cau 1",
+      "image": "https://ph-files.imgix.net/9abd55f9-6c3d-43a7-a458-785a18710986.png?auto=format&auto=compress&codec=mozjpeg&cs=strip",
+      "title": "Sóng siêu âm",
       "answers": [{
         "_id": 1,
-        "value":1
+        "image": "https://ph-files.imgix.net/26b7dd06-c295-448f-b526-06fcfc25f6bd.png?auto=format&auto=compress&codec=mozjpeg&cs=strip",
+        "value":"A. không truyền được trong chất khí."
       },
       {
         "_id": 2,
-        "value":2
+        "image": "https://pbs.twimg.com/media/DVH28ajVwAAB3vj.png",
+        "value":"B. truyền trong nước nhanh hơn trong sắt."
       },
       {
         "_id": 3,
-        "value":3
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGWDrOFCI5-Cb73l9NPES5EuCn0t5eYwVjGFCsiAB4XMJ2KMNyOcNn5MjKzxdRQdQxMo0&usqp=CAU",
+        "value":"C. truyền được trong chân không."
       },
       {
         "_id": 4,
-        "value":4
+        "image": "https://ph-files.imgix.net/6db02e56-fb41-4186-b4a1-bd2faf7fd512.png?auto=format&auto=compress&codec=mozjpeg&cs=strip",
+        "value":"D. không truyền được trong chân không."
       }
     ]
     },
     {
       "_id": 2,
-      "title": "Cau 2",
+      "image": "",
+      "title": "Indicate the word that differs from the other three in the position of stress: alive, careful, happy, nervous",
       "answers": [{
         "_id": 5,
-        "value":5
+        "image": "",
+        "value":"A. alive"
       },
       {
         "_id": 6,
-        "value":6
+        "image": "",
+        "value":"B. careful"
       },
       {
         "_id": 7,
-        "value":7
+        "image": "https://cdn.ourcodeworld.com/public-media/gallery/gallery-6032b31db1c8b.jpg",
+        "value":"C. happy"
       },
       {
         "_id": 8,
-        "value":8
+        "image": "",
+        "value":"D. nervous"
       }
     ]
     },
     {
       "_id": 3,
-      "title": "Cau 3",
+      "image": "https://ph-files.imgix.net/6db02e56-fb41-4186-b4a1-bd2faf7fd512.png?auto=format&auto=compress&codec=mozjpeg&cs=strip",
+      "title": "When the visitor saw with her own eyes the beach covered with tons of plastic rubbish washed up from around the world, a chill went down her ...............",
      "answers": [{
         "_id": 9,
-        "value":9
+        "image": "https://external-preview.redd.it/tR8TOjilSQHKTflfJG92jqnJE2T_j1m5ljrM0-1FKLg.jpg?width=640&crop=smart&auto=webp&s=41c482ada886d135e70757e9449da97b28535fd2",
+        "value":"A. spine"
       },
       {
         "_id": 10,
-        "value":10
+        "image": "",
+        "value":"B. bone"
       },
       {
         "_id": 11,
-        "value":11
+        "image": "https://ph-files.imgix.net/6db02e56-fb41-4186-b4a1-bd2faf7fd512.png?auto=format&auto=compress&codec=mozjpeg&cs=strip",
+        "value":"C. mind"
       },
       {
         "_id": 12,
-        "value":12
+        "image": "",
+        "value":"D. brain"
       }
     ]
     },
     {
       "_id": 4,
-      "title": "Cau 4",
+      "image": "",
+      "title": "............the book again and again, I finally understood what the author meant.",
       "answers": [{
         "_id": 13,
-        "value":13
+        "image": "",
+        "value":"A. Have been reading"
       },
       {
         "_id": 14,
-        "value":14
+        "image": "",
+        "value":"C. Have read"
       },
       {
         "_id": 15,
-        "value":15
+        "image": "",
+        "value":"D. Having read"
       },
       {
         "_id": 16,
-        "value":16
+        "image": "",
+        "value":"D. Having read"
       }
     ]
     },
     {
       "_id": 1,
-      "title": "Cau 5",
+      "image": "",
+      "title": "My sister and I share the housework. We take turns to..............the dishes and clean the house.",
       "answers": [{
         "_id": 18,
-        "value":17
+        "image": "",
+        "value":"A. wash up"
       },
       {
         "_id": 19,
-        "value":18
+        "image": "",
+        "value":"B. wash over"
       },
       {
         "_id": 20,
-        "value":19
+        "image": "",
+        "value":"C. wash away"
       },
       {
         "_id": 21,
-        "value":20
+        "image": "",
+        "value":"D. wash through"
       }
     ]
     },
     {
       "_id": 1,
-      "title": "Cau 6",
+      "image": "https://ph-files.imgix.net/6db02e56-fb41-4186-b4a1-bd2faf7fd512.png?auto=format&auto=compress&codec=mozjpeg&cs=strip",
+      "title": "Jane has been trying to solve this problem all week, but she still hasn't been able to......it.",
       "answers": [{
         "_id": 22,
-        "value":17
+        "image": "",
+        "value":"A. shatter"
       },
       {
         "_id": 23,
-        "value":128
+        "image": "",
+        "value":"B. break"
       },
       {
         "_id": 24,
-        "value":19
+        "image": "",
+        "value":"C. crack"
       },
       {
         "_id": 25,
-        "value":230
+        "image": "https://ph-files.imgix.net/6db02e56-fb41-4186-b4a1-bd2faf7fd512.png?auto=format&auto=compress&codec=mozjpeg&cs=strip",
+        "value":"D. crash"
       }
     ]
     },
     {
       "_id": 1023,
-      "title": "Cau 7",
+      "image": "",
+      "title": "Many people say that schooldays are the best days of their life, and they often feel that this should be a period of enjoyment. (26)......... , exams often make them unhappy, and many students prefer having no exams at all. They say the exams (27)........ they have to take often make them worried, and they have no time to relax. Others, on the other hand, say that exams help students study better. They will have to study throughout the year, and if they do well, they will become more (28)........ studying.",
       "answers": [{
         "_id": 1723,
-        "value":1723
+        "image": "",
+        "value":"A. Although"
       },
       {
         "_id": 18123,
-        "value":1823
+        "image": "",
+        "value":"B. Moreover "
       },
       {
         "_id": 3139,
-        "value":193
+        "image": "",
+        "value":"C. Therefore"
       },
       {
         "_id": 2240,
-        "value":20
+        "image": "https://i1.wp.com/www.wowtechy.com/wp-content/uploads/2021/03/WT-Pattern.png?ssl=1",
+        "value":"D. However"
       }
     ]
     },
     {
       "_id": 1,
-      "title": "Cau 8",
+      "image": "https://i1.wp.com/www.wowtechy.com/wp-content/uploads/2021/03/WT-Pattern.png?ssl=1",
+      "title": "Since the 19th century, companies have looked for better and cleaner ways of creating electricity. One UK company has created a special type of floor made of square tiles. Under each square, there is a system that can create electricity very cheaply when someone steps on it!",
       "answers": [{
         "_id": 179,
-        "value":17
+        "image": "",
+        "value":"A. The design of the floor works very well when it is used in very busy areas. And the reason is that a lot of energy is created simply because of the large numbers of people walking across the floor."
       },
       {
         "_id": 187,
-        "value":185
+        "image": "",
+        "value":"B. The floor can have other uses too; one of them is to record how many people visit a shopping centre. This kind of information is very useful for shop owners because very often they want to know at which times of days they have the highest numbers of customers. So the next time you visit a bit shopping centre, have a careful look at the floor that you are walking across!"
       },
       {
         "_id": 1957,
-        "value":19
+        "image": "",
+        "value":"C. A special floor that creates electricity"
       },
       {
         "_id": 2047,
-        "value":20
+        "image": "",
+        "value":"D. A difficulty in creating electricity."
       }
     ]
     },
     {
       "_id": 1,
-      "title": "Cau 9",
+      "image": "",
+      "title": "Today, text messaging has probably become young people's most common form communication. Some teachers think that because of this, young people are not writing correctly at 7 school. They fear that once students get used to it, they will find it hard to ",
       "answers": [{
         "_id": 1753,
-        "value":17
+        "image": "https://i1.wp.com/www.wowtechy.com/wp-content/uploads/2021/03/WT-Pattern.png?ssl=1",
+        "value":"A. It all began with e-mail, online chat rooms, and games. Then step by step young people made sentences, phrases and words shorter. As text messaging continued to become popular, people end"
       },
       {
         "_id": 1837,
-        "value":18
+        "image": "",
+        "value":"B. People have different ideas about the effects of text messaging on students writing skills. Some say that students are losing the ability to write long, correct sentences. Others say that text messaging is having a good effect on the language students use in their schoolwork. It shows that they are creative and good at expressing themselves. And if students can keep the two systems separate -- one for text messaging and one for school this will help students appreciate reading and writing more"
       },
       {
         "_id": 1937,
-        "value":19
+        "image": "",
+        "value":"C. What can be Done to Increase the Quality of Text messaging?"
       },
       {
         "_id": 2057,
-        "value":20
+        "image": "",
+        "value":"D. How can Teachers Teach Text-messaging?"
       }
     ]
     },
     {
       "_id": 1,
+      "image": "",
       "title": "Cau 10",
       "answers": [{
         "_id": 177567,
+        "image": "",
         "value":17
       },
       {
         "_id": 1876,
+        "image": "",
         "value":18
       },
       {
         "_id": 197567,
+        "image": "",
         "value":19
       },
       {
         "_id": 207567,
+        "image": "",
         "value":20
       }
     ]
     },
     {
       "_id": 1,
+      "image": "",
       "title": "Cau 11",
       "answers": [{
         "_id": 177575,
+        "image": "",
         "value":17
       },
       {
         "_id": 18575,
+        "image": "",
         "value":18
       },
       {
         "_id": 197567,
+        "image": "",
         "value":19
       },
       {
         "_id": 20878,
+        "image": "",
         "value":20
       }
     ]
     },
     {
       "_id": 1,
+      "image": "",
       "title": "Cau 12",
       "answers": [{
         "_id": 17787,
+        "image": "",
         "value":17
       },
       {
         "_id": 18878,
+        "image": "",
         "value":18
       },
       {
         "_id": 19878,
+        "image": "",
         "value":19
       },
       {
         "_id": 287870,
+        "image": "",
         "value":20
       }
     ]
