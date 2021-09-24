@@ -57,3 +57,56 @@
   }
 
 }
+
+
+.paginationbest {
+  display: flex;
+  justify-content: center;
+}
+
+.paginationbest li {
+  width: 45px;
+  height: 45px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  line-height: 45px;
+  text-align: center;
+}
+
+.paginationbest li.active {
+  color: $color-primary;
+}
+.paginationbest button{
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: 30px;
+  height: 45px;
+  cursor: #000;
+  &:disabled {
+    cursor: not-allowed;
+    color: #ccc;
+  }
+
+  &:hover {
+    color: $color-primary;
+  }
+
+  &:disabled:hover {
+    cursor: not-allowed;
+    color: #ccc;
+  }
+}
+.paginationbest i{
+  font-size: 28px;
+  height: 45px;
+  line-height: 45px;
+  cursor: pointer;
+}
+
+@media (max-width:576px){
+  .paginationbest li{
+    width: 40px;
+  }
+}

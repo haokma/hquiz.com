@@ -1,26 +1,33 @@
 import { NextPage } from 'next';
-import { useRouter } from 'next/dist/client/router';
+import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import PaginationUltimate from '../../components/pagination/PaginationUltimate';
 import Sidebar from '../../components/topic/Sidebar';
 import TopicItem from '../../components/topic/TopicItem';
 import data from '../../data/topic.json';
-import Head from 'next/head';
-import Pagination from '../../components/pagination/Pagination';
 
+let TOTAL_PAGE = 25;
+let BOUNDARY = 2;
+let SKIP = 1;
 const Topic: NextPage = () => {
   const [isActive, setIsActive] = useState(true);
-  const router = useRouter();
 
   useEffect(() => {
     const width = window.innerWidth;
     if (width < 1024) {
       setIsActive(false);
     }
+    if (width < 576) {
+      BOUNDARY = 1;
+    }
     window.addEventListener('resize', () => {
       const width = window.innerWidth;
       if (width < 1024 && isActive) {
         setIsActive(false);
+      }
+      if (width < 576) {
+        BOUNDARY = 1;
       }
     });
   }, []);
@@ -81,9 +88,9 @@ const Topic: NextPage = () => {
                 })}
               </div>
             </div>
-            <div className="topic-pagination">
-              <Pagination />
-            </div>
+          </div>
+          <div className="topic-pagination">
+            <PaginationUltimate TOTAL_PAGE={TOTAL_PAGE} BOUNDARY={BOUNDARY} SKIP={SKIP} />
           </div>
         </div>
         <div className={isActive ? 'topic-left active' : 'topic-left'}></div>
