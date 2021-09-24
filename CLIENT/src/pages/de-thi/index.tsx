@@ -6,11 +6,11 @@ import Sidebar from '../../components/topic/Sidebar';
 import TopicItem from '../../components/topic/TopicItem';
 import data from '../../data/topic.json';
 import Head from 'next/head';
+import Pagination from '../../components/pagination/Pagination';
 
 const Topic: NextPage = () => {
   const [isActive, setIsActive] = useState(true);
   const router = useRouter();
-  const page = Number(router.query.page) || 1;
 
   useEffect(() => {
     const width = window.innerWidth;
@@ -82,20 +82,7 @@ const Topic: NextPage = () => {
               </div>
             </div>
             <div className="topic-pagination">
-              <ul className="pagination-list">
-                {[1, 2].map((item, index) => {
-                  return (
-                    <li
-                      key={index}
-                      className={item === page ? 'pagination-item active' : 'pagination-item'}
-                    >
-                      <Link href={`/de-thi/?page=${item}`}>
-                        <a>{item}</a>
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
+              <Pagination />
             </div>
           </div>
         </div>
