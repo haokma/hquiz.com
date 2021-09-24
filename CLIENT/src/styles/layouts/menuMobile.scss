@@ -63,24 +63,26 @@
         justify-content: flex-start;
         border-radius: 12px;
         margin-bottom: 4px;
-
         &.active {
           background-color: #e8ebed;
         }
         &:hover {
           background-color: #e8ebed;
         }
-
+        div{
+          width: 40px;
+          display: flex;
+          align-items: center;
+        }
         svg {
           width: 20px;
         }
-
         span {
           display: block;
           font-size: 16px;
           margin-top: 4px;
           font-weight: 500;
-          margin-left: 20px;
+          margin-left: 0px;
           color: #333333;
         }
       }

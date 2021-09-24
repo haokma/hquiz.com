@@ -5,7 +5,6 @@
     width: 100%;
     border-radius: 20px;
     text-align: left;
-    min-height: 250px;
     & > div{
       display: flex;
       align-items: flex-start;
@@ -40,7 +39,7 @@
   }
   &-title{
     color: $color-white;
-    font-size: 28px;
+    font-size: 30px;
     font-weight: 800;
     margin-bottom: 16px;
   }
@@ -48,6 +47,10 @@
     color: $color-white;
     font-size: 16px;
     line-height: 1.8;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
   }
   &-button{
     margin-top: 20px;
@@ -140,11 +143,27 @@
       padding: 0;
     }
     &-desc{
-      font-size: 14px;
+      font-size: 16px;
     }
     &-button{
-      margin-top: 12px;
+      margin-top: 16px;
       margin-bottom: 0;
+    }
+  }
+}
+@media(max-width:576px){
+  .banner{
+    &-item{
+      min-height: 320px;
+    }
+  }
+}
+
+@media(max-width:350px) {
+  .banner
+  {
+    &-title{
+      font-size: 26px;
     }
   }
 }

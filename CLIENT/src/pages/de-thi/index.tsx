@@ -48,31 +48,6 @@ const Topic: NextPage = () => {
         <div className="topic-wrap">
           <div className="topic-content">
             <div className="topic-heading">
-              <ul className="topic-break">
-                <li>
-                  <Link href="/">HQUIZ</Link>
-                </li>
-                <li className="arrow">
-                  <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    strokeWidth="0"
-                    viewBox="0 0 16 16"
-                    height="1em"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M10.072 8.024L5.715 3.667l.618-.62L11 7.716v.618L6.333 13l-.618-.619 4.357-4.357z"
-                    ></path>
-                  </svg>
-                </li>
-                <li>
-                  <Link href="/de-thi">Đề thi</Link>
-                </li>
-              </ul>
               <div className="topic-toggle">
                 <button onClick={() => setIsActive(!isActive)}>Bộ lọc</button>
               </div>

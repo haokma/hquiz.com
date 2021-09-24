@@ -28,7 +28,7 @@
   }
   &-title{
     color: $color-title;
-    margin: 20px 0;
+    margin:0 0 20px 0;
     font-size: 26px;
     font-weight: 600;
   }
@@ -36,7 +36,7 @@
     border-radius: 8px;
   }
   &-desc{
-    margin-top: 20px;
+    margin: 20px 0;
     line-height: 1.6;
     color: $color-text;
   }
@@ -50,6 +50,7 @@
       border-top-left-radius: 12px;
       border-top-right-radius: 12px;
       font-weight: 700;
+      text-align: center;
     }
     &-content {
       padding:  20px;
@@ -188,7 +189,7 @@
       }
     }
     &-title{
-      margin: 40px 0 20px 0;
+      margin: 0px 0 20px 0;
     }
   }
 }

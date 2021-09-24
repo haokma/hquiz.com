@@ -6,6 +6,7 @@ import data from '../../data/topic.json';
 const settings = {
   dots: false,
   infinite: true,
+  centerMode: true,
   speed: 500,
   slidesToShow: 5,
   slidesToScroll: 1,
@@ -43,7 +44,15 @@ const settings = {
 const TopicHighlight: NextPage = () => {
   return (
     <div className="topic-highlight">
-      <h2 className="topic-highlight-heading">Đề thi nổi bật</h2>
+      <div className="topic-highlight-heading">
+        <h2>Đề thi nổi bật</h2>
+        <Link href="/de-thi">
+          <a>
+            <span>Xem tất cả</span>
+            <i className="bx bx-chevron-right"></i>
+          </a>
+        </Link>
+      </div>
       <div className="slider">
         <Slider {...settings}>
           {data.topic.map((item, index) => {

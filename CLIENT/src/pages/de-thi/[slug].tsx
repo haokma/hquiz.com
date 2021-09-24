@@ -9,57 +9,7 @@ const TopicDetails: NextPage = () => {
       </Head>
       <div className="topic-details">
         <div className="row">
-          <div className="col-xl-12">
-            <ul className="topic-details-break">
-              <li>
-                <Link href="/">HQUIZ</Link>
-              </li>
-              <li className="arrow">
-                <svg
-                  stroke="currentColor"
-                  fill="currentColor"
-                  viewBox="0 0 16 16"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M10.072 8.024L5.715 3.667l.618-.62L11 7.716v.618L6.333 13l-.618-.619 4.357-4.357z"
-                  ></path>
-                </svg>
-              </li>
-              <li>
-                <Link href="/de-thi">Đề thi</Link>
-              </li>
-              <li className="arrow">
-                <svg
-                  stroke="currentColor"
-                  fill="currentColor"
-                  viewBox="0 0 16 16"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M10.072 8.024L5.715 3.667l.618-.62L11 7.716v.618L6.333 13l-.618-.619 4.357-4.357z"
-                  ></path>
-                </svg>
-              </li>
-              <li>
-                <Link href="/de-thi/1">
-                  20 Bài Tập Kiểm Tra, Rèn Luyện Kiến Thức Javascript (Câu hỏi và hướng dẫn chi
-                  tiết)
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-xl-8 col-lg-8 col-md-7">
+          <div className="col-xl-9 col-lg-7 col-md-7">
             <div className="topic-details-content">
               <h2 className="topic-details-title">
                 20 Bài Tập Kiểm Tra, Rèn Luyện Kiến Thức Javascript (Câu hỏi và hướng dẫn chi tiết)
@@ -80,7 +30,7 @@ const TopicDetails: NextPage = () => {
               </p>
             </div>
           </div>
-          <div className="col-xl-4 col-lg-4 col-md-5">
+          <div className="col-xl-3 col-lg-5 col-md-5">
             <div className="topic-details-info">
               <div className="topic-details-info-heading">
                 <span>Thông tin đề thi</span>

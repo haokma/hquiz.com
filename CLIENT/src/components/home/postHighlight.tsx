@@ -5,6 +5,8 @@ import data from '../../data/blog.json';
 
 const settings = {
   dots: false,
+  centerPadding: '60px',
+  centerMode: true,
   infinite: true,
   speed: 500,
   slidesToShow: 5,
@@ -43,7 +45,15 @@ const settings = {
 const PostHightLight: NextPage = () => {
   return (
     <div className="post">
-      <h2 className="post-heading">Bài viết nổi bật</h2>
+      <div className="topic-highlight-heading">
+        <h2>Bài viết nổi bật</h2>
+        <Link href="https://www.kmait.tk/">
+          <a>
+            <span>Xem tất cả</span>
+            <i className="bx bx-chevron-right"></i>
+          </a>
+        </Link>
+      </div>
       <div className="post-slider">
         <Slider {...settings}>
           {data.blog.map((item, index) => {
