@@ -64,7 +64,7 @@ const TopicHighlight: NextPage = () => {
                   </div>
                   <div className="topic-highlight-content">
                     <h3 className="topic-highlight-title">
-                      <Link href="/de-thi/1">{item.title}</Link>
+                      <Link href={`de-thi/${item._id}`}>{item.title}</Link>
                     </h3>
                     <div className="topic-highlight-view">
                       <svg

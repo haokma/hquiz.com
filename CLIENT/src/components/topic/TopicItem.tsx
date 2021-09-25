@@ -74,7 +74,7 @@ const TopicItem: NextPage<Props> = (props: Props) => {
               <span>{topic.view}</span>
             </div>
           </div>
-          <p className="topic-categories">Pythons</p>
+          {/* <p className="topic-categories">Pythons</p> */}
         </div>
       </div>
     </Link>

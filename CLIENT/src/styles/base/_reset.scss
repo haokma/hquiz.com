@@ -52,6 +52,11 @@ img {
 .pb-4{
   padding-bottom: 20px;
 }
+div.container.m-l-auto{
+  margin-left: 0;
+  margin-right: auto;
+  padding: 0;
+}
 @media (max-width: 992px) {
   .content {
     max-width: 100%;
@@ -59,5 +64,9 @@ img {
   }
   .home-wrap{
     padding: 20px 0;
+  }
+  div.container.m-l-auto {
+    width: 100%;
+    max-width: unset;
   }
 }

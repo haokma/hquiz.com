@@ -1,6 +1,5 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import PaginationUltimate from '../../components/pagination/PaginationUltimate';
 import Sidebar from '../../components/topic/Sidebar';
@@ -28,6 +27,8 @@ const Topic: NextPage = () => {
       }
       if (width < 576) {
         BOUNDARY = 1;
+      } else {
+        BOUNDARY = 2;
       }
     });
   }, []);
@@ -37,9 +38,6 @@ const Topic: NextPage = () => {
         <title>Bộ đề thi trắc nghiệm THPT Quốc Gia mới nhất</title>
       </Head>
       <div className="topic">
-        <div className={isActive ? 'sidebar active' : 'sidebar'}>
-          <Sidebar />
-        </div>
         <div
           className={isActive ? 'modal active' : 'modal'}
           onClick={() => setIsActive(false)}
@@ -67,6 +65,9 @@ const Topic: NextPage = () => {
           <div className="topic-pagination">
             <PaginationUltimate TOTAL_PAGE={TOTAL_PAGE} BOUNDARY={BOUNDARY} SKIP={SKIP} />
           </div>
+        </div>
+        <div className={isActive ? 'sidebar active' : 'sidebar'}>
+          <Sidebar />
         </div>
         <div className={isActive ? 'topic-left active' : 'topic-left'}></div>
       </div>

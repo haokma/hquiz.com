@@ -33,7 +33,7 @@ export default function PaginationUltimate(props: PROPS) {
       for (let i = 1; i <= BOUNDARY + NUMBER + SKIP * 2; i++) {
         results.push(paginationItem(currentPage, i));
       }
-      results.push(<li>...</li>);
+      results.push(<li key={Math.random()}>...</li>);
       for (let i = TOTAL_PAGE - BOUNDARY + 1; i <= TOTAL_PAGE; i++) {
         results.push(paginationItem(currentPage, i));
       }
@@ -41,7 +41,7 @@ export default function PaginationUltimate(props: PROPS) {
       for (let i = 1; i <= BOUNDARY; i++) {
         results.push(paginationItem(currentPage, i));
       }
-      results.push(<li>...</li>);
+      results.push(<li key={Math.random()}>...</li>);
 
       for (let i = TOTAL_PAGE - BOUNDARY - 1 - SKIP * 2; i <= TOTAL_PAGE; i++) {
         results.push(paginationItem(currentPage, i));
@@ -50,11 +50,11 @@ export default function PaginationUltimate(props: PROPS) {
       for (let i = 1; i <= BOUNDARY; i++) {
         results.push(paginationItem(currentPage, i));
       }
-      results.push(<li>...</li>);
+      results.push(<li key={Math.random()}>...</li>);
       for (let i = beforePage; i <= afterPage; i++) {
         results.push(paginationItem(currentPage, i));
       }
-      results.push(<li>...</li>);
+      results.push(<li key={Math.random()}>...</li>);
       for (let i = TOTAL_PAGE - BOUNDARY + 1; i <= TOTAL_PAGE; i++) {
         results.push(paginationItem(currentPage, i));
       }

@@ -192,3 +192,13 @@
     }
   }
 }
+
+@media (max-width:576px) {
+  .topic-highlight{
+    &-heading{
+      h2{
+        font-size: 22px;
+      }
+    }
+  }
+}
