@@ -48,8 +48,8 @@ const TopicResult: any = () => {
                       fill="none"
                       strokeWidth="2"
                       viewBox="0 0 24 24"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       width="1em"
                       xmlns="http://www.w3.org/2000/svg"
                     >
@@ -74,8 +74,8 @@ const TopicResult: any = () => {
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         strokeWidth="2"
                         d="M6 18L18 6M6 6l12 12"
                       ></path>
@@ -99,15 +99,15 @@ const TopicResult: any = () => {
                     >
                       <path
                         fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         strokeWidth="32"
                         d="M85.57 446.25h340.86a32 32 0 0028.17-47.17L284.18 82.58c-12.09-22.44-44.27-22.44-56.36 0L57.4 399.08a32 32 0 0028.17 47.17z"
                       ></path>
                       <path
                         fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         strokeWidth="32"
                         d="M250.26 195.39l5.74 122 5.73-121.95a5.74 5.74 0 00-5.79-6h0a5.74 5.74 0 00-5.68 5.95z"
                       ></path>
@@ -133,8 +133,8 @@ const TopicResult: any = () => {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     strokeWidth="2"
                     d="M14 5l7 7m0 0l-7 7m7-7H3"
                   ></path>
@@ -170,7 +170,9 @@ const TopicResult: any = () => {
         </div>
         <div className="question">
           <div className="question-title">
-            <span>{data.questions[questionIndex].title}</span>
+            <span>
+              Câu {questionIndex} : {data.questions[questionIndex].title}
+            </span>
             {data.questions[questionIndex].image && (
               <img src={data.questions[questionIndex].image} alt="" />
             )}
@@ -179,7 +181,7 @@ const TopicResult: any = () => {
             {data.questions[questionIndex].answers.map((item, index) => {
               return (
                 <>
-                  <input type="radio" name="1" id={`answer_${index}`} />
+                  <input type="radio" name="1" id={`answer_${index}`} checked={index === 3} />
                   <label htmlFor={`answer_${index}`}>
                     <span>{item.value}</span>
                     {item.image && <img src={item.image} alt="" />}
@@ -216,15 +218,15 @@ const TopicResult: any = () => {
                 >
                   <path
                     fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     strokeWidth="32"
                     d="M85.57 446.25h340.86a32 32 0 0028.17-47.17L284.18 82.58c-12.09-22.44-44.27-22.44-56.36 0L57.4 399.08a32 32 0 0028.17 47.17z"
                   ></path>
                   <path
                     fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     strokeWidth="32"
                     d="M250.26 195.39l5.74 122 5.73-121.95a5.74 5.74 0 00-5.79-6h0a5.74 5.74 0 00-5.68 5.95z"
                   ></path>

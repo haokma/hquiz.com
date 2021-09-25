@@ -394,10 +394,14 @@
   }
 
   .question{
+    max-width: 800px;
+    margin: 0 auto;
     margin-top: 40px;
     &-title{
       color: $color-white;
       margin: 20px 0;
+      line-height: 1.6;
+      font-size: 18px;
       img{
         margin-top: 20px;
         border-radius: 8px;
@@ -412,6 +416,8 @@
       border-radius: 8px;
       border: 1px solid $color-white;
       cursor: pointer;
+      line-height: 1.6;
+      font-size: 16px;
       img{
         border-radius: 8px;
         margin-top: 10px;
