@@ -4,6 +4,7 @@ import Slider from 'react-slick';
 import LayoutAttempt from '../../components/common/LayoutAttempt';
 import data from '../../data/question.json';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const settings = {
   dots: false,
@@ -44,6 +45,8 @@ const settings = {
 };
 
 const Attempt: any = () => {
+  const router = useRouter();
+
   const [questionIndex, setQuestionIndex] = useState(1);
   const [answers, setAnswers] = useState(Array.from(Array(data.questions.length)).fill(0));
   const [minutes, setMinutes] = useState(30);
@@ -106,8 +109,8 @@ const Attempt: any = () => {
                   >
                     <path d="M21 11H6.83l3.58-3.59L9 6l-6 6 6 6 1.41-1.41L6.83 13H21z"></path>
                   </svg>
+                  <span>Trang chủ</span>
                 </span>
-                <span>Trang chủ</span>
               </a>
             </Link>
             <div className="attempt-heading-time">
@@ -224,7 +227,7 @@ const Attempt: any = () => {
                   </div>
                 </div>
                 <div className="attempt-button">
-                  <button>Kết thúc bài thi</button>
+                  <button onClick={() => router.push('/attempt/ket-qua')}>Kết thúc bài thi</button>
                 </div>
                 <div className="attempt-question-mobile">
                   <Slider {...settings}>

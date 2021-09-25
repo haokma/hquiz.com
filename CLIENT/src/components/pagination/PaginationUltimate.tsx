@@ -17,7 +17,11 @@ export default function PaginationUltimate(props: PROPS) {
 
   function paginationItem(currentPage: number, index: number) {
     return (
-      <li className={index === currentPage ? 'active' : ''} onClick={() => setCurrentPage(index)}>
+      <li
+        className={index === currentPage ? 'active' : ''}
+        key={index}
+        onClick={() => setCurrentPage(index)}
+      >
         {index}
       </li>
     );
