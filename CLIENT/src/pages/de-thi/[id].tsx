@@ -112,7 +112,7 @@ const TopicDetails: NextPage = () => {
                     </div>
                   </div>
                   <div className="topic-details-exam">
-                    <Link href="/attempt/1">
+                    <Link href={`/attempt/${id}`}>
                       <a>
                         <svg
                           stroke="currentColor"
