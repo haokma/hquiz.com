@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Slider from 'react-slick';
 
 import data from '../../data/banner.json';
+import SampleNextArrow from '../arrowSlider/sampleNextArrow';
+import SamplePrevArrow from '../arrowSlider/samplePreveArrow';
 
 const settings = {
   dots: true,
@@ -10,6 +12,8 @@ const settings = {
   speed: 500,
   slidesToShow: 1,
   slidesToScroll: 1,
+  nextArrow: <SampleNextArrow />,
+  prevArrow: <SamplePrevArrow />,
 };
 const Banner: NextPage = () => {
   return (

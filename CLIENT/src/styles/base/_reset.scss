@@ -41,14 +41,12 @@ img {
   max-width: calc(100% - 96px);
   flex: 1 1;
   margin-top: 18px;
-  padding: 80px 40px;
+  padding: 80px 25px;
 }
 .home-wrap{
   padding: 20px 0;
   margin-top: 50px;
 }
-
-
 .pb-4{
   padding-bottom: 20px;
 }
@@ -57,10 +55,54 @@ div.container.m-l-auto{
   margin-right: auto;
   padding: 0;
 }
+
+
+// Slider Custom
+.btn-slick{
+  position: absolute;
+  top: 50%;
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  transform: translateY(-50%);
+  box-shadow: 0 3px 6px rgb(0 0 0 / 16%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  z-index: 20;
+  cursor: pointer;
+  &.top{
+    top: 35%;
+  }
+
+  &.next-slick{
+    right: -15px;
+  }
+  &.prev-slick{
+    left: -15px;
+  }
+  &.top.next-slick {
+    right: -5px;
+  }
+  &.top.prev-slick {
+    left: -5px;
+  }
+  svg{
+    width: 8px;
+  }
+
+}
+
+
 @media (max-width: 992px) {
+  .btn-slick {
+    display: none;
+  }
   .content {
     max-width: 100%;
-    padding: 80px 25px;
+    padding: 80px 15px;
   }
   .home-wrap{
     padding: 20px 0;

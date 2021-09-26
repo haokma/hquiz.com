@@ -23,7 +23,7 @@ const TopicDetails: NextPage = () => {
       </Head>
       <div className="topic-details">
         <div className="container m-l-auto">
-          <div className="row">
+          <div className="row ">
             <div className="topic-details-left ">
               <div className="topic-details-content">
                 <h2 className="topic-details-title">{topic?.title}</h2>

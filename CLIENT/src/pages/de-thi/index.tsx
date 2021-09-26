@@ -51,10 +51,10 @@ const Topic: NextPage = () => {
               </div>
             </div>
             <div className="topic-list">
-              <div className="row">
+              <div className="row margin-0">
                 {data.topic.map((item, index) => {
                   return (
-                    <div className="col-xl-6 col-lg-6 pb-4" key={index}>
+                    <div className="col-xl-6 col-lg-6 col-sm-12 pb-4" key={index}>
                       <TopicItem topic={item} />
                     </div>
                   );

@@ -193,7 +193,13 @@
 }
 
 @media (max-width:450px){
-  .topic{
+  .topic {
+    // display: block;
+    &-img{
+      img{
+        max-width: 100px;
+      }
+    }
     &-info{
       margin: 12px 0 ;
       div{

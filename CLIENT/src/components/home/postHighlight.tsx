@@ -1,7 +1,9 @@
 import { NextPage } from 'next';
-import Slider from 'react-slick';
 import Link from 'next/link';
+import Slider from 'react-slick';
 import data from '../../data/blog.json';
+import SampleNextArrow from '../arrowSlider/sampleNextArrow';
+import SamplePrevArrow from '../arrowSlider/samplePreveArrow';
 
 const settings = {
   dots: false,
@@ -9,6 +11,8 @@ const settings = {
   speed: 500,
   slidesToShow: 5,
   slidesToScroll: 1,
+  nextArrow: <SampleNextArrow newClass="top" />,
+  prevArrow: <SamplePrevArrow newClass="top" />,
   responsive: [
     {
       breakpoint: 1500,
