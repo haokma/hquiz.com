@@ -110,6 +110,7 @@ const Attempt: any = () => {
                 questionIndex={questionIndex}
                 questionList={questionList}
                 selectQuestion={selectQuestion}
+                id={Number(id)}
               />
             </div>
           </div>

@@ -48,12 +48,13 @@ interface PROPS {
   selectQuestion: (index: number) => void;
   minutes: number;
   seconds: number;
+  id: number;
 }
 
 const AttemptInfo = (props: PROPS) => {
   const router = useRouter();
 
-  const { questionIndex, questionList, checkAnswer, selectQuestion, minutes, seconds } = props;
+  const { questionIndex, questionList, checkAnswer, selectQuestion, minutes, seconds, id } = props;
   return (
     <div className="attempt-info">
       <div className="attempt-info-name">
@@ -129,7 +130,7 @@ const AttemptInfo = (props: PROPS) => {
         </div>
       </div>
       <div className="attempt-button">
-        <button onClick={() => router.push('/attempt/ket-qua')}>Kết thúc bài thi</button>
+        <button onClick={() => router.push(`/attempt/ket-qua/${id}`)}>Kết thúc bài thi</button>
       </div>
       <div className="attempt-question-mobile">
         <Slider {...settings}>

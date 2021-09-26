@@ -6,7 +6,6 @@ import data from '../../data/topic.json';
 const settings = {
   dots: false,
   infinite: true,
-  centerMode: true,
   speed: 500,
   slidesToShow: 5,
   slidesToScroll: 1,

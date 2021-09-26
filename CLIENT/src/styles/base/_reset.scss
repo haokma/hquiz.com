@@ -4,7 +4,7 @@ body {
   padding: 0;
   font-family: 'Montserrat', sans-serif;
   position: relative;
-  overflow-x: hidden;
+  // overflow-x: hidden;
 }
 html {
   box-sizing: border-box;
@@ -41,7 +41,7 @@ img {
   max-width: calc(100% - 96px);
   flex: 1 1;
   margin-top: 18px;
-  padding: 0 40px;
+  padding: 80px 40px;
 }
 .home-wrap{
   padding: 20px 0;
@@ -60,7 +60,7 @@ div.container.m-l-auto{
 @media (max-width: 992px) {
   .content {
     max-width: 100%;
-    padding: 0 20px;
+    padding: 80px 25px;
   }
   .home-wrap{
     padding: 20px 0;

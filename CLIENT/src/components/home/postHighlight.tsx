@@ -5,8 +5,6 @@ import data from '../../data/blog.json';
 
 const settings = {
   dots: false,
-  centerPadding: '60px',
-  centerMode: true,
   infinite: true,
   speed: 500,
   slidesToShow: 5,
