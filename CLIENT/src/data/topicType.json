@@ -1,0 +1,49 @@
+{
+
+  "listType": [
+    {
+      "_id": 1,
+      "type":"Đề thi THPT môn Toán"
+    },
+    {
+      "_id": 2,
+      "type":"Đề thi THPT môn Tiếng Anh"
+    },
+    {
+      "_id": 3,
+      "type":"Đề thi THPT môn Vật Lý"
+    },
+    {
+      "_id": 4,
+      "type":"Đề thi THPT môn Hóa Học"
+    },
+    {
+      "_id": 5,
+      "type":"Đề thi THPT môn Sinh Học"
+    },
+    {
+      "_id": 6,
+      "type":"Javscript"
+    },
+    {
+      "_id": 7,
+      "type":"PHP"
+    },
+    {
+      "_id": 8,
+      "type":"ReactJs"
+    },
+    {
+      "_id": 9,
+      "type":"Kinh tế"
+    },
+    {
+      "_id": 10,
+      "type":"Kĩ thuật"
+    },
+    {
+      "_id": 11,
+      "type":"Kế toán"
+    }
+  ]
+}

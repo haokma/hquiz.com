@@ -91,10 +91,17 @@
 
     &.active{
       ul{
-        max-height: 100vh;
-        overflow: unset;
+        max-height: 40vh;
+        overflow-y: scroll;
         transition: .4s ease;
         opacity: 1;
+        &::-webkit-scrollbar {
+          width: 4px;
+          border-radius: 4px;
+        }
+        &::-webkit-scrollbar-thumb{
+          background-color: $color-text-secondary;
+        }
       }
     }
   }
@@ -118,6 +125,20 @@
       }
     }
   }
+  &-type{
+    margin: 30px 0;
+    li{
+      display: flex;
+      align-items: center;
+      margin: 15px 0;
+      input{
+        margin-right: 10px;
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 @media (max-width:1200px) {
@@ -138,7 +159,7 @@
 @media (max-width:576px) {
   .sidebar{
     &.active{
-      width: 70%;
+      width: 80%;
     }
   }
 }

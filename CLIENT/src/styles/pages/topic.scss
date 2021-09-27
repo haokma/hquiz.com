@@ -13,6 +13,7 @@
   &-wrap{
     flex: 1;
     padding: 20px 0;
+    padding-right: 25px;
     z-index: 1;
     transition: .2s ease;
   }
@@ -131,6 +132,19 @@
     display: flex;
     justify-content: center;
     margin-top: 20px;
+  }
+  &-empty{
+    text-align: center;
+    width: 100%;
+    min-height: 200px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    padding: 20px 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
   }
   .pagination{
     &-list{

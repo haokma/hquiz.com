@@ -2,6 +2,7 @@
   "topic" : [
     {
       "_id": 1,
+      "typeId":1,
       "title": "HTML5 table feature (Từ kiến thức đến bài tập áp dụng)",
       "time": 30,
       "view": 95454,
@@ -10,6 +11,7 @@
     },
     {
       "_id": 2,
+      "typeId":2,
       "title": "Python simple test (oop version)",
       "time": 60,
       "view": 95454,
@@ -18,6 +20,7 @@
     },
     {
       "_id": 3,
+      "typeId":3,
       "title": "Ôn tập C# cơ bản",
       "time": 35,
       "view": 4533,
@@ -26,6 +29,7 @@
     },
     {
       "_id": 4,
+      "typeId":1,
       "title": "Bộ Đề Câu Hỏi Phỏng Vấn Javascript (Đề bài và hướng dẫn chi tiết)",
       "time": 40,
       "view": 2419,
@@ -33,6 +37,7 @@
       "image": "https://api.kquiz.vn/Upload/Test/637673730598275658_images.png"
     },{
       "_id": 5,
+      "typeId":2,
       "title": "Nhập môn JavaScript",
       "time": 30,
       "view": 1459,
@@ -40,6 +45,7 @@
       "image": "https://api.kquiz.vn/Upload/Test/637666600500638134_javascript.jpg"
     },{
       "_id": 6,
+      "typeId":3,
       "title": "20 Bài Tập Kiểm Tra, Rèn Luyện Kiến Thức Javascript (Câu hỏi và hướng dẫn chi tiết) 20 Bài Tập Kiểm Tra, Rèn Luyện Kiến Thức Javascript (Câu hỏi và hướng dẫn chi tiết)",
       "time": 50,
       "view": 93452,

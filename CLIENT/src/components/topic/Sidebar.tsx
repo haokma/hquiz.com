@@ -1,25 +1,29 @@
-import { NextPage } from 'next';
 import { useState } from 'react';
-import data from '../../data/numberQuestion.json';
+import dataType from '../../data/topicType.json';
 
-const Sidebar: NextPage = () => {
-  const [isSelected, setIsSelected] = useState(false);
-  const [numberQuestion, setNumberQuestion] = useState(0);
+interface PROPS {
+  topicType: any;
+  setTopicType: any;
+}
 
+const Sidebar = (props: PROPS) => {
+  const [isSelectedType, setIsSelectedType] = useState(false);
+
+  const { topicType, setTopicType } = props;
   return (
     <div className="sidebar-content">
       <div className="sidebar-search">
         <h4>Tìm kiếm bằng từ khóa</h4>
         <input type="text" placeholder="Tìm kiếm" />
       </div>
-      <div className={isSelected ? 'sidebar-select active' : 'sidebar-select'}>
-        <h4>Chọn số lượng câu hỏi</h4>
+      <div className={isSelectedType ? 'sidebar-select active' : 'sidebar-select'}>
+        <h4>Chọn loại đề thi</h4>
         <div
           onClick={() => {
-            setIsSelected(!isSelected);
+            setIsSelectedType(!isSelectedType);
           }}
         >
-          <span>{numberQuestion ? `${numberQuestion} câu` : 'Chọn số lượng'}</span>
+          <span>{topicType.type ? `${topicType.type}` : 'Chọn loại đề'}</span>
           <span>
             <svg
               stroke="currentColor"
@@ -42,25 +46,37 @@ const Sidebar: NextPage = () => {
         <ul>
           <li
             onClick={() => {
-              setNumberQuestion(0);
-              setIsSelected(false);
+              setTopicType('');
+              setIsSelectedType(false);
             }}
           >
-            Chọn số lượng
+            Chọn loại đề
           </li>
-          {data.numberQuestion.map((number, index) => (
+          {dataType.listType.map((item, index) => (
             <li
               key={index}
               onClick={() => {
-                setNumberQuestion(number);
-                setIsSelected(false);
+                setIsSelectedType(false);
+                setTopicType(item);
               }}
             >
-              {number} câu
+              {item.type}
             </li>
           ))}
         </ul>
       </div>
+      {/* <ul className="sidebar-type">
+        {dataType.listType
+          .filter((item) => item.typeId === topicType._id)
+          .map((item, index) => {
+            return (
+              <li key={item._id}>
+                <input type="radio" name={`${item.typeId}`} id={`${index}`} />
+                <label htmlFor={`${index}`}>{item.type}</label>
+              </li>
+            );
+          })}
+      </ul> */}
       <div className="sidebar-button">
         <button>Tìm đề thi</button>
       </div>

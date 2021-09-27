@@ -90,6 +90,7 @@ const TopicResult: any = () => {
     );
   }
   function renderQuestion() {
+    console.log(questionList[questionIndex]?.answers);
     return (
       <>
         <div className="topic-result-heading" onClick={() => setIsModalResult(true)}>
@@ -118,13 +119,13 @@ const TopicResult: any = () => {
           <div className="question-answer">
             {questionList[questionIndex]?.answers.map((item, index) => {
               return (
-                <>
-                  <input type="radio" name="1" id={`answer_${index}`} checked={index === 3} />
+                <div key={item._id}>
+                  <input type="radio" name="1" id={`answer_${index}`} checked={item.isCorrect} />
                   <label htmlFor={`answer_${index}`}>
                     <span>{item.value}</span>
                     {item.image && <img src={item.image} alt="" />}
                   </label>
-                </>
+                </div>
               );
             })}
           </div>

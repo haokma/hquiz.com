@@ -495,7 +495,7 @@
   color: #fff;
   text-align: center;
 }
-input:checked ~ label {
+.attempt input:checked~label {
   background-color: $color-primary;
 }
 form{
