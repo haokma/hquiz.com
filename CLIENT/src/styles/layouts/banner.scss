@@ -71,6 +71,7 @@
     left: 0;
     li{
       width: 40px;
+      transition: .4s ease;
       &.slick-active{
         width: 60px;
         button{

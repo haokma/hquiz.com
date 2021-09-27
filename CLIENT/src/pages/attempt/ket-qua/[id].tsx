@@ -41,10 +41,14 @@ const TopicResult: any = () => {
         </div>
         <div className="topic-result-content">
           <div className="result">
-            <div className="result-time"></div>
+            <div className="result-time">
+              <span>30</span>
+              <span>:</span>
+              <span>00</span>
+            </div>
             <p className="result-title">Số câu hoàn thành</p>
             <div className="result-total">
-              <span>00</span>
+              <span>{questionList.length}</span>
               <span>/</span>
               <span>{questionList.length}</span>
             </div>
@@ -118,6 +122,7 @@ const TopicResult: any = () => {
           </div>
           <div className="question-answer">
             {questionList[questionIndex]?.answers.map((item, index) => {
+              console.log(item.isCorrect);
               return (
                 <div key={item._id}>
                   <input type="radio" name="1" id={`answer_${index}`} checked={item.isCorrect} />

@@ -8,11 +8,12 @@ import TopicItem from '../../components/topic/TopicItem';
 import data from '../../data/topic.json';
 import { Topic } from '../../interfaces';
 
-let TOTAL_PAGE = 25;
-let BOUNDARY = 2;
+let TOTAL_PAGE = 10;
+let BOUNDARY = 1;
 let SKIP = 1;
+
 const TopicPage: NextPage = () => {
-  const [isActive, setIsActive] = useState(true);
+  const [isActive, setIsActive] = useState(false);
   const [topicType, setTopicType] = useState<any>({});
   const [topicList, setTopicList] = useState<Topic[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -22,18 +23,10 @@ const TopicPage: NextPage = () => {
     if (width < 1024) {
       setIsActive(false);
     }
-    if (width < 576) {
-      BOUNDARY = 1;
-    }
     window.addEventListener('resize', () => {
       const width = window.innerWidth;
       if (width < 1024 && isActive) {
         setIsActive(false);
-      }
-      if (width < 576) {
-        BOUNDARY = 1;
-      } else {
-        BOUNDARY = 2;
       }
     });
   }, []);
