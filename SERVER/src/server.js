@@ -1,10 +1,11 @@
-import cors from 'cors';
-import dotenv from 'dotenv';
-import express from 'express';
-import morgan from 'morgan';
-import connectDatabase from './configs/db.config';
+const cors = require('cors');
+const dotenv = require('dotenv');
+const express = require('express');
+const morgan = require('morgan');
 
-import router from './routes';
+const connectDatabase = require('./configs/db.config');
+
+const router = require('./routes');
 
 const port = process.env.PORT || 5000;
 const app = express();

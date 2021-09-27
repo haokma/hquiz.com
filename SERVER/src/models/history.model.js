@@ -1,9 +1,9 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
-const { Schema }: any = mongoose;
+const { Schema } = mongoose;
 
 const historySchema = Schema({});
 
 const History = mongoose.model('history', historySchema, 'history');
 
-export default History;
+module.exports = History;

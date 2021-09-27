@@ -1,4 +1,4 @@
-const queryFilter = (query: any, filters: any) => {
+const queryFilter = (query, filters) => {
   for (let key in filters) {
     if (filters[key]) {
       query[key] = filters[key];
@@ -6,4 +6,4 @@ const queryFilter = (query: any, filters: any) => {
   }
   return query;
 };
-export default queryFilter;
+module.exports = queryFilter;

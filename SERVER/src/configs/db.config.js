@@ -1,7 +1,8 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const connectDatabase = () => {
-  const mongoDbUrl = 'mongodb://localhost:27017/course_dev';
+  const mongoDbUrl =
+    'mongodb+srv://admin:admin123456@cluster0.iuzzs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
   mongoose.Promise = global.Promise;
 
   // Connecting to the database
@@ -21,4 +22,4 @@ const connectDatabase = () => {
     });
 };
 
-export default connectDatabase;
+module.exports = connectDatabase;

@@ -1,9 +1,9 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
-const { Schema }: any = mongoose;
+const { Schema } = mongoose;
 
 const topicSchema = Schema({});
 
 const Topic = mongoose.model('topic', topicSchema, 'topic');
 
-export default Topic;
+module.exports = Topic;

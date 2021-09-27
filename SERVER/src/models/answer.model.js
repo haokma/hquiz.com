@@ -1,9 +1,9 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
-const { Schema }: any = mongoose;
+const { Schema } = mongoose;
 
 const answerSchema = Schema({});
 
 const Answer = mongoose.model('category', answerSchema, 'category');
 
-export default Answer;
+module.exports = Answer;

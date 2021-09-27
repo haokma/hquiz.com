@@ -1,10 +1,10 @@
-import { NextFunction, Request, Response } from 'express';
-import jwt from 'jsonwebtoken';
-import { ROLE_ADMIN } from '../constants';
-import { isEmail, isEmpty } from '../helpers/validator';
-import User from '../models/user.model';
-export const validatorSignUp = (data: any) => {
-  let errors: any = {};
+const jwt = require('jsonwebtoken');
+const { ROLE_ADMIN } = require('../constants');
+const { isEmail, isEmpty } = require('../helpers/validator');
+const User = require('../models/user.model');
+
+validatorSignUp = (data) => {
+  let errors = {};
   if (isEmpty(data.email)) {
     errors['email'] = 'Vui lòng nhâp email!';
   } else if (!isEmail(data.email)) {
@@ -29,8 +29,8 @@ export const validatorSignUp = (data: any) => {
   };
 };
 
-export const validatorLogin = (data: any) => {
-  let errors: any = {};
+validatorLogin = (data) => {
+  let errors = {};
   if (isEmpty(data.email)) {
     errors['email'] = 'Vui lòng nhâp email!';
   } else if (!isEmail(data.email)) {
@@ -47,11 +47,11 @@ export const validatorLogin = (data: any) => {
   };
 };
 
-export const adminMiddleware = async (req: any, res: Response, next: NextFunction) => {
+adminMiddleware = async (req, res, next) => {
   try {
     const token = req.headers.authorization.split(' ')[1];
-    const { id }: any = jwt.verify(token, '1');
-    const user: any = await User.findById(id);
+    const { id } = jwt.verify(token, '1');
+    const user = await User.findById(id);
     if (user.role === ROLE_ADMIN) {
       return next();
     }
@@ -61,7 +61,7 @@ export const adminMiddleware = async (req: any, res: Response, next: NextFunctio
   }
 };
 
-export const authMiddleware = async (req: any, res: Response, next: NextFunction) => {
+authMiddleware = async (req, res, next) => {
   try {
     const token = req.headers.authorization.split(' ')[1];
     jwt.verify(token, '2');
@@ -69,4 +69,11 @@ export const authMiddleware = async (req: any, res: Response, next: NextFunction
   } catch (error) {
     res.status(401).json({ message: 'Vui lòng đăng nhập !' });
   }
+};
+
+module.exports = {
+  adminMiddleware,
+  authMiddleware,
+  validatorLogin,
+  validatorSignUp,
 };

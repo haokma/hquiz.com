@@ -1,21 +1,21 @@
 const Pagination = {
-  sort: (order: string, orderBy: string) => {
+  sort: (order, orderBy) => {
     if (!orderBy) return;
     return {
       [orderBy]: order == 'asc' ? 1 : -1,
     };
   },
-  limit: (limit: number) => {
+  limit: (limit) => {
     return limit || 20;
   },
-  skip: (page: number, limit: number) => {
+  skip: (page, limit) => {
     if (page == 0) return 0;
     return (page - 1) * limit;
   },
-  page: (page: number) => {
+  page: (page) => {
     return page || 1;
   },
-  result: (limit: number, page: number, total: number) => {
+  result: (limit, page, total) => {
     return {
       _limit: limit,
       _page: page,
@@ -24,4 +24,4 @@ const Pagination = {
   },
 };
 
-export default Pagination;
+module.exports = Pagination;

@@ -1,23 +1,22 @@
-import bcrypt from 'bcrypt';
-import { Request, Response } from 'express';
-import jwt from 'jsonwebtoken';
-import Pagination from '../helpers/pagination';
-import { validatorLogin, validatorSignUp } from '../middlewares/user.middleware';
-import User from '../models/user.model';
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const Pagination = require('../helpers/pagination');
+const { validatorLogin, validatorSignUp } = require('../middlewares/user.middleware');
+const User = require('../models/user.model');
 
-const createToken = (id: string, email: string) => {
-  return jwt.sign({ id, email }, '1', {
+const createToken = (id, email) => {
+  return jwt.sign({ id, email }, 'createToken', {
     expiresIn: process.env.JWT_TOKEN_EXPIRES_IN,
   });
 };
 
-const createRefreshToken = (id: string) => {
-  return jwt.sign({ id }, '2', {
+const createRefreshToken = (id) => {
+  return jwt.sign({ id }, 'createRefreshToken', {
     expiresIn: process.env.JWT_REFRESH_TOKEN_EXPIRES_IN,
   });
 };
 
-const verifyJwtToken = (token: string, secretKey: string) => {
+const verifyJwtToken = (token, secretKey) => {
   return new Promise((resolve, reject) => {
     jwt.verify(token, secretKey, (err, decoded) => {
       if (err) {
@@ -28,14 +27,14 @@ const verifyJwtToken = (token: string, secretKey: string) => {
   });
 };
 
-const AuthController: any = {
-  login: async (req: Request, res: Response) => {
+const AuthController = {
+  login: async (req, res) => {
     const { valid, errors } = validatorLogin(req.body);
     if (!valid) return res.status(400).json({ error: errors });
     const { email, password } = req.body;
 
     try {
-      const user: any = await User.findOne({ email });
+      const user = await User.findOne({ email });
       if (!user) {
         return res.status(400).json({
           message: 'Người dùng không  tồn tại',
@@ -53,13 +52,13 @@ const AuthController: any = {
         token,
         refreshToken,
       });
-    } catch (error: any) {
+    } catch (error) {
       res.status(400).json({
         error: error.message,
       });
     }
   },
-  register: async (req: Request, res: Response) => {
+  register: async (req, res) => {
     const { valid, errors } = validatorSignUp(req.body);
     if (!valid) return res.status(400).json({ error: errors });
     const { username, email, password } = req.body;
@@ -74,7 +73,7 @@ const AuthController: any = {
 
       const hashPassword = await bcrypt.hash(password, 12);
 
-      const data: any = await User.create({
+      const data = await User.create({
         username,
         email,
         password: hashPassword,
@@ -88,18 +87,18 @@ const AuthController: any = {
         token,
         refreshToken,
       });
-    } catch (error: any) {
+    } catch (error) {
       res.status(400).json({
         error: error.message,
       });
     }
   },
-  refreshToken: async (req: Request, res: Response) => {
+  refreshToken: async (req, res) => {
     const refreshToken = req.body.token;
     if (refreshToken) {
       try {
-        const decoded: any = await verifyJwtToken(refreshToken, '2');
-        const user: any = await User.findById(decoded.id);
+        const decoded = await verifyJwtToken(refreshToken, '2');
+        const user = await User.findById(decoded.id);
         if (!user) {
           return res.status(403).json({
             error: 'Vui lòng đăng nhập',
@@ -121,8 +120,8 @@ const AuthController: any = {
       });
     }
   },
-  getUserList: async (req: Request, res: Response) => {
-    let { page, limit, order, orderBy, name_like }: any = req.query;
+  getUserList: async (req, res) => {
+    let { page, limit, order, orderBy, name_like } = req.query;
     let skip, sort;
 
     try {
@@ -142,13 +141,13 @@ const AuthController: any = {
       res.json({
         user: userList,
       });
-    } catch (error: any) {
+    } catch (error) {
       res.status(400).json({
         error: error.message,
       });
     }
   },
-  getUserId: async (req: Request, res: Response) => {
+  getUserId: async (req, res) => {
     const { id } = req.params;
 
     try {
@@ -169,7 +168,7 @@ const AuthController: any = {
       });
     }
   },
-  update: async (req: Request, res: Response) => {
+  update: async (req, res) => {
     const { id } = req.params;
     const updateUser = req.body;
 
@@ -187,7 +186,7 @@ const AuthController: any = {
       res.status(200).json({
         user,
       });
-    } catch (error: any) {
+    } catch (error) {
       res.status(400).json({
         error: error.message,
       });
@@ -195,4 +194,4 @@ const AuthController: any = {
   },
 };
 
-export default AuthController;
+module.exports = AuthController;
