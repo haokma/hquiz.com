@@ -22,28 +22,28 @@ import {
   TableContainer,
   TablePagination,
   TableRow,
-  Typography
-} from '@material-ui/core';
-import topicApi from 'apis/topicApi';
-import { sentenceCase } from 'change-case';
-import { ListToolbar, MoreMenu, TableHeadList } from 'components/common';
-import Label from 'components/Label';
-import Page from 'components/Page';
-import Scrollbar from 'components/Scrollbar';
-import { STATUS_LIST } from 'constants/index';
-import React, { useCallback, useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
-import { Link as RouterLink } from 'react-router-dom';
-import { toast } from 'react-toastify';
+  Typography,
+} from "@material-ui/core";
+import topicApi from "apis/topicApi";
+import { ListToolbar, MoreMenu, TableHeadList } from "components/common";
+import Label from "components/Label";
+import Page from "components/Page";
+import Scrollbar from "components/Scrollbar";
+import { STATUS_LIST } from "constants/index";
+import React, { useCallback, useEffect, useState } from "react";
+import { useHistory } from "react-router";
+import { Link as RouterLink } from "react-router-dom";
+import { toast } from "react-toastify";
+import { sentenceCase } from "sentence-case";
 
 const TABLE_HEAD = [
-  { id: 'name', label: 'Name', alignRight: false },
-  { id: 'id', label: 'ID', alignRight: false },
-  { id: 'categoryId', label: 'categoryId', alignRight: false },
-  { id: 'total', label: 'Total', alignRight: false },
-  { id: 'time', label: 'Time', alignRight: false },
-  { id: 'view', label: 'View', alignRight: false },
-  { id: 'status', label: 'Status', alignRight: false }
+  { id: "name", label: "Name", alignRight: false },
+  { id: "image", label: "Image", alignRight: false },
+  { id: "categoryId", label: "categoryId", alignRight: false },
+  { id: "total", label: "Total", alignRight: false },
+  { id: "time", label: "Time", alignRight: false },
+  { id: "view", label: "View", alignRight: false },
+  { id: "status", label: "Status", alignRight: false },
 ];
 
 export const ListTopic = () => {
@@ -58,23 +58,26 @@ export const ListTopic = () => {
   const [filters, setFilters] = useState({
     page: 0,
     limit: 20,
-    order: 'asc',
-    orderBy: 'name',
-    name_like: '',
-    status: ''
+    order: "asc",
+    orderBy: "name",
+    name_like: "",
+    status: "",
   });
   const fetchTopicList = useCallback(async (filters) => {
     try {
       setLoading(true);
 
-      const res = await topicApi.getList({ ...filters, page: filters.page + 1 });
-      const { topic, pagination } = res.data;
-
-      setTopicList(topic);
-      setCount(pagination._total);
+      const res = await topicApi.getList({
+        ...filters,
+        page: filters.page + 1,
+      });
+      const { topicList } = res.data;
+      console.log(topicList);
+      setTopicList(topicList);
+      // setCount(pagination._total);
       setLoading(false);
     } catch (error) {
-      toast.error(error.response.data.error);
+      // toast.error(error.response.data.error);
       setLoading(false);
     }
   }, []);
@@ -83,11 +86,11 @@ export const ListTopic = () => {
   }, [fetchTopicList, filters]);
 
   const handleRequestSort = (event, property) => {
-    const isAsc = filters.orderBy === property && filters.order === 'asc';
+    const isAsc = filters.orderBy === property && filters.order === "asc";
     setFilters((prev) => ({
       ...prev,
-      order: isAsc ? 'desc' : 'asc',
-      orderBy: property
+      order: isAsc ? "desc" : "asc",
+      orderBy: property,
     }));
   };
   const handleSelectAllClick = (event) => {
@@ -118,26 +121,26 @@ export const ListTopic = () => {
   const handleChangePage = (event, newPage) => {
     setFilters((prev) => ({
       ...prev,
-      page: newPage
+      page: newPage,
     }));
   };
   const handleChangeRowsPerPage = (event) => {
     setFilters((prev) => ({
       ...prev,
       limit: parseInt(event.target.value, 10),
-      page: 0
+      page: 0,
     }));
   };
 
   const handleFilterByName = (search) => {
     setFilters((prev) => ({
       ...prev,
-      name_like: search
+      name_like: search,
     }));
   };
   const handleDelete = (categoryId) => {
     setOpen(true);
-    if (typeof categoryId === 'string') {
+    if (typeof categoryId === "string") {
       setIdDelete([].concat(categoryId));
       return;
     }
@@ -148,7 +151,7 @@ export const ListTopic = () => {
       await topicApi.delete(idDelete);
       fetchTopicList(filters);
       setSelected([]);
-      toast.success('Xóa đề thi thành công ');
+      toast.success("Xóa đề thi thành công ");
     } catch (error) {
       toast.error(error.response.data.error);
     }
@@ -158,11 +161,20 @@ export const ListTopic = () => {
     <div>
       <Page title="Đề thi | CMS">
         <Container maxWidth="2xl">
-          <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+            mb={5}
+          >
             <Typography variant="h4" gutterBottom>
               Đề thi
             </Typography>
-            <Button variant="contained" component={RouterLink} to="/dashboard/topic/create">
+            <Button
+              variant="contained"
+              component={RouterLink}
+              to="/dashboard/topic/create"
+            >
               Tạo đề thi
             </Button>
           </Stack>
@@ -184,7 +196,7 @@ export const ListTopic = () => {
                     onChange={(event) =>
                       setFilters((prev) => ({
                         ...prev,
-                        status: event.target.value
+                        status: event.target.value,
                       }))
                     }
                   >
@@ -220,8 +232,17 @@ export const ListTopic = () => {
                       />
                       <TableBody>
                         {topicList.map((row) => {
-                          const { _id, name, total, status, time, categoryId, views } = row;
-                          const isStatus = status === 'ACTIVE' ? 'success' : 'banned';
+                          const {
+                            _id,
+                            name,
+                            questionCount,
+                            time,
+                            categoryId,
+                            image,
+                            views,
+                            status,
+                          } = row;
+                          const isStatus = status === "ACTIVE";
                           const isItemSelected = selected.indexOf(_id) !== -1;
                           return (
                             <TableRow
@@ -239,15 +260,31 @@ export const ListTopic = () => {
                                 />
                               </TableCell>
                               <TableCell align="left">{name}</TableCell>
-                              <TableCell align="left">{_id}</TableCell>
+                              <TableCell align="left">
+                                <img
+                                  src={image}
+                                  alt=""
+                                  style={{
+                                    width: "50px",
+                                    height: "50px",
+                                    objectFit: "cover",
+                                    borderRadius: "4px",
+                                  }}
+                                />
+                              </TableCell>
                               <TableCell align="left">{categoryId}</TableCell>
-                              <TableCell align="left">{total}</TableCell>
+                              <TableCell align="left">
+                                {questionCount}
+                              </TableCell>
                               <TableCell align="left">{time}</TableCell>
                               <TableCell align="left">{views}</TableCell>
                               <TableCell align="left">
                                 <Label
                                   variant="ghost"
-                                  color={(isStatus === 'banned' && 'error') || 'success'}
+                                  color={
+                                    (isStatus === "banned" && "error") ||
+                                    "success"
+                                  }
                                 >
                                   {sentenceCase(status)}
                                 </Label>
@@ -255,7 +292,9 @@ export const ListTopic = () => {
                               <TableCell align="left">
                                 <MoreMenu
                                   handleDelete={() => handleDelete(_id)}
-                                  handleEdit={() => history.push(`/dashboard/topic/edit/${_id}`)}
+                                  handleEdit={() =>
+                                    history.push(`/dashboard/topic/edit/${_id}`)
+                                  }
                                 />
                               </TableCell>
                             </TableRow>
@@ -267,7 +306,7 @@ export const ListTopic = () => {
                 </Scrollbar>
                 {topicList.length <= 0 && (
                   <Box textAlign="center" mt={5}>
-                    {' '}
+                    {" "}
                     <Typography>Hiện tại chưa có đề thi nào</Typography>
                   </Box>
                 )}

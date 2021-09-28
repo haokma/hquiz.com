@@ -7,47 +7,52 @@ import {
   Select,
   Stack,
   TextField,
-  Typography
-} from '@material-ui/core';
-import { LoadingButton } from '@material-ui/lab';
-import categoryApi from 'apis/categoryApi';
-import Page from 'components/Page';
-import { Form, FormikProvider, useFormik } from 'formik';
-import React, { useCallback, useEffect, useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import * as Yup from 'yup';
+  Typography,
+} from "@material-ui/core";
+import { LoadingButton } from "@material-ui/lab";
+import categoryApi from "apis/categoryApi";
+import Page from "components/Page";
+import { Form, FormikProvider, useFormik } from "formik";
+import React, { useCallback, useEffect, useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
+import { toast } from "react-toastify";
+import * as Yup from "yup";
 
 export const CreateCategory = () => {
   const [categoryList, setCategoryList] = useState([]);
 
   const categorySchema = Yup.object().shape({
-    title: Yup.string()
-      .required('Vui lòng nhập tên dang mục')
-      .min(4, 'Tên danh mục chứa ít nhất 4 kí tư'),
-    description: Yup.string()
-      .required('Vui lòng nhập miêu tả danh mục')
-      .min(4, 'Miêu tả danh mục chứa ít nhất 4 kí tư')
+    name: Yup.string()
+      .required("Vui lòng nhập tên dang mục")
+      .min(4, "Tên danh mục chứa ít nhất 4 kí tư"),
+    image: Yup.string().required("Vui lòng nhập đường dẫn ảnh"),
   });
   const formik = useFormik({
     initialValues: {
-      title: '',
-      parentId: '',
-      description: ''
+      name: "",
+      parentId: "",
+      image: "",
     },
     validationSchema: categorySchema,
     onSubmit: async (values) => {
       try {
         console.log(values);
         await categoryApi.create(values);
-        toast.success('Thêm danh mục thành công');
+        toast.success("Thêm danh mục thành công");
         resetForm();
       } catch (error) {
         toast.error(error.response.data.error);
       }
-    }
+    },
   });
-  const { errors, touched, handleSubmit, getFieldProps, resetForm, setFieldValue } = formik;
+  const {
+    errors,
+    touched,
+    handleSubmit,
+    getFieldProps,
+    resetForm,
+    setFieldValue,
+  } = formik;
   const fetchCategoryList = useCallback(async () => {
     try {
       const res = await categoryApi.getList({ limit: 100 });
@@ -64,11 +69,20 @@ export const CreateCategory = () => {
   return (
     <Page title="Tạo danh mục | CMS">
       <Container maxWidth="xl">
-        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+          mb={5}
+        >
           <Typography variant="h4" gutterBottom>
             Tạo Danh Mục
           </Typography>
-          <Button variant="contained" component={RouterLink} to="/dashboard/category">
+          <Button
+            variant="contained"
+            component={RouterLink}
+            to="/dashboard/category"
+          >
             Danh sách Category
           </Button>
         </Stack>
@@ -78,23 +92,23 @@ export const CreateCategory = () => {
             <Stack mb={3}>
               <TextField
                 fullWidth
-                autoComplete="title"
+                autoComplete="name"
                 type="text"
                 label="Nhập tên danh mục"
-                {...getFieldProps('title')}
-                error={Boolean(touched.title && errors.title)}
-                helperText={touched.title && errors.title}
+                {...getFieldProps("name")}
+                error={Boolean(touched.name && errors.name)}
+                helperText={touched.name && errors.name}
               />
             </Stack>
             <Stack mb={3}>
               <TextField
                 fullWidth
-                autoComplete="description"
+                autoComplete="image"
                 type="text"
-                label="Nhập tên danh mục"
-                {...getFieldProps('description')}
-                error={Boolean(touched.description && errors.description)}
-                helperText={touched.description && errors.description}
+                label="Nhập đường dẫn ảnh"
+                {...getFieldProps("image")}
+                error={Boolean(touched.image && errors.image)}
+                helperText={touched.image && errors.image}
               />
             </Stack>
             <Stack mb={5}>
@@ -105,7 +119,10 @@ export const CreateCategory = () => {
                   labelId="category"
                   id="category"
                   label="Danh mục cha"
-                  onChange={(event) => setFieldValue('parentId', event.target.value)}
+                  disabled={true}
+                  onChange={(event) =>
+                    setFieldValue("parentId", event.target.value)
+                  }
                 >
                   <MenuItem value="">
                     <em>Trống</em>
@@ -118,7 +135,12 @@ export const CreateCategory = () => {
                 </Select>
               </FormControl>
             </Stack>
-            <LoadingButton size="large" type="submit" variant="contained" loading={false}>
+            <LoadingButton
+              size="large"
+              type="submit"
+              variant="contained"
+              loading={false}
+            >
               Tạo
             </LoadingButton>
           </Form>

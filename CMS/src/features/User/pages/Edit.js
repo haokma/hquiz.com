@@ -8,59 +8,67 @@ import {
   Select,
   Stack,
   TextField,
-  Typography
-} from '@material-ui/core';
-import { Form, FormikProvider, useFormik } from 'formik';
-import React, { useEffect } from 'react';
-import { useHistory, useParams } from 'react-router';
-import { Link as RouterLink } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import * as Yup from 'yup';
-import authApi from 'apis/authApi';
-import Page from 'components/Page';
+  Typography,
+} from "@material-ui/core";
+import { Form, FormikProvider, useFormik } from "formik";
+import React, { useEffect } from "react";
+import { useHistory, useParams } from "react-router";
+import { Link as RouterLink } from "react-router-dom";
+import { toast } from "react-toastify";
+import * as Yup from "yup";
+import authApi from "apis/authApi";
+import Page from "components/Page";
 
 export const EditUser = () => {
   const history = useHistory();
   const { id } = useParams();
 
   const UserSchema = Yup.object().shape({
-    name: Yup.string()
-      .required('Vui lòng nhập tên người dùng')
-      .min(4, 'Tên người dùng chưa ít nhât 4 kí tự'),
-    role: Yup.string().required('Vui lòng chọn chức vụ'),
-    status: Yup.string().required('Vui lòng chọn trạng thái tài khoản')
+    username: Yup.string()
+      .required("Vui lòng nhập tên người dùng")
+      .min(4, "Tên người dùng chưa ít nhât 4 kí tự"),
+    role: Yup.string().required("Vui lòng chọn chức vụ"),
+    status: Yup.string().required("Vui lòng chọn trạng thái tài khoản"),
   });
   const formik = useFormik({
     initialValues: {
-      name: '',
-      status: '',
-      role: '',
-      email: ''
+      username: "",
+      status: "",
+      role: "",
+      email: "",
     },
     validationSchema: UserSchema,
     onSubmit: async (values) => {
       authApi
         .update(id, values)
         .then(() => {
-          history.push('/dashboard/user');
-          toast.success('Sửa thông tin tài khoản thành công');
+          history.push("/dashboard/user");
+          toast.success("Sửa thông tin tài khoản thành công");
         })
         .catch((err) => toast.error(err));
-    }
+    },
   });
-  const { handleSubmit, getFieldProps, touched, errors, values, setFieldValue } = formik;
+  const {
+    handleSubmit,
+    getFieldProps,
+    touched,
+    errors,
+    values,
+    setFieldValue,
+  } = formik;
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = authApi.getById(id);
+        const res = await authApi.getById(id);
         const { user } = res.data;
-        setFieldValue('name', user.name);
-        setFieldValue('role', user.role);
-        setFieldValue('email', user.email);
-        setFieldValue('status', user.status);
+        console.log(user);
+        setFieldValue("username", user.username);
+        setFieldValue("role", user.role);
+        setFieldValue("email", user.email);
+        setFieldValue("status", user.status);
       } catch (error) {
-        toast.error(error.response.data.error);
+        // toast.error(error.response.data.error);
       }
     };
     fetchUser();
@@ -68,11 +76,20 @@ export const EditUser = () => {
   return (
     <Page title="Sủa | CMS">
       <Container maxWidth="2xl">
-        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+          mb={5}
+        >
           <Typography variant="h4" gutterBottom>
             Sửa thông tin
           </Typography>
-          <Button variant="contained" component={RouterLink} to="/dashboard/user">
+          <Button
+            variant="contained"
+            component={RouterLink}
+            to="/dashboard/user"
+          >
             Danh sách Tài khoản
           </Button>
         </Stack>
@@ -81,12 +98,12 @@ export const EditUser = () => {
             <Stack mb={5}>
               <TextField
                 fullWidth
-                autoComplete="name"
+                autoComplete="username"
                 type="text"
                 label="Tên người dùng"
-                {...getFieldProps('name')}
-                error={Boolean(touched.name && errors.name)}
-                helperText={touched.name && errors.name}
+                {...getFieldProps("username")}
+                error={Boolean(touched.username && errors.username)}
+                helperText={touched.username && errors.username}
               />
             </Stack>
             <Stack mb={5}>
@@ -95,7 +112,7 @@ export const EditUser = () => {
                 autoComplete="email"
                 type="text"
                 label="Email"
-                {...getFieldProps('email')}
+                {...getFieldProps("email")}
                 value={values.email}
                 disabled
               />
@@ -108,14 +125,16 @@ export const EditUser = () => {
                   id="status"
                   defaultValue={values.status}
                   label="Trạng thái"
-                  {...getFieldProps('status')}
+                  {...getFieldProps("status")}
                   error={Boolean(touched.status && errors.status)}
                 >
                   <MenuItem value="ACTIVE">Active</MenuItem>
                   <MenuItem value="DISABLE">Disable</MenuItem>
                 </Select>
                 {Boolean(touched.status && errors.status) && (
-                  <FormHelperText error={Boolean(touched.status && errors.status)}>
+                  <FormHelperText
+                    error={Boolean(touched.status && errors.status)}
+                  >
                     {touched.status && errors.status}
                   </FormHelperText>
                 )}
@@ -129,7 +148,7 @@ export const EditUser = () => {
                   id="role"
                   defaultValue={values.role}
                   label="Chức vụ"
-                  {...getFieldProps('role')}
+                  {...getFieldProps("role")}
                   error={Boolean(touched.role && errors.role)}
                 >
                   <MenuItem value="USER">User</MenuItem>
