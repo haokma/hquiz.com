@@ -7,8 +7,8 @@ const router = express.Router();
 router.post('/login', AuthController.login);
 router.post('/register', AuthController.register);
 router.post('/refresh-token', AuthController.refreshToken);
-router.get('/getUsers', authMiddleware, adminMiddleware, AuthController.getUserList);
-router.get('/get-user-id/:id', authMiddleware, adminMiddleware, AuthController.getUserId);
-router.patch('/update/:id', authMiddleware, adminMiddleware, AuthController.update);
+router.get('/', AuthController.getUserList);
+router.get('/:id', AuthController.getUserId);
+router.patch('/:id', AuthController.update);
 
 module.exports = router;

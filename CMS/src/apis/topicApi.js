@@ -1,5 +1,5 @@
-import queryString from 'query-string';
-import axiosClients from './axiosClients';
+import queryString from "query-string";
+import axiosClients from "./axiosClients";
 
 const topicApi = {
   create: async (data) => {
@@ -16,12 +16,12 @@ const topicApi = {
     return axiosClients.get(url);
   },
   delete: async (topicId) => {
-    const url = `/topic/delete`;
+    const url = `/topic`;
     return axiosClients.patch(url, topicId);
   },
   update: async (id, newTopic) => {
     const url = `/topic/${id}`;
     return axiosClients.patch(url, newTopic);
-  }
+  },
 };
 export default topicApi;

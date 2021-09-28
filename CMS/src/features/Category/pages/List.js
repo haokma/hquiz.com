@@ -1,5 +1,5 @@
-import plusFill from '@iconify/icons-eva/plus-fill';
-import { Icon } from '@iconify/react';
+import plusFill from "@iconify/icons-eva/plus-fill";
+import { Icon } from "@iconify/react";
 import {
   Button,
   Card,
@@ -23,27 +23,28 @@ import {
   TableContainer,
   TablePagination,
   TableRow,
-  Typography
-} from '@material-ui/core';
-import { Box } from '@material-ui/system';
-import categoryApi from 'apis/categoryApi';
-import { sentenceCase } from 'change-case';
-import { ListToolbar, MoreMenu, TableHeadList } from 'components/common';
-import Label from 'components/Label';
-import Page from 'components/Page';
-import Scrollbar from 'components/Scrollbar';
-import { STATUS_LIST } from 'constants/index';
-import React, { useCallback, useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
-import { Link as RouterLink } from 'react-router-dom';
-import { toast } from 'react-toastify';
+  Typography,
+} from "@material-ui/core";
+import { Box } from "@material-ui/system";
+import categoryApi from "apis/categoryApi";
+import { sentenceCase } from "change-case";
+import { ListToolbar, MoreMenu, TableHeadList } from "components/common";
+import Label from "components/Label";
+import Page from "components/Page";
+import Scrollbar from "components/Scrollbar";
+import { STATUS_LIST } from "constants/index";
+import React, { useCallback, useEffect, useState } from "react";
+import { useHistory } from "react-router";
+import { Link as RouterLink } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const TABLE_HEAD = [
-  { id: 'title', label: 'Title', alignRight: false },
-  { id: 'id', label: 'Id', alignRight: false },
-  { id: 'slug', label: 'Slug', alignRight: false },
-  { id: 'status', label: 'Status', alignRight: false },
-  { id: '' }
+  { id: "name", label: "Name", alignRight: false },
+  { id: "image", label: "Image", alignRight: false },
+  { id: "id", label: "Id", alignRight: false },
+  { id: "slug", label: "Slug", alignRight: false },
+  { id: "status", label: "Status", alignRight: false },
+  { id: "" },
 ];
 
 export const CategoryList = () => {
@@ -54,14 +55,14 @@ export const CategoryList = () => {
   const [categoryList, setCategoryList] = useState([]);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [idDelete, setIdDelete] = useState('');
+  const [idDelete, setIdDelete] = useState("");
   const [filters, setFilters] = useState({
     page: 0,
     limit: 15,
-    order: 'asc',
-    orderBy: 'title',
-    filterName: '',
-    status: ''
+    order: "asc",
+    orderBy: "name",
+    filterName: "",
+    status: "",
   });
 
   const fetchCategoryList = useCallback(async (formValues) => {
@@ -72,16 +73,17 @@ export const CategoryList = () => {
         limit: formValues.limit,
         order: formValues.order,
         orderBy: formValues.orderBy,
-        title_like: formValues.filterName,
-        status: formValues.status
+        name_like: formValues.filterName,
+        status: formValues.status,
       });
-      const { _total } = res.data.pagination;
+      console.log(res);
+      // const { _total } = res.data.pagination;
       const { categories } = res.data;
       setCategoryList(categories);
-      setCount(_total);
+      // setCount(_total);
       setLoading(false);
     } catch (error) {
-      toast.error(error.response.data.error);
+      // toast.error(error.response.data.error);
       setCategoryList([]);
       setLoading(false);
     }
@@ -93,11 +95,11 @@ export const CategoryList = () => {
 
   // Function Table
   const handleRequestSort = (event, property) => {
-    const isAsc = filters.orderBy === property && filters.order === 'asc';
+    const isAsc = filters.orderBy === property && filters.order === "asc";
     setFilters((prev) => ({
       ...prev,
-      order: isAsc ? 'desc' : 'asc',
-      orderBy: property
+      order: isAsc ? "desc" : "asc",
+      orderBy: property,
     }));
   };
   const handleSelectAllClick = (event) => {
@@ -128,14 +130,14 @@ export const CategoryList = () => {
   const handleChangePage = (event, newPage) => {
     setFilters((prev) => ({
       ...prev,
-      page: newPage
+      page: newPage,
     }));
   };
   const handleChangeRowsPerPage = (event) => {
     setFilters((prev) => ({
       ...prev,
       limit: parseInt(event.target.value, 10),
-      page: 0
+      page: 0,
     }));
   };
 
@@ -143,12 +145,12 @@ export const CategoryList = () => {
   const handleFilterByName = (value) => {
     setFilters((prev) => ({
       ...prev,
-      filterName: value
+      filterName: value,
     }));
   };
   const handleDelete = (categoryId) => {
     setOpen(true);
-    if (typeof categoryId === 'string') {
+    if (typeof categoryId === "string") {
       setIdDelete([].concat(categoryId));
       return;
     }
@@ -158,7 +160,7 @@ export const CategoryList = () => {
     try {
       await categoryApi.delete(idDelete);
       fetchCategoryList(filters);
-      toast.success('Xóa danh mục thành công');
+      toast.success("Xóa danh mục thành công");
     } catch (error) {
       toast(error.response.data.error);
     }
@@ -170,7 +172,12 @@ export const CategoryList = () => {
     <>
       <Page title="Danh mục | CMS">
         <Container maxWidth="xl">
-          <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+            mb={5}
+          >
             <Typography variant="h4" gutterBottom>
               Danh mục
             </Typography>
@@ -201,7 +208,7 @@ export const CategoryList = () => {
                     onChange={(event) =>
                       setFilters((prev) => ({
                         ...prev,
-                        status: event.target.value
+                        status: event.target.value,
                       }))
                     }
                   >
@@ -237,9 +244,10 @@ export const CategoryList = () => {
                       />
                       <TableBody>
                         {categoryList.map((row) => {
-                          const { _id, title, slug, status } = row;
+                          const { _id, name, slug, status, image } = row;
                           const isItemSelected = selected.indexOf(_id) !== -1;
-                          const isStatus = status === 'ACTIVE' ? 'success' : 'banned';
+                          const isStatus =
+                            status === "ACTIVE" ? "success" : "banned";
                           return (
                             <TableRow
                               hover
@@ -255,13 +263,26 @@ export const CategoryList = () => {
                                   onChange={(event) => handleClick(event, _id)}
                                 />
                               </TableCell>
-                              <TableCell align="left">{title}</TableCell>
+                              <TableCell align="left">{name}</TableCell>
+                              <TableCell align="left">
+                                <img
+                                  src={image}
+                                  alt=""
+                                  style={{
+                                    maxWidth: "100px",
+                                    borderRadius: "4px",
+                                  }}
+                                />
+                              </TableCell>
                               <TableCell align="left">{_id}</TableCell>
                               <TableCell align="left">{slug}</TableCell>
                               <TableCell align="left">
                                 <Label
                                   variant="ghost"
-                                  color={(isStatus === 'banned' && 'error') || 'success'}
+                                  color={
+                                    (isStatus === "banned" && "error") ||
+                                    "success"
+                                  }
                                 >
                                   {sentenceCase(status)}
                                 </Label>
@@ -270,7 +291,11 @@ export const CategoryList = () => {
                                 <MoreMenu
                                   handleDelete={() => handleDelete(_id)}
                                   setOpen={setOpen}
-                                  handleEdit={() => history.push(`/dashboard/category/edit/${_id}`)}
+                                  handleEdit={() =>
+                                    history.push(
+                                      `/dashboard/category/edit/${_id}`
+                                    )
+                                  }
                                 />
                               </TableCell>
                             </TableRow>
@@ -283,7 +308,7 @@ export const CategoryList = () => {
 
                 {categoryList.length <= 0 && (
                   <Box textAlign="center" mt={5}>
-                    {' '}
+                    {" "}
                     <Typography>Hiện tại chưa có danh mục nào</Typography>
                   </Box>
                 )}

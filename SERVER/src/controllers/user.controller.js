@@ -126,11 +126,15 @@ const AuthController = {
 
     try {
       name_like = name_like || '';
-      page = Pagination.page(page);
-      limit = Pagination.limit(limit);
-      skip = Pagination.skip(page, limit);
+      page = Pagination.page(+page);
+      limit = Pagination.limit(+limit);
+      skip = Pagination.skip(page, +limit);
       sort = Pagination.sort(order, orderBy);
-
+      console.log({
+        sort,
+        skip,
+        limit,
+      });
       const userList = await User.find({
         username: { $regex: name_like },
       })

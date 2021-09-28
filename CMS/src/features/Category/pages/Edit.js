@@ -8,53 +8,60 @@ import {
   Select,
   Stack,
   TextField,
-  Typography
-} from '@material-ui/core';
-import categoryApi from 'apis/categoryApi';
-import Page from 'components/Page';
-import { STATUS_LIST } from 'constants/index';
-import { Form, FormikProvider, useFormik } from 'formik';
-import React, { useEffect } from 'react';
-import { useHistory, useParams } from 'react-router';
-import { Link as RouterLink } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import * as Yup from 'yup';
+  Typography,
+} from "@material-ui/core";
+import categoryApi from "apis/categoryApi";
+import Page from "components/Page";
+import { STATUS_LIST } from "constants/index";
+import { Form, FormikProvider, useFormik } from "formik";
+import React, { useEffect } from "react";
+import { useHistory, useParams } from "react-router";
+import { Link as RouterLink } from "react-router-dom";
+import { toast } from "react-toastify";
+import * as Yup from "yup";
 
 export const EditCategory = () => {
   const { id } = useParams();
   const history = useHistory();
 
   const categorySchema = Yup.object().shape({
-    title: Yup.string()
-      .required('Vui lòng nhập tên danh mục')
-      .min(4, 'Tên danh mục chứa ít nhất 4 kí tự'),
-    status: Yup.string().required('Vui lòng chọn trạng thái danh mục')
+    name: Yup.string()
+      .required("Vui lòng nhập tên danh mục")
+      .min(4, "Tên danh mục chứa ít nhất 4 kí tự"),
+    status: Yup.string().required("Vui lòng chọn trạng thái danh mục"),
   });
   const formik = useFormik({
     initialValues: {
-      title: '',
-      status: ''
+      name: "",
+      status: "",
     },
     validationSchema: categorySchema,
     onSubmit: async (values) => {
       try {
         await categoryApi.update(id, values);
-        history.push('/dashboard/category');
-        toast.success('Sửa danh mục thành công');
+        history.push("/dashboard/category");
+        toast.success("Sửa danh mục thành công");
       } catch (error) {
         toast.error(error.response.data.error);
       }
-    }
+    },
   });
-  const { handleSubmit, getFieldProps, values, setFieldValue, touched, errors } = formik;
+  const {
+    handleSubmit,
+    getFieldProps,
+    values,
+    setFieldValue,
+    touched,
+    errors,
+  } = formik;
 
   useEffect(() => {
     const fetchCategoryById = async () => {
       try {
         const res = await categoryApi.getById(id);
         const { category } = res.data;
-        setFieldValue('title', category.title);
-        setFieldValue('status', category.status);
+        setFieldValue("name", category.name);
+        setFieldValue("status", category.status);
       } catch (error) {
         toast.error(error.response.data.error);
       }
@@ -65,11 +72,20 @@ export const EditCategory = () => {
   return (
     <Page title="Sửa danh mục | CMS">
       <Container maxWidth="xl">
-        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+          mb={5}
+        >
           <Typography variant="h4" gutterBottom>
             Sửa danh mục
           </Typography>
-          <Button variant="contained" component={RouterLink} to="/dashboard/category">
+          <Button
+            variant="contained"
+            component={RouterLink}
+            to="/dashboard/category"
+          >
             Danh sách Category
           </Button>
         </Stack>
@@ -78,12 +94,12 @@ export const EditCategory = () => {
             <Stack mb={2}>
               <TextField
                 fullWidth
-                autoComplete="title"
+                autoComplete="name"
                 type="text"
                 label="Nhập tên danh mục"
-                {...getFieldProps('title')}
-                error={Boolean(touched.title && errors.title)}
-                helperText={touched.title && errors.title}
+                {...getFieldProps("name")}
+                error={Boolean(touched.name && errors.name)}
+                helperText={touched.name && errors.name}
               />
             </Stack>
             <Stack mb={5}>
@@ -94,7 +110,7 @@ export const EditCategory = () => {
                   id="status"
                   defaultValue={values.status}
                   label="Trạng thái"
-                  {...getFieldProps('status')}
+                  {...getFieldProps("status")}
                   error={Boolean(touched.status && errors.status)}
                 >
                   {STATUS_LIST.map((status, index) => (
@@ -104,7 +120,9 @@ export const EditCategory = () => {
                   ))}
                 </Select>
                 {Boolean(touched.status && errors.status) && (
-                  <FormHelperText error={Boolean(touched.status && errors.status)}>
+                  <FormHelperText
+                    error={Boolean(touched.status && errors.status)}
+                  >
                     {touched.status && errors.status}
                   </FormHelperText>
                 )}
