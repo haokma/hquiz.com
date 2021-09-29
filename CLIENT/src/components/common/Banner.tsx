@@ -1,7 +1,5 @@
-import type { NextPage } from 'next';
 import Link from 'next/link';
 import Slider from 'react-slick';
-
 import data from '../../data/banner.json';
 import SampleNextArrow from '../arrowSlider/sampleNextArrow';
 import SamplePrevArrow from '../arrowSlider/samplePreveArrow';
@@ -17,7 +15,7 @@ const settings = {
   nextArrow: <SampleNextArrow />,
   prevArrow: <SamplePrevArrow />,
 };
-const Banner: NextPage = () => {
+const Banner = () => {
   return (
     <div className="banner">
       <Slider {...settings}>
