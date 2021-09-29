@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import AttemptButton from '../../../components/attempt/attemptButton';
 import LayoutAttempt from '../../../components/common/LayoutAttempt';
 import ArrowLeft from '../../../components/svg/arrowLeft';
@@ -8,25 +8,16 @@ import ArrowRight from '../../../components/svg/arrowRight';
 import Error from '../../../components/svg/error';
 import Success from '../../../components/svg/success';
 import Waring from '../../../components/svg/waring';
-import data from '../../../data/question.json';
 import { QUESTION } from '../../../interfaces';
 
 const TopicResult: any = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const { slug } = router.query;
 
   const [isModalResult, setIsModalResult] = useState<boolean>(false);
   const [isActive, setIsActive] = useState<boolean>(false);
   const [questionIndex, setQuestionIndex] = useState<number>(0);
   const [questionList, setQuestionList] = useState<QUESTION[]>([]);
-
-  useEffect(() => {
-    if (id) {
-      const index = data.questions.findIndex((item) => item._id === Number(id));
-
-      setQuestionList(data.questions[index].data);
-    }
-  }, [id]);
 
   function renderContent() {
     return (

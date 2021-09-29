@@ -2,16 +2,16 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import topicApi from '../../apis/topicApi';
 import AttemptInfo from '../../components/attempt/attemptInfo';
 import AttemptQueston from '../../components/attempt/attemptQuestion';
 import LayoutAttempt from '../../components/common/LayoutAttempt';
-import data from '../../data/question.json';
 import { QUESTION } from '../../interfaces';
 import formatTime from '../../utils/formatTime';
 
 const Attempt: any = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const { slug } = router.query;
 
   const [questionIndex, setQuestionIndex] = useState(1);
   const [answers, setAnswers] = useState<number[]>([]);
@@ -19,14 +19,6 @@ const Attempt: any = () => {
   const [seconds, setSeconds] = useState(0);
   const [questionList, setQuestionList] = useState<QUESTION[]>([]);
 
-  useEffect(() => {
-    if (id) {
-      const index = data.questions.findIndex((item) => item._id === Number(id));
-
-      setQuestionList(data.questions[index].data);
-      setAnswers(Array.from(Array(data.questions[index].data.length)).fill(0));
-    }
-  }, [id]);
   useEffect(() => {
     if (seconds === 0 && minutes === 0) return;
 
@@ -43,6 +35,24 @@ const Attempt: any = () => {
       clearTimeout(timer);
     };
   }, [minutes, seconds]);
+
+  useEffect(() => {
+    if (slug) {
+      const fetchTopicSlug = async () => {
+        try {
+          const res = await topicApi.getBySlug(slug);
+          const { topic } = res.data;
+
+          setMinutes(topic.time / 60);
+          setSeconds(topic.time % 60);
+          setQuestionList(topic.questions);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchTopicSlug();
+    }
+  }, [slug]);
 
   const checkAnswer = (index: number): boolean => {
     if (!answers[index]) return false;
@@ -110,7 +120,7 @@ const Attempt: any = () => {
                 questionIndex={questionIndex}
                 questionList={questionList}
                 selectQuestion={selectQuestion}
-                id={Number(id)}
+                id={slug}
               />
             </div>
           </div>

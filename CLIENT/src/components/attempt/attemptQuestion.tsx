@@ -8,6 +8,14 @@ interface PROPS {
 
 const AttemptQueston = (props: PROPS) => {
   const { questionIndex, questionList, handleAnswer } = props;
+
+  if (!questionList.length) {
+    return (
+      <div className="message">
+        <span>Bộ đề hiện tại đang được update</span>
+      </div>
+    );
+  }
   return (
     <div className="attempt-question">
       <div className="attempt-title">
