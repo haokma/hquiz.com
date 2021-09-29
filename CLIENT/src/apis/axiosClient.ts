@@ -2,7 +2,7 @@ import { getLocalStorage, setLocalStorage } from '../utils/storrage';
 import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: 'http://localhost:5000',
+  baseURL: 'https://tracnghiemonline01.herokuapp.com',
   timeout: 10000,
   headers: {
     'X-Requested-With': 'XMLHttpRequest',
