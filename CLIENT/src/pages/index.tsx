@@ -11,7 +11,7 @@ interface PROPS {
   topicList: Topic[];
 }
 
-const Home: NextPage<PROPS> = (props: PROPS) => {
+const Home: NextPage<any> = (props: PROPS) => {
   const { topicList } = props;
   return (
     <>
@@ -40,5 +40,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
     },
   };
 };
+
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   return {
+//     paths: [],
+//     fallback: true,
+//   };
+// };
 
 export default Home;

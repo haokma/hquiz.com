@@ -5,10 +5,10 @@ const topicApi = {
   getList: async (params: any) => {
     const paramsString = queryString.stringify(params);
     console.log(paramsString);
-    return api.get(`http://localhost:5000/api/topic?${paramsString}`);
+    return api.get(`https://tracnghiemonline01.herokuapp.com/api/topic?${paramsString}`);
   },
   getBySlug: async (slug: string | string[]) => {
-    return api.get(`http://localhost:5000/api/topic/${slug}`);
+    return api.get(`https://tracnghiemonline01.herokuapp.com/api/topic/${slug}`);
   },
 };
 

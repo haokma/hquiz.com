@@ -2,7 +2,7 @@ import { api } from './axiosClient';
 
 const categoryApi = {
   getList: async () => {
-    return api.get('http://localhost:5000/api/category');
+    return api.get('https://tracnghiemonline01.herokuapp.com/api/category');
   },
 };
 
