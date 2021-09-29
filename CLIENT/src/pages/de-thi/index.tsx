@@ -1,22 +1,30 @@
-import { NextPage } from 'next';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
+import categoryApi from '../../apis/catgoryApi';
+import topicApi from '../../apis/topicApi';
 import TopicItemSkeletion from '../../components/common/Skeleton/topicItemSkeletion';
-import PaginationUltimate from '../../components/pagination/PaginationUltimate';
+import Pagination from '../../components/pagination/Pagination';
 import Sidebar from '../../components/topic/Sidebar';
 import TopicItem from '../../components/topic/TopicItem';
-import data from '../../data/topic.json';
+import { LIMIT } from '../../constants';
 import { Topic } from '../../interfaces';
+import { CATEGORY, FILTERCATEGORY, TOPICTYPE } from '../../interfaces/category';
 
-let TOTAL_PAGE = 10;
-let BOUNDARY = 1;
-let SKIP = 1;
-
-const TopicPage: NextPage = () => {
+const TopicPage: any = () => {
   const [isActive, setIsActive] = useState(false);
-  const [topicType, setTopicType] = useState<any>({});
+  const [topicType, setTopicType] = useState<TOPICTYPE>({
+    _id: '',
+    name: '',
+  });
   const [topicList, setTopicList] = useState<Topic[]>([]);
+  const [categories, setCategories] = useState<CATEGORY[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [totalPage, setTotalPage] = useState(1);
+  const [filter, setFilter] = useState<FILTERCATEGORY>({
+    limit: LIMIT,
+    page: 1,
+    categoryId: '',
+  });
 
   useEffect(() => {
     const width = window.innerWidth;
@@ -32,24 +40,39 @@ const TopicPage: NextPage = () => {
   }, []);
 
   useEffect(() => {
-    const getTopic = () => {
-      return new Promise((resolve, reject) => {
-        const result = data.topic.filter((item) => item.typeId === topicType._id);
-        setTimeout(() => {
-          if (!topicType._id) {
-            resolve(data.topic);
-            return;
-          }
-          resolve(result);
-        }, 2000);
-      });
+    const fetchTopic = async () => {
+      setIsLoading(true);
+      try {
+        const res = await topicApi.getList(filter);
+
+        const { topicList, pagination } = res.data;
+        const { _total, _limit, _page } = pagination;
+
+        setFilter((prev) => ({
+          ...prev,
+          page: _page,
+          limit: _limit,
+        }));
+        setTotalPage(Math.ceil(_total / _limit));
+        setTopicList(topicList);
+        setIsLoading(false);
+      } catch (error) {
+        setIsLoading(false);
+      }
     };
-    setIsLoading(true);
-    getTopic().then((res: any) => {
-      setIsLoading(false);
-      setTopicList(res);
-    });
-  }, [topicType._id]);
+    fetchTopic();
+  }, [filter.page, filter.categoryId]);
+
+  useEffect(() => {
+    const fetchCategory = async () => {
+      try {
+        const res = await categoryApi.getList();
+        console.log(res);
+        setCategories(res.data.categories);
+      } catch (error) {}
+    };
+    fetchCategory();
+  }, []);
   return (
     <>
       <Head>
@@ -73,7 +96,7 @@ const TopicPage: NextPage = () => {
                   <>
                     {topicList.map((item, index) => {
                       return (
-                        <div className="col-xl-6 col-lg-6 col-sm-12 pb-4" key={index}>
+                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4" key={index}>
                           <TopicItem topic={item} />
                         </div>
                       );
@@ -99,13 +122,24 @@ const TopicPage: NextPage = () => {
             </div>
             {!isLoading && topicList.length ? (
               <div className="topic-pagination">
-                <PaginationUltimate TOTAL_PAGE={TOTAL_PAGE} BOUNDARY={BOUNDARY} SKIP={SKIP} />
+                <Pagination
+                  TOTAL_PAGE={totalPage}
+                  SHOW_PAGE={5}
+                  PAGE={filter.page}
+                  SET_PAGE={setFilter}
+                />
               </div>
             ) : null}
           </div>
         </div>
         <div className={isActive ? 'sidebar active' : 'sidebar'}>
-          <Sidebar topicType={topicType} setTopicType={setTopicType} />
+          <Sidebar
+            filter={filter}
+            setFilter={setFilter}
+            categories={categories}
+            topicType={topicType}
+            setTopicType={setTopicType}
+          />
         </div>
         <div className={isActive ? 'topic-left active' : 'topic-left'}></div>
       </div>

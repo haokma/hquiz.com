@@ -1,13 +1,19 @@
-import { NextPage } from 'next';
 import { useState } from 'react';
-const TOTAL_PAGE = 25;
-const SHOW_PAGE = 5;
+import { LIMIT } from '../../constants';
 
-const Pagination: NextPage = () => {
+interface PROPS {
+  TOTAL_PAGE: number;
+  SHOW_PAGE: number;
+  PAGE: number;
+  SET_PAGE: any;
+}
+
+const Pagination = (props: PROPS) => {
   const [currentPage, setCurrentPage] = useState(0);
+  const { TOTAL_PAGE, SHOW_PAGE, PAGE, SET_PAGE } = props;
 
   const diff = Math.floor(SHOW_PAGE / 2);
-  let beforePage = Math.max(currentPage - diff, 0);
+  let beforePage = Math.max(PAGE - diff, 0);
   let afterPage = Math.min(SHOW_PAGE + beforePage, TOTAL_PAGE);
 
   if (TOTAL_PAGE >= SHOW_PAGE && afterPage >= TOTAL_PAGE) {
@@ -19,8 +25,13 @@ const Pagination: NextPage = () => {
       <li key={0}>
         <button
           className="prev btn"
-          onClick={() => setCurrentPage(currentPage - 1)}
-          disabled={currentPage === 0}
+          onClick={() =>
+            SET_PAGE({
+              limit: LIMIT,
+              page: PAGE + 1,
+            })
+          }
+          disabled={PAGE === 1}
         >
           <i className="bx bx-left-arrow-alt"></i>
         </button>
@@ -30,8 +41,13 @@ const Pagination: NextPage = () => {
       results.push(
         <li
           key={i}
-          className={currentPage === i ? 'number active' : 'number'}
-          onClick={() => setCurrentPage(i)}
+          className={PAGE - 1 === i ? 'number active' : 'number'}
+          onClick={() =>
+            SET_PAGE({
+              limit: LIMIT,
+              page: i + 1,
+            })
+          }
         >
           {i + 1}
         </li>
@@ -42,7 +58,7 @@ const Pagination: NextPage = () => {
         <button
           className="next btn"
           onClick={() => setCurrentPage(currentPage + 1)}
-          disabled={currentPage + 1 === TOTAL_PAGE}
+          disabled={PAGE === TOTAL_PAGE}
         >
           <i className="bx bx-right-arrow-alt"></i>
         </button>

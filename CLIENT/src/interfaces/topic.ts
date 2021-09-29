@@ -1,9 +1,10 @@
 export interface Topic {
   _id: number;
   typeId: number;
-  title: string;
+  name: string;
   time: number;
-  view: number;
-  totalQuestion: number;
+  views: number;
+  slug: string;
+  questionCount: number;
   image: string;
 }

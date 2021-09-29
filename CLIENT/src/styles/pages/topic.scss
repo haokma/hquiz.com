@@ -85,12 +85,16 @@
   &-img{
     img{
       height: 80px;
+      width: 120px;
+      object-fit: cover;
+      border-radius: 4px;
     }
+    margin-right: 12px;
   }
   &-title{
     color: $color-text;
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 15px;
+    font-weight: 400;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -196,11 +200,14 @@
   }
 }
 
+
+
 @media (max-width:768px){
   .topic{
     &-img{
       img{
-        max-height: 64px;
+        max-height: 80px;
+        max-width: 120px;
       }
     }
   }

@@ -1,15 +1,18 @@
-import { useState } from 'react';
-import dataType from '../../data/topicType.json';
+import { Dispatch, useState } from 'react';
+import { CATEGORY, FILTERCATEGORY, TOPICTYPE } from '../../interfaces/category';
 
 interface PROPS {
-  topicType: any;
-  setTopicType: any;
+  filter: FILTERCATEGORY;
+  setFilter: Dispatch<any>;
+  categories: CATEGORY[];
+  topicType: TOPICTYPE;
+  setTopicType: Dispatch<any>;
 }
 
 const Sidebar = (props: PROPS) => {
   const [isSelectedType, setIsSelectedType] = useState(false);
 
-  const { topicType, setTopicType } = props;
+  const { setFilter, categories, setTopicType, topicType } = props;
   return (
     <div className="sidebar-content">
       <div className="sidebar-search">
@@ -23,7 +26,7 @@ const Sidebar = (props: PROPS) => {
             setIsSelectedType(!isSelectedType);
           }}
         >
-          <span>{topicType.type ? `${topicType.type}` : 'Chọn loại đề'}</span>
+          <span>{topicType?.name ? `${topicType?.name}` : 'Chọn loại đề'}</span>
           <span>
             <svg
               stroke="currentColor"
@@ -46,37 +49,37 @@ const Sidebar = (props: PROPS) => {
         <ul>
           <li
             onClick={() => {
-              setTopicType('');
+              setFilter((prev: FILTERCATEGORY) => ({
+                ...prev,
+                categoryId: '',
+              }));
+              setTopicType((prev: TOPICTYPE) => ({
+                ...prev,
+                _id: '',
+                name: '',
+              }));
               setIsSelectedType(false);
             }}
           >
             Chọn loại đề
           </li>
-          {dataType.listType.map((item, index) => (
+          {categories.map((item: any, index: number) => (
             <li
               key={index}
               onClick={() => {
                 setIsSelectedType(false);
                 setTopicType(item);
+                setFilter((prev: FILTERCATEGORY) => ({
+                  ...prev,
+                  categoryId: item._id,
+                }));
               }}
             >
-              {item.type}
+              {item.name}
             </li>
           ))}
         </ul>
       </div>
-      {/* <ul className="sidebar-type">
-        {dataType.listType
-          .filter((item) => item.typeId === topicType._id)
-          .map((item, index) => {
-            return (
-              <li key={item._id}>
-                <input type="radio" name={`${item.typeId}`} id={`${index}`} />
-                <label htmlFor={`${index}`}>{item.type}</label>
-              </li>
-            );
-          })}
-      </ul> */}
       <div className="sidebar-button">
         <button>Tìm đề thi</button>
       </div>

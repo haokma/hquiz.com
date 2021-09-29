@@ -29,7 +29,7 @@ const TopicController = {
     }
   },
   getList: async (req, res) => {
-    let { page, limit, order, orderBy, name_like } = req.query;
+    let { page, limit, order, orderBy, name_like, categoryId } = req.query;
     let skip, sort, query;
     try {
       name_like = name_like || '';
@@ -40,15 +40,40 @@ const TopicController = {
       query = {
         name: { $regex: name_like },
       };
+      if (categoryId) {
+        query.categoryId = categoryId;
+      }
 
       const topicList = await Topic.find(query).sort(sort).skip(skip).limit(limit);
+      const total = await Topic.find(query).count();
 
       res.status(200).json({
         topicList,
+        pagination: Pagination.result(limit, page, total),
       });
     } catch (error) {
       res.status(400).json({
         error: error.message,
+      });
+    }
+  },
+  getBySlug: async (req, res) => {
+    const { slug } = req.params;
+
+    try {
+      console.log(slug);
+      const topic = await Topic.findOne({ slug });
+      if (!topic) {
+        res.status(400).json({
+          error: 'Không tìm thấy danh mục',
+        });
+      }
+      res.status(200).json({
+        topic,
+      });
+    } catch (error) {
+      res.status(400).json({
+        error,
       });
     }
   },

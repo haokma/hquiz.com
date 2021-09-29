@@ -1,60 +1,73 @@
-.topic-highlight{
-  &-heading{
+.topic-highlight {
+  &-heading {
     margin-bottom: 15px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    h2{
-    font-size: 28px;
-    color: $color-title;
-    font-weight: 700;
+
+    h2 {
+      font-size: 28px;
+      color: $color-title;
+      font-weight: 700;
     }
-    a{
+
+    a {
       color: $color-primary;
       font-weight: 700;
       display: flex;
       align-items: center;
       padding: 10px 0;
       font-size: 15px;
-      span:hover{
+
+      span:hover {
         text-decoration: underline;
       }
-      i{
+
+      i {
         font-size: 20px;
       }
     }
   }
-  .slider{
-    margin:  0 -10px;
+
+  .slider {
+    margin: 0 -10px;
   }
+
   &-content {
     padding: 5px 10px;
   }
-  &-item{
-    padding:  0 10px;
+
+  &-item {
+    padding: 0 10px;
     scroll-snap-align: start;
     width: 100%;
-    a{
+
+    a {
       width: 100%;
     }
   }
-  &-thumbnail{
+
+  &-thumbnail {
     object-fit: cover;
     border-radius: 8px;
     overflow: hidden;
-    img{
-      min-height: 220px;
-      max-height: 220px;
+
+    img {
+      min-height: 260px;
+      max-height: 260px;
       border-radius: 8px;
       transition: .2s ease;
       height: 100%;
-      &:hover{
+      object-fit: cover;
+
+      &:hover {
         transform: scale(1.1);
       }
     }
   }
-  &-title{
-    a{
+
+  &-title {
+    a {
       font-size: 16px;
       margin-top: 8px;
       color: $color-title;
@@ -71,34 +84,42 @@
       }
     }
   }
-  &-view{
+
+  &-view {
     text-align: left;
     margin-top: 12px;
     color: $color-title;
-    span{
+
+    span {
       margin-left: 8px;
     }
   }
 }
-.work{
+
+.work {
   padding: 30px 0 50px 0;
   text-align: center;
-  &-title{
+
+  &-title {
     text-align: center;
     margin-bottom: 16px;
     font-size: 28px;
     color: $color-title;
     font-weight: 700;
   }
-  &-desc{
+
+  &-desc {
     margin-bottom: 30px;
   }
-  &-item{
+
+  &-item {
     margin: 20px 0;
-    &-img{
+
+    &-img {
       img {
         width: 40px;
       }
+
       background-color: $color-primary;
       width: 70px;
       height: 70px;
@@ -108,59 +129,68 @@
       justify-content: center;
       margin: 10px auto;
     }
-    &-title{
+
+    &-title {
       margin-bottom: 8px;
       color: $color-title;
       font-weight: 600;
       font-size: 18px;
     }
-    &-desc{
+
+    &-desc {
       font-size: 14px;
       line-height: 1.6;
     }
   }
 }
-.post{
+
+.post {
   margin-top: 40px;
+
   &-heading {
     margin-bottom: 15px;
     font-size: 28px;
     color: $color-title;
   }
+
   &-slider {
     margin: 0 -10px;
   }
-  &-content{
+
+  &-content {
     padding: 5px 10px;
   }
+
   &-item {
     padding: 0 10px;
     scroll-snap-align: start;
     width: 100%;
-    a{
+
+    a {
       display: block;
       width: 100%;
     }
   }
+
   &-thumbnail {
     object-fit: cover;
     border-radius: 8px;
     overflow: hidden;
 
     img {
-      min-height: 220px;
-      max-height: 220px;
+      min-height: 260px;
+      max-height: 260px;
       border-radius: 8px;
       transition: .2s ease;
-      height: 100%;
 
       &:hover {
         transform: scale(1.1);
       }
     }
   }
+
   &-title {
-    a{
+    a {
       font-size: 16px;
       margin-top: 8px;
       color: $color-title;
@@ -177,6 +207,7 @@
       }
     }
   }
+
   &-view {
     margin-left: -10px;
     text-align: left;
@@ -184,9 +215,11 @@
     color: $color-title;
     display: flex;
     justify-content: flex-start;
-    div{
+
+    div {
       margin: 0 10px;
     }
+
     span {
       margin-left: 8px;
     }
@@ -197,9 +230,10 @@
   .div.slick-arrow {
     display: none;
   }
-  .topic-highlight{
-    &-heading{
-      h2{
+
+  .topic-highlight {
+    &-heading {
+      h2 {
         font-size: 22px;
       }
     }
@@ -207,10 +241,39 @@
 }
 
 @media (max-width:576px) {
-  .topic-highlight{
-    &-heading{
-      h2{
+  .topic-highlight {
+    &-thumbnail {
+      img {
+        max-height: 220px;
+        min-height: 220px;
+      }
+    }
+
+    &-heading {
+      h2 {
         font-size: 22px;
+      }
+    }
+  }
+
+
+}
+
+@media (max-width:450px) {
+  .post {
+    &-thumbnail {
+      img {
+        max-height: 220px;
+        min-height: 220px;
+      }
+    }
+  }
+
+  topic-highlight {
+    &-thumbnail {
+      img {
+        max-height: 220px;
+        min-height: 220px;
       }
     }
   }
