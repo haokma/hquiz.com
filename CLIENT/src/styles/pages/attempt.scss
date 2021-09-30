@@ -98,6 +98,19 @@
     position: fixed;
     top: 0;
     right: 0;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #9CA3AF;
+      border-radius: 12px;
+    }
+    &-content{
+
+      height: auto;
+    }
     &-name{
       display: flex;
       flex-direction: column;

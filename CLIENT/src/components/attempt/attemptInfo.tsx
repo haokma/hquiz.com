@@ -44,13 +44,12 @@ const settings = {
 
 interface PROPS {
   questionIndex: number;
-  questionList: QUESTION[];
   checkAnswer: (index: number) => boolean;
   selectQuestion: (index: number) => void;
   minutes: number;
   seconds: number;
-  id: any;
   questionCount: any;
+  handleEndExam: any;
 }
 
 const AttemptInfo = (props: PROPS) => {
@@ -58,82 +57,83 @@ const AttemptInfo = (props: PROPS) => {
 
   const {
     questionIndex,
-    questionList,
     checkAnswer,
     selectQuestion,
     minutes,
     seconds,
-    id,
     questionCount,
+    handleEndExam,
   } = props;
   return (
     <div className="attempt-info">
-      <div className="attempt-info-name">
-        <span># Đề thi</span>
-        <span>Trường THPT Phan Châu Trinh lần 3</span>
-      </div>
-      <div className="attempt-time">
-        <div>
-          <ClockSvg />
-          <span>Thời gian làm bài</span>
+      <div className="attempt-info-content">
+        <div className="attempt-info-name">
+          <span># Đề thi</span>
+          <span>Trường THPT Phan Châu Trinh lần 3</span>
         </div>
-        <div className="attempt-cricle">
-          <div className="attempt-cricle-text">
-            <div>
-              <span>{formatTime(minutes)}</span>
-            </div>
-            <div>
-              <span>:</span>
-            </div>
-            <div>
-              <span>{formatTime(seconds)}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="attempt-map">
-        <div className="attempt-map-text">
-          <span># Sơ đồ thi</span>
+        <div className="attempt-time">
           <div>
-            <span>0</span>
-            <span>/</span>
-            <span>{questionCount}</span>
+            <ClockSvg />
+            <span>Thời gian làm bài</span>
+          </div>
+          <div className="attempt-cricle">
+            <div className="attempt-cricle-text">
+              <div>
+                <span>{formatTime(minutes)}</span>
+              </div>
+              <div>
+                <span>:</span>
+              </div>
+              <div>
+                <span>{formatTime(seconds)}</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="attempt-map-picture">
-          {Array.from(Array(questionCount).keys()).map((item, index) => {
-            let className = '';
-            if (index + 1 === questionIndex) {
-              className += ' active';
-            }
-            if (checkAnswer(index)) {
-              className += ' math';
-            }
-            return (
-              <div
-                className={className}
-                onClick={() => selectQuestion(index + 1)}
-                key={index}
-              ></div>
-            );
-          })}
+        <div className="attempt-map">
+          <div className="attempt-map-text">
+            <span># Sơ đồ thi</span>
+            <div>
+              <span>0</span>
+              <span>/</span>
+              <span>{questionCount}</span>
+            </div>
+          </div>
+          <div className="attempt-map-picture">
+            {Array.from(Array(questionCount).keys()).map((item, index) => {
+              let className = '';
+              if (index + 1 === questionIndex) {
+                className += ' active';
+              }
+              if (checkAnswer(index)) {
+                className += ' math';
+              }
+              return (
+                <div
+                  className={className}
+                  onClick={() => selectQuestion(index + 1)}
+                  key={index}
+                ></div>
+              );
+            })}
+          </div>
         </div>
-      </div>
-      <div className="attempt-button">
-        <button onClick={() => router.push(`/attempt/ket-qua/${id}`)}>Kết thúc bài thi</button>
-      </div>
-      <div className="attempt-question-mobile">
-        <Slider {...settings}>
-          {Array.from(Array(questionCount).keys()).map((item, index) => {
-            let className = '';
-            if (index + 1 === questionIndex) className += 'active';
-            return (
-              <div className={className} onClick={() => selectQuestion(index + 1)} key={index}>
-                Câu {index + 1}
-              </div>
-            );
-          })}
-        </Slider>
+        <div className="attempt-button">
+          <button onClick={() => handleEndExam()}>Kết thúc bài thi</button>
+        </div>
+        <div className="attempt-question-mobile">
+          <Slider {...settings}>
+            {Array.from(Array(questionCount).keys()).map((item, index) => {
+              let className = '';
+              if (index + 1 === questionIndex) className += 'active';
+              return (
+                <div className={className} onClick={() => selectQuestion(index + 1)} key={index}>
+                  Câu {index + 1}
+                </div>
+              );
+            })}
+          </Slider>
+        </div>
       </div>
     </div>
   );

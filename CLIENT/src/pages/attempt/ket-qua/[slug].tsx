@@ -27,23 +27,6 @@ const TopicResult: any = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (seconds === 0 && minutes === 0) return;
-
-    const timer = setTimeout(() => {
-      setSeconds(seconds - 1);
-
-      if (seconds === 0 && minutes > 0) {
-        setMinutes(minutes - 1);
-        setSeconds(59);
-      }
-    }, 1000);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [minutes, seconds]);
-
-  useEffect(() => {
     if (slug) {
       const fetchTopicSlug = async () => {
         setLoading(true);

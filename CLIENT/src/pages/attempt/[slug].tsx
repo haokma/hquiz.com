@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import rankingApi from '../../apis/rankingApi';
 import topicApi from '../../apis/topicApi';
 import AttemptInfo from '../../components/attempt/attemptInfo';
 import AttemptQueston from '../../components/attempt/attemptQuestion';
@@ -76,6 +77,22 @@ const Attempt: any = () => {
     setQuestionIndex(index);
   };
 
+  const handleEndExam = async () => {
+    const ranking = {
+      topicId: topic?._id,
+      username: 'Chí Hào',
+      userId: '6151fea542d9d51d503b587a',
+      score: 10,
+      time: 1800,
+    };
+    try {
+      await rankingApi.create(ranking);
+      router.push(`/attempt/ket-qua/${topic?.slug}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   if (loading) {
     return <LoadingApp />;
   }
@@ -125,10 +142,9 @@ const Attempt: any = () => {
                 seconds={seconds}
                 checkAnswer={checkAnswer}
                 questionIndex={questionIndex}
-                questionList={questionList}
                 selectQuestion={selectQuestion}
                 questionCount={topic?.questionCount}
-                id={slug}
+                handleEndExam={handleEndExam}
               />
             </div>
           </div>

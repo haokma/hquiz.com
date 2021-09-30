@@ -3,18 +3,30 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import rankingApi from '../../apis/rankingApi';
 import topicApi from '../../apis/topicApi';
 import Loading from '../../components/common/Loading/Loading';
 import QuestionSvg from '../../components/svg/questionSvg';
 import TimeSvg from '../../components/svg/time';
 import ViewSvg from '../../components/svg/viewSvg';
+import formatTime from '../../utils/formatTime';
 
 const TopicDetails: NextPage = () => {
   const router = useRouter();
   const { slug } = router.query;
 
   const [topic, setTopic] = useState<any>([]);
+  const [rankingList, setRankingList] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const fetchRanking = async (topicId: string) => {
+    try {
+      const res = await rankingApi.getList(topicId);
+      const { rankingList } = res.data;
+
+      setRankingList(rankingList);
+    } catch (error) {}
+  };
 
   useEffect(() => {
     const fetchTopicSlug = async (slug: string | string[]) => {
@@ -22,6 +34,8 @@ const TopicDetails: NextPage = () => {
       try {
         const res = await topicApi.getBySlug(slug);
         const { topic } = res.data;
+
+        fetchRanking(topic._id);
 
         setTopic(topic);
         setLoading(false);
@@ -62,11 +76,13 @@ const TopicDetails: NextPage = () => {
                   <div className="topic-info">
                     <div>
                       <QuestionSvg />
-                      <span>20 câu</span>
+                      <span>{topic.questionCount} câu</span>
                     </div>
                     <div>
                       <TimeSvg />
-                      <span>30:00</span>
+                      <span>
+                        {formatTime(topic.time / 60)}:{formatTime(topic.time % 60)}
+                      </span>
                     </div>
                     <div>
                       <ViewSvg />
@@ -100,31 +116,15 @@ const TopicDetails: NextPage = () => {
                     <span>Điểm thi</span>
                     <span>Thời gian</span>
                   </li>
-                  <li>
-                    <span>Chi Hao</span>
-                    <span>10d</span>
-                    <span>15:00</span>
-                  </li>
-                  <li>
-                    <span>Nhu Quynh</span>
-                    <span>9.5d</span>
-                    <span>15:00</span>
-                  </li>
-                  <li>
-                    <span>Nhu Tuoi</span>
-                    <span>9d</span>
-                    <span>15:00</span>
-                  </li>
-                  <li>
-                    <span>Thuy Linh</span>
-                    <span>9d</span>
-                    <span>15:00</span>
-                  </li>
-                  <li>
-                    <span>Phuong Anh</span>
-                    <span>8d</span>
-                    <span>15:00</span>
-                  </li>
+                  {rankingList.map((item: any, index: number) => (
+                    <li key={index}>
+                      <span>{item.username}</span>
+                      <span>{item.score}đ</span>
+                      <span>
+                        {formatTime(Math.floor(item.time / 60))}:{formatTime(item.time % 60)}
+                      </span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
