@@ -525,6 +525,9 @@
 .question-answer input:checked~label {
   background-color: $color-primary;
 }
+.attempt-answer input:checked~label {
+  background-color: $color-primary;
+}
 form{
   width: 100%;
 }

@@ -1,14 +1,17 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import topicApi from '../../../apis/topicApi';
 import AttemptButton from '../../../components/attempt/attemptButton';
 import LayoutAttempt from '../../../components/common/LayoutAttempt';
+import LoadingApp from '../../../components/common/Loading/LoadingAttempt';
 import ArrowLeft from '../../../components/svg/arrowLeft';
 import ArrowRight from '../../../components/svg/arrowRight';
 import Error from '../../../components/svg/error';
 import Success from '../../../components/svg/success';
 import Waring from '../../../components/svg/waring';
-import { QUESTION } from '../../../interfaces';
+import { QUESTION, Topic } from '../../../interfaces';
+import formatTime from '../../../utils/formatTime';
 
 const TopicResult: any = () => {
   const router = useRouter();
@@ -18,6 +21,49 @@ const TopicResult: any = () => {
   const [isActive, setIsActive] = useState<boolean>(false);
   const [questionIndex, setQuestionIndex] = useState<number>(0);
   const [questionList, setQuestionList] = useState<QUESTION[]>([]);
+  const [topic, setTopic] = useState<Topic>();
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (seconds === 0 && minutes === 0) return;
+
+    const timer = setTimeout(() => {
+      setSeconds(seconds - 1);
+
+      if (seconds === 0 && minutes > 0) {
+        setMinutes(minutes - 1);
+        setSeconds(59);
+      }
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [minutes, seconds]);
+
+  useEffect(() => {
+    if (slug) {
+      const fetchTopicSlug = async () => {
+        setLoading(true);
+        try {
+          const res = await topicApi.getBySlug(slug);
+          const { topic } = res.data;
+
+          setMinutes(topic.time / 60);
+          setSeconds(topic.time % 60);
+          setTopic(topic);
+          setQuestionList(topic.questions);
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+          console.log(error);
+        }
+      };
+      fetchTopicSlug();
+    }
+  }, [slug]);
 
   function renderContent() {
     return (
@@ -33,15 +79,15 @@ const TopicResult: any = () => {
         <div className="topic-result-content">
           <div className="result">
             <div className="result-time">
-              <span>30</span>
+              <span>{formatTime(minutes)}</span>
               <span>:</span>
-              <span>00</span>
+              <span>{formatTime(seconds)}</span>
             </div>
             <p className="result-title">Số câu hoàn thành</p>
             <div className="result-total">
               <span>{questionList.length}</span>
               <span>/</span>
-              <span>{questionList.length}</span>
+              <span>{topic?.questionCount}</span>
             </div>
             <h5 className="result-slogan">Chúc mừng! Bạn đã hoàn thành bài thi!</h5>
             <div className="result-table">
@@ -85,7 +131,6 @@ const TopicResult: any = () => {
     );
   }
   function renderQuestion() {
-    console.log(questionList[questionIndex]?.answers);
     return (
       <>
         <div className="topic-result-heading" onClick={() => setIsModalResult(true)}>
@@ -105,7 +150,7 @@ const TopicResult: any = () => {
         <div className="question">
           <div className="question-title">
             <span>
-              Câu {questionIndex} : {questionList[questionIndex]?.title}
+              Câu {questionIndex} : {questionList[questionIndex]?.name}
             </span>
             {questionList[questionIndex]?.image && (
               <img src={questionList[questionIndex]?.image} alt="" />
@@ -113,12 +158,11 @@ const TopicResult: any = () => {
           </div>
           <div className="question-answer">
             {questionList[questionIndex]?.answers.map((item, index) => {
-              console.log(item.isCorrect);
               return (
                 <div key={item._id}>
                   <input type="radio" name="1" id={`answer_${index}`} checked={item.isCorrect} />
                   <label htmlFor={`answer_${index}`}>
-                    <span>{item.value}</span>
+                    <span>{item.name}</span>
                     {item.image && <img src={item.image} alt="" />}
                   </label>
                 </div>
@@ -128,6 +172,10 @@ const TopicResult: any = () => {
         </div>
       </>
     );
+  }
+
+  if (loading) {
+    return <LoadingApp />;
   }
   return (
     <div className="topic-result">
@@ -150,6 +198,7 @@ const TopicResult: any = () => {
             setIsActive={setIsActive}
             setQuestionIndex={setQuestionIndex}
             setIsModalResult={setIsModalResult}
+            questionCount={topic?.questionCount}
           />
         </div>
       </div>

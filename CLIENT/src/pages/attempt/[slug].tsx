@@ -6,7 +6,8 @@ import topicApi from '../../apis/topicApi';
 import AttemptInfo from '../../components/attempt/attemptInfo';
 import AttemptQueston from '../../components/attempt/attemptQuestion';
 import LayoutAttempt from '../../components/common/LayoutAttempt';
-import { QUESTION } from '../../interfaces';
+import LoadingApp from '../../components/common/Loading/LoadingAttempt';
+import { QUESTION, Topic } from '../../interfaces';
 import formatTime from '../../utils/formatTime';
 
 const Attempt: any = () => {
@@ -18,6 +19,8 @@ const Attempt: any = () => {
   const [minutes, setMinutes] = useState(30);
   const [seconds, setSeconds] = useState(0);
   const [questionList, setQuestionList] = useState<QUESTION[]>([]);
+  const [topic, setTopic] = useState<Topic>();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (seconds === 0 && minutes === 0) return;
@@ -39,14 +42,18 @@ const Attempt: any = () => {
   useEffect(() => {
     if (slug) {
       const fetchTopicSlug = async () => {
+        setLoading(true);
         try {
           const res = await topicApi.getBySlug(slug);
           const { topic } = res.data;
 
+          setTopic(topic);
           setMinutes(topic.time / 60);
           setSeconds(topic.time % 60);
           setQuestionList(topic.questions);
+          setLoading(false);
         } catch (error) {
+          setLoading(false);
           console.log(error);
         }
       };
@@ -69,8 +76,8 @@ const Attempt: any = () => {
     setQuestionIndex(index);
   };
 
-  if (!questionList) {
-    return <div>Loading</div>;
+  if (loading) {
+    return <LoadingApp />;
   }
   return (
     <>
@@ -120,6 +127,7 @@ const Attempt: any = () => {
                 questionIndex={questionIndex}
                 questionList={questionList}
                 selectQuestion={selectQuestion}
+                questionCount={topic?.questionCount}
                 id={slug}
               />
             </div>

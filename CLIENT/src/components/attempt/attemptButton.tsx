@@ -6,24 +6,25 @@ interface PROPS {
   setIsActive: Dispatch<boolean>;
   setQuestionIndex: Dispatch<number>;
   questionList: QUESTION[];
+  questionCount: any;
 }
 
 const AttemptButton = (props: PROPS) => {
-  const { setIsModalResult, setIsActive, setQuestionIndex, questionList } = props;
+  const { setIsModalResult, setIsActive, setQuestionIndex, questionCount } = props;
 
   return (
     <ul className="modal-result-list">
-      {Array.from(Array(questionList.length).keys()).map((item, index) => {
+      {Array.from(Array(questionCount).keys()).map((item, index) => {
         return (
           <li
             key={index}
             onClick={() => {
               setIsModalResult(false);
               setIsActive(true);
-              setQuestionIndex(item);
+              setQuestionIndex(index);
             }}
           >
-            <span>Câu {item + 1}</span>
+            <span>Câu {index + 1}</span>
             <span>
               <svg
                 stroke="currentColor"

@@ -50,12 +50,22 @@ interface PROPS {
   minutes: number;
   seconds: number;
   id: any;
+  questionCount: any;
 }
 
 const AttemptInfo = (props: PROPS) => {
   const router = useRouter();
 
-  const { questionIndex, questionList, checkAnswer, selectQuestion, minutes, seconds, id } = props;
+  const {
+    questionIndex,
+    questionList,
+    checkAnswer,
+    selectQuestion,
+    minutes,
+    seconds,
+    id,
+    questionCount,
+  } = props;
   return (
     <div className="attempt-info">
       <div className="attempt-info-name">
@@ -87,11 +97,11 @@ const AttemptInfo = (props: PROPS) => {
           <div>
             <span>0</span>
             <span>/</span>
-            <span>{questionList.length}</span>
+            <span>{questionCount}</span>
           </div>
         </div>
         <div className="attempt-map-picture">
-          {Array.from(Array(questionList.length).keys()).map((item, index) => {
+          {Array.from(Array(questionCount).keys()).map((item, index) => {
             let className = '';
             if (index + 1 === questionIndex) {
               className += ' active';
@@ -114,12 +124,12 @@ const AttemptInfo = (props: PROPS) => {
       </div>
       <div className="attempt-question-mobile">
         <Slider {...settings}>
-          {Array.from(Array(questionList.length).keys()).map((item, index) => {
+          {Array.from(Array(questionCount).keys()).map((item, index) => {
             let className = '';
-            if (item + 1 === questionIndex) className += 'active';
+            if (index + 1 === questionIndex) className += 'active';
             return (
-              <div className={className} onClick={() => selectQuestion(item + 1)} key={index}>
-                Câu {item + 1}
+              <div className={className} onClick={() => selectQuestion(index + 1)} key={index}>
+                Câu {index + 1}
               </div>
             );
           })}

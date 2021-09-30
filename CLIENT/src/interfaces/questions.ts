@@ -1,13 +1,13 @@
 interface ANSWER {
   _id: number;
   image: string;
-  value: string | number;
+  name: string | number;
   isCorrect?: boolean;
 }
 
 export interface QUESTION {
   _id: number;
   image: string;
-  title: string;
+  name: string;
   answers: ANSWER[];
 }

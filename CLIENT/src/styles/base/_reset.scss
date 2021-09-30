@@ -3,7 +3,7 @@ body {
   padding: 0;
   font-family: 'Montserrat', sans-serif;
   position: relative;
-  // overflow-x: hidden;
+  min-height: 100vh;
 }
 
 body::-webkit-scrollbar {

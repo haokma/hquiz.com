@@ -20,7 +20,7 @@ const AttemptQueston = (props: PROPS) => {
     <div className="attempt-question">
       <div className="attempt-title">
         <span>
-          Câu {questionIndex}: {questionList[questionIndex - 1]?.title}
+          Câu {questionIndex}: {questionList[questionIndex - 1]?.name}
         </span>
         {questionList[questionIndex - 1]?.image && (
           <img src={questionList[questionIndex - 1]?.image} alt="" />
@@ -30,7 +30,7 @@ const AttemptQueston = (props: PROPS) => {
         <form name={`question_${questionIndex}`}>
           {questionList[questionIndex - 1]?.answers.map((item, index) => {
             return (
-              <div key={item._id}>
+              <div key={`${questionList[questionIndex - 1]._id}_${index}`}>
                 <input
                   type="radio"
                   id={`answer_${index}`}
@@ -38,7 +38,7 @@ const AttemptQueston = (props: PROPS) => {
                   onChange={() => handleAnswer(index + 1)}
                 />
                 <label htmlFor={`answer_${index}`}>
-                  <span>{item.value}</span>
+                  <span>{item.name}</span>
                   {item.image && <img src={item.image} alt="" />}
                 </label>
               </div>

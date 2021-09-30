@@ -4,26 +4,39 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import topicApi from '../../apis/topicApi';
+import Loading from '../../components/common/Loading/Loading';
 import QuestionSvg from '../../components/svg/questionSvg';
 import TimeSvg from '../../components/svg/time';
 import ViewSvg from '../../components/svg/viewSvg';
 
 const TopicDetails: NextPage = () => {
-  const [topic, setTopic] = useState<any>([]);
   const router = useRouter();
   const { slug } = router.query;
 
+  const [topic, setTopic] = useState<any>([]);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     const fetchTopicSlug = async (slug: string | string[]) => {
+      setLoading(true);
       try {
         const res = await topicApi.getBySlug(slug);
-        setTopic(res.data.topic);
-      } catch (error) {}
+        const { topic } = res.data;
+
+        setTopic(topic);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+      }
     };
     if (slug) {
       fetchTopicSlug(slug);
     }
   }, [slug]);
+
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <>
       <Head>
