@@ -1,5 +1,6 @@
 const slugify = require('slugify');
 const Pagination = require('../helpers/pagination');
+const Question = require('../models/question.model');
 const Topic = require('../models/topic.model');
 
 const TopicController = {
@@ -61,13 +62,18 @@ const TopicController = {
     const { slug } = req.params;
 
     try {
-      console.log(slug);
       const topic = await Topic.findOne({ slug });
       if (!topic) {
-        res.status(400).json({
+        return res.status(400).json({
           error: 'Không tìm thấy danh mục',
         });
       }
+
+      const questions = await Question.find({
+        topicId: topic._id,
+      });
+      topic.questions = questions;
+
       res.status(200).json({
         topic,
       });
