@@ -1,11 +1,12 @@
+import { URL_API } from '../constants';
 import { api } from './axiosClient';
 
 const rankingApi = {
   create: (data: any) => {
-    return api.post(`https://tracnghiemonline01.herokuapp.com/api/ranking`, data);
+    return api.post(`${URL_API}/ranking`, data);
   },
   getList: (topicId: string) => {
-    return api.get(`https://tracnghiemonline01.herokuapp.com/api/ranking/${topicId}`);
+    return api.get(`${URL_API}/ranking/${topicId}`);
   },
 };
 

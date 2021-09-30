@@ -1,6 +1,5 @@
-import { useRouter } from 'next/router';
 import Slider from 'react-slick';
-import { QUESTION } from '../../interfaces';
+import { Topic } from '../../interfaces';
 import formatTime from '../../utils/formatTime';
 import ClockSvg from '../svg/clocksvg';
 
@@ -48,28 +47,28 @@ interface PROPS {
   selectQuestion: (index: number) => void;
   minutes: number;
   seconds: number;
-  questionCount: any;
   handleEndExam: any;
+  questionComplete: number;
+  topic: Topic;
 }
 
 const AttemptInfo = (props: PROPS) => {
-  const router = useRouter();
-
   const {
     questionIndex,
     checkAnswer,
     selectQuestion,
     minutes,
     seconds,
-    questionCount,
     handleEndExam,
+    questionComplete,
+    topic,
   } = props;
   return (
     <div className="attempt-info">
       <div className="attempt-info-content">
         <div className="attempt-info-name">
           <span># Đề thi</span>
-          <span>Trường THPT Phan Châu Trinh lần 3</span>
+          <span>{topic?.name}</span>
         </div>
         <div className="attempt-time">
           <div>
@@ -94,26 +93,22 @@ const AttemptInfo = (props: PROPS) => {
           <div className="attempt-map-text">
             <span># Sơ đồ thi</span>
             <div>
-              <span>0</span>
+              <span>{questionComplete}</span>
               <span>/</span>
-              <span>{questionCount}</span>
+              <span>{topic?.questionCount}</span>
             </div>
           </div>
           <div className="attempt-map-picture">
-            {Array.from(Array(questionCount).keys()).map((item, index) => {
+            {Array.from(Array(topic?.questionCount).keys()).map((item, index) => {
               let className = '';
-              if (index + 1 === questionIndex) {
+              if (index === questionIndex) {
                 className += ' active';
               }
               if (checkAnswer(index)) {
                 className += ' math';
               }
               return (
-                <div
-                  className={className}
-                  onClick={() => selectQuestion(index + 1)}
-                  key={index}
-                ></div>
+                <div className={className} onClick={() => selectQuestion(index)} key={index}></div>
               );
             })}
           </div>
@@ -123,11 +118,11 @@ const AttemptInfo = (props: PROPS) => {
         </div>
         <div className="attempt-question-mobile">
           <Slider {...settings}>
-            {Array.from(Array(questionCount).keys()).map((item, index) => {
+            {Array.from(Array(topic?.questionCount).keys()).map((item, index) => {
               let className = '';
-              if (index + 1 === questionIndex) className += 'active';
+              if (index === questionIndex) className += 'active';
               return (
-                <div className={className} onClick={() => selectQuestion(index + 1)} key={index}>
+                <div className={className} onClick={() => selectQuestion(index)} key={index}>
                   Câu {index + 1}
                 </div>
               );

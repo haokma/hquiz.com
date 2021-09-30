@@ -8,6 +8,8 @@ import AttemptInfo from '../../components/attempt/attemptInfo';
 import AttemptQueston from '../../components/attempt/attemptQuestion';
 import LayoutAttempt from '../../components/common/LayoutAttempt';
 import LoadingApp from '../../components/common/Loading/LoadingAttempt';
+import ArrowLeft from '../../components/svg/arrowLeft';
+import ArrowRight from '../../components/svg/arrowRight';
 import { QUESTION, Topic } from '../../interfaces';
 import formatTime from '../../utils/formatTime';
 
@@ -15,30 +17,14 @@ const Attempt: any = () => {
   const router = useRouter();
   const { slug } = router.query;
 
-  const [questionIndex, setQuestionIndex] = useState(1);
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const [questionComplete, setQuestionComplete] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
   const [minutes, setMinutes] = useState(30);
   const [seconds, setSeconds] = useState(0);
   const [questionList, setQuestionList] = useState<QUESTION[]>([]);
   const [topic, setTopic] = useState<Topic>();
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (seconds === 0 && minutes === 0) return;
-
-    const timer = setTimeout(() => {
-      setSeconds(seconds - 1);
-
-      if (seconds === 0 && minutes > 0) {
-        setMinutes(minutes - 1);
-        setSeconds(59);
-      }
-    }, 1000);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [minutes, seconds]);
 
   useEffect(() => {
     if (slug) {
@@ -55,22 +41,55 @@ const Attempt: any = () => {
           setLoading(false);
         } catch (error) {
           setLoading(false);
-          console.log(error);
+          setQuestionList([]);
+          router.push('/');
         }
       };
       fetchTopicSlug();
     }
   }, [slug]);
 
+  useEffect(() => {
+    if (slug) {
+      const oldSlug = sessionStorage.getItem('slug');
+      sessionStorage.setItem('slug', JSON.stringify(slug));
+
+      if (JSON.parse(oldSlug as string) !== slug) {
+        console.log({
+          oldSlug,
+          slug,
+        });
+        sessionStorage.removeItem('answers');
+        setAnswers([]);
+      }
+    }
+  }, [slug]);
+
+  useEffect(() => {
+    if (!answers.length) {
+      const oldAnsers = JSON.parse(sessionStorage.getItem('answers') as string) || [];
+      setAnswers(oldAnsers);
+    }
+    return () => {
+      sessionStorage.removeItem('answers');
+      sessionStorage.removeItem('slug');
+    };
+  }, []);
+
   const checkAnswer = (index: number): boolean => {
-    if (!answers[index]) return false;
+    if (answers[index] === undefined || answers[index] === null) return false;
     return true;
   };
 
   const handleAnswer = (index: number): void => {
     const newAnswers = [...answers];
-    newAnswers[questionIndex - 1] = index;
+    newAnswers[questionIndex] = index;
     setAnswers(newAnswers);
+
+    const result = newAnswers.filter((item) => item !== (null || undefined));
+    setQuestionComplete(result.length);
+
+    sessionStorage.setItem('answers', JSON.stringify(newAnswers));
   };
 
   const selectQuestion = (index: number): void => {
@@ -88,9 +107,7 @@ const Attempt: any = () => {
     try {
       await rankingApi.create(ranking);
       router.push(`/attempt/ket-qua/${topic?.slug}`);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   if (loading) {
@@ -134,18 +151,47 @@ const Attempt: any = () => {
                 questionIndex={questionIndex}
                 questionList={questionList}
                 handleAnswer={handleAnswer}
+                answers={answers}
               />
             </div>
             <div className="col-xl-3 col-lg-4 ">
               <AttemptInfo
+                topic={topic as Topic}
                 minutes={minutes}
                 seconds={seconds}
                 checkAnswer={checkAnswer}
                 questionIndex={questionIndex}
                 selectQuestion={selectQuestion}
-                questionCount={topic?.questionCount}
                 handleEndExam={handleEndExam}
+                questionComplete={questionComplete}
               />
+            </div>
+          </div>
+          <div className="attempt-controls">
+            <div
+              className="attempt-controls-left"
+              onClick={() => setQuestionIndex(questionIndex - 1)}
+            >
+              {questionIndex > 0 && (
+                <>
+                  <ArrowLeft />
+                  <span>Câu {questionIndex}</span>
+                </>
+              )}
+            </div>
+            <div className="attempt-controls-mid">
+              <span>Kết thúc bài thi</span>
+            </div>
+            <div
+              className="attempt-controls-right"
+              onClick={() => setQuestionIndex(questionIndex + 1)}
+            >
+              {questionIndex < Number(topic?.questionCount) - 1 && (
+                <>
+                  <span>Câu {questionIndex + 2}</span>
+                  <ArrowRight />
+                </>
+              )}
             </div>
           </div>
         </div>

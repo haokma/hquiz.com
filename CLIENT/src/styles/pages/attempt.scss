@@ -3,6 +3,35 @@
   width: 100%;
   min-height: 100vh;
   padding: 20px 0;
+  &-controls{
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000;
+    color: $color-white;
+    padding: 20px;
+    font-size: 14px;
+    &-right,&-left{
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      span{
+        margin-right: 5px;
+      }
+    }
+    &-mid{
+      span{
+        background-color: $color-primary;
+        display: block;
+        padding:8px 12px;
+        border-radius: 5px;
+      }
+    }
+  }
   .message{
       padding: 100px 20px;
       text-align: center;
@@ -86,6 +115,9 @@
       padding: 10px 20px;
       display: block;
       cursor: pointer;
+      &.active{
+        background-color: $color-primary;
+      }
     }
   }
   &-info{
@@ -116,7 +148,10 @@
       flex-direction: column;
       margin-bottom: 20px;
       span{
-        margin: 10px 0;
+        &:nth-child(2){
+          margin: 10px 0;
+          line-height: 1.7;
+        }
       }
     }
   }
@@ -472,6 +507,9 @@
 @media (max-width:992px){
   .attempt{
     padding: 5px 0;&
+    &-controls{
+      display: flex;
+    }
     &-heading{
       padding: 20px 0;
       margin-bottom: 0;
@@ -492,6 +530,7 @@
       position: relative;
       padding: 10px 15px;
       width: 100%;
+      overflow: unset;
       &-name{
         display: none;
       }
@@ -528,6 +567,7 @@
         color: $color-white;
         margin-right: 50px;
       }
+      display: none;
     }
   }
 }

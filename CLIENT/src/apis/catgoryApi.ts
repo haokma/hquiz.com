@@ -1,8 +1,9 @@
+import { URL_API } from '../constants';
 import { api } from './axiosClient';
 
 const categoryApi = {
   getList: async () => {
-    return api.get('https://tracnghiemonline01.herokuapp.com/api/category');
+    return api.get(`${URL_API}/category`);
   },
 };
 

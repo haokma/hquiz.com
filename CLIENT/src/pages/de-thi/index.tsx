@@ -12,14 +12,14 @@ import { CATEGORY, FILTERCATEGORY, TOPICTYPE } from '../../interfaces/category';
 
 const TopicPage: any = () => {
   const [isActive, setIsActive] = useState(false);
-  const [topicType, setTopicType] = useState<TOPICTYPE>({
-    _id: '',
-    name: '',
-  });
   const [topicList, setTopicList] = useState<Topic[]>([]);
   const [categories, setCategories] = useState<CATEGORY[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [totalPage, setTotalPage] = useState(1);
+  const [topicType, setTopicType] = useState<TOPICTYPE>({
+    _id: '',
+    name: '',
+  });
   const [filter, setFilter] = useState<FILTERCATEGORY>({
     limit: LIMIT,
     page: 1,
@@ -44,17 +44,16 @@ const TopicPage: any = () => {
       setIsLoading(true);
       try {
         const res = await topicApi.getList(filter);
-
         const { topicList, pagination } = res.data;
         const { _total, _limit, _page } = pagination;
 
+        setTotalPage(Math.ceil(_total / _limit));
+        setTopicList(topicList);
         setFilter((prev) => ({
           ...prev,
           page: _page,
           limit: _limit,
         }));
-        setTotalPage(Math.ceil(_total / _limit));
-        setTopicList(topicList);
         setIsLoading(false);
       } catch (error) {
         setIsLoading(false);
@@ -67,7 +66,7 @@ const TopicPage: any = () => {
     const fetchCategory = async () => {
       try {
         const res = await categoryApi.getList();
-        console.log(res);
+
         setCategories(res.data.categories);
       } catch (error) {}
     };

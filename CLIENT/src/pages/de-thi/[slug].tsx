@@ -36,7 +36,6 @@ const TopicDetails: NextPage = () => {
         const { topic } = res.data;
 
         fetchRanking(topic._id);
-
         setTopic(topic);
         setLoading(false);
       } catch (error) {

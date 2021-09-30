@@ -1,14 +1,15 @@
 import queryString from 'query-string';
+import { URL_API } from '../constants';
 import { api } from './axiosClient';
 
 const topicApi = {
   getList: async (params: any) => {
     const paramsString = queryString.stringify(params);
     console.log(paramsString);
-    return api.get(`https://tracnghiemonline01.herokuapp.com/api/topic?${paramsString}`);
+    return api.get(`${URL_API}/topic?${paramsString}`);
   },
   getBySlug: async (slug: string | string[]) => {
-    return api.get(`https://tracnghiemonline01.herokuapp.com/api/topic/${slug}`);
+    return api.get(`${URL_API}/topic/${slug}`);
   },
 };
 
