@@ -27,7 +27,7 @@ const Home: NextPage<any> = (props: PROPS) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async () => {
   const res = await topicApi.getList({
     limit: 10,
     page: 1,
