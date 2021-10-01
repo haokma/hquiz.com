@@ -2,16 +2,16 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import historyApi from '../../apis/historyApi';
-import rankingApi from '../../apis/rankingApi';
-import topicApi from '../../apis/topicApi';
-import AttemptInfo from '../../components/attempt/attemptInfo';
-import AttemptQueston from '../../components/attempt/attemptQuestion';
-import LayoutAttempt from '../../components/common/LayoutAttempt';
-import LoadingApp from '../../components/common/Loading/LoadingAttempt';
-import { ArrowLeft, ArrowRight } from '../../components/svg';
-import { QUESTION, Topic } from '../../interfaces';
-import formatTime from '../../utils/formatTime';
+import historyApi from 'src/apis/historyApi';
+import rankingApi from 'src/apis/rankingApi';
+import topicApi from 'src/apis/topicApi';
+import AttemptInfo from 'src/components/attempt/attemptInfo';
+import AttemptQueston from 'src/components/attempt/attemptQuestion';
+import LayoutAttempt from 'src/components/common/LayoutAttempt';
+import LoadingApp from 'src/components/common/Loading/LoadingAttempt';
+import { ArrowLeft, ArrowRight } from 'src/components/svg';
+import { QUESTION, Topic } from 'src/interfaces';
+import { formatTime } from 'src/utils/index';
 
 const Attempt: any = () => {
   const router = useRouter();

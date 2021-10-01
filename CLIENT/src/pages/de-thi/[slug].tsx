@@ -3,12 +3,11 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import rankingApi from '../../apis/rankingApi';
-import topicApi from '../../apis/topicApi';
-import Loading from '../../components/common/Loading/Loading';
-import { QuestionSvg, TimeSvg, ViewSvg } from '../../components/svg';
-
-import formatTime from '../../utils/formatTime';
+import rankingApi from 'src/apis/rankingApi';
+import topicApi from 'src/apis/topicApi';
+import Loading from 'src/components/common/Loading/Loading';
+import { QuestionSvg, TimeSvg, ViewSvg } from 'src/components/svg';
+import { formatTime } from 'src/utils';
 
 const TopicDetails: NextPage = () => {
   const router = useRouter();

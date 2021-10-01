@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Footer from './Footer';
-import Header from './Header';
-import MenuMobile from './MenuMobile';
-import Sidebar from './Sidebar';
+import Footer from 'src/components/common/Footer';
+import Header from 'src/components/common/Header';
+import MenuMobile from 'src/components/common/MenuMobile';
+import Sidebar from 'src/components/common/Sidebar';
 
 interface IPropsLayout {
   children: React.ReactNode;

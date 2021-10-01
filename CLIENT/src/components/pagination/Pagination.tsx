@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { LIMIT } from '../../constants';
+import { LIMIT } from 'src/constants';
 
 interface PROPS {
   TOTAL_PAGE: number;

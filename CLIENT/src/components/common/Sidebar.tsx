@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import ActiveLink from './ActiveLink';
+import ActiveLink from 'src/components/common/ActiveLink';
 
 const Sidebar: NextPage = () => {
   return (

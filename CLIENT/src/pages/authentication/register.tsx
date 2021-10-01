@@ -2,9 +2,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import LayoutAttempt from '../../components/common/LayoutAttempt';
-import EmailField from '../../components/form-controls/EmailFlied';
-import PasswordField from '../../components/form-controls/PasswordFiled';
+import LayoutAttempt from 'src/components/common/LayoutAttempt';
+import EmailField from 'src/components/form-controls/EmailFlied';
+import PasswordField from 'src/components/form-controls/PasswordFiled';
 
 const schema = yup.object().shape({
   email: yup

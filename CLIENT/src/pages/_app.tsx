@@ -1,7 +1,7 @@
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
-import DefaultLayout from '../components/common/Layout';
-import '../styles/main.scss';
+import DefaultLayout from 'src/components/common/Layout';
+import 'src/styles/main.scss';
 import { useEffect } from 'react';
 
 function MyApp({ Component, pageProps }: any) {

@@ -1,5 +1,5 @@
 import { Dispatch, useState } from 'react';
-import { CATEGORY, FILTERCATEGORY, TOPICTYPE } from '../../interfaces/category';
+import { CATEGORY, FILTERCATEGORY, TOPICTYPE } from 'src/interfaces/category';
 
 interface PROPS {
   filter: FILTERCATEGORY;

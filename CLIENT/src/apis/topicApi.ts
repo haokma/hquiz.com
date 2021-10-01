@@ -1,5 +1,5 @@
 import queryString from 'query-string';
-import { URL_API } from '../constants';
+import { URL_API } from 'src/constants';
 import { api } from './axiosClient';
 
 const topicApi = {

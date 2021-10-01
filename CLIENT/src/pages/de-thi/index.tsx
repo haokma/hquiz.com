@@ -1,14 +1,14 @@
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
-import categoryApi from '../../apis/catgoryApi';
-import topicApi from '../../apis/topicApi';
-import TopicItemSkeletion from '../../components/common/Skeleton/topicItemSkeletion';
-import Pagination from '../../components/pagination/Pagination';
-import Sidebar from '../../components/topic/Sidebar';
-import TopicItem from '../../components/topic/TopicItem';
-import { LIMIT } from '../../constants';
-import { Topic } from '../../interfaces';
-import { CATEGORY, FILTERCATEGORY, TOPICTYPE } from '../../interfaces/category';
+import categoryApi from 'src/apis/catgoryApi';
+import topicApi from 'src/apis/topicApi';
+import TopicItemSkeletion from 'src/components/common/Skeleton/topicItemSkeletion';
+import Pagination from 'src/components/pagination/Pagination';
+import Sidebar from 'src/components/topic/Sidebar';
+import TopicItem from 'src/components/topic/TopicItem';
+import { LIMIT } from 'src/constants';
+import { Topic } from 'src/interfaces';
+import { CATEGORY, FILTERCATEGORY, TOPICTYPE } from 'src/interfaces/category';
 
 const TopicPage: any = () => {
   const [isActive, setIsActive] = useState(false);

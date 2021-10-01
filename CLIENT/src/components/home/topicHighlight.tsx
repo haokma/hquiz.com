@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import Slider from 'react-slick';
-import { Topic } from '../../interfaces';
-import SampleNextArrow from '../arrowSlider/sampleNextArrow';
-import SamplePrevArrow from '../arrowSlider/samplePreveArrow';
+import { Topic } from 'src/interfaces';
+import SampleNextArrow from 'src/components/arrowSlider/sampleNextArrow';
+import SamplePrevArrow from 'src/components/arrowSlider/samplePreveArrow';
 import { UserSvg } from '../svg';
 
 const settings = {

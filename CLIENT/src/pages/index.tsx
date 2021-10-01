@@ -1,12 +1,11 @@
 import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
-import topicApi from '../apis/topicApi';
-import Banner from '../components/common/Banner';
-import PostHightLight from '../components/home/postHighlight';
-import TopicHighlight from '../components/home/topicHighlight';
-import TopicWork from '../components/home/topicWork';
-import { Topic } from '../interfaces';
-
+import topicApi from 'src/apis/topicApi';
+import Banner from 'src/components/common/Banner';
+import PostHightLight from 'src/components/home/postHighlight';
+import TopicHighlight from 'src/components/home/topicHighlight';
+import TopicWork from 'src/components/home/topicWork';
+import { Topic } from 'src/interfaces';
 interface PROPS {
   topicList: Topic[];
 }

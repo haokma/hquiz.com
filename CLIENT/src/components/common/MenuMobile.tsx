@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import Link from 'next/link';
-import ActiveLink from './ActiveLink';
+import ActiveLink from 'src/components/common/ActiveLink';
 interface PROPS {
   isActive: boolean;
   setIsActive: any;

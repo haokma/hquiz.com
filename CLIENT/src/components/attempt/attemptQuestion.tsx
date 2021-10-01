@@ -1,4 +1,4 @@
-import { QUESTION } from '../../interfaces';
+import { QUESTION } from 'src/interfaces';
 
 interface PROPS {
   questionIndex: number;

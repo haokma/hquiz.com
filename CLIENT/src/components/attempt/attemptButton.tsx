@@ -1,5 +1,5 @@
 import { Dispatch } from 'react';
-import { QUESTION } from '../../interfaces';
+import { QUESTION } from 'src/interfaces';
 
 interface PROPS {
   setIsModalResult: Dispatch<boolean>;

@@ -1,9 +1,9 @@
 import { NextPage } from 'next';
 import Link from 'next/link';
 import Slider from 'react-slick';
-import data from '../../data/blog.json';
-import SampleNextArrow from '../arrowSlider/sampleNextArrow';
-import SamplePrevArrow from '../arrowSlider/samplePreveArrow';
+import data from 'src/data/blog.json';
+import SampleNextArrow from 'src/components/arrowSlider/sampleNextArrow';
+import SamplePrevArrow from 'src/components/arrowSlider/samplePreveArrow';
 
 const settings = {
   dots: false,
