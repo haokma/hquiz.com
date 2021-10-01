@@ -33,7 +33,6 @@ const Attempt: any = () => {
         try {
           const res = await topicApi.getBySlug(slug);
           const { topic } = res.data;
-
           const oldAnswers = JSON.parse(sessionStorage.getItem('answers') as string);
 
           const answersList = [];
