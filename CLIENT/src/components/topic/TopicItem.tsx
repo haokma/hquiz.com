@@ -1,9 +1,7 @@
 import { NextPage } from 'next';
 import Link from 'next/link';
 import { Topic } from '../../interfaces';
-import QuestionSvg from '../svg/questionSvg';
-import TimeSvg from '../svg/time';
-import ViewSvg from '../svg/viewSvg';
+import { QuestionSvg, TimeSvg, ViewSvg } from '../svg';
 interface Props {
   topic: Topic;
 }

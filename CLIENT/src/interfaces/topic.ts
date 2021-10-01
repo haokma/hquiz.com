@@ -7,4 +7,5 @@ export interface Topic {
   slug: string;
   questionCount: number;
   image: string;
+  questions?: any;
 }

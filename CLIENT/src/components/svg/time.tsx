@@ -1,4 +1,4 @@
-const TimeSvg = () => {
+export const TimeSvg = () => {
   return (
     <span>
       <svg
@@ -15,4 +15,3 @@ const TimeSvg = () => {
     </span>
   );
 };
-export default TimeSvg;

@@ -1,4 +1,4 @@
-const QuestionSvg = () => {
+export const QuestionSvg = () => {
   return (
     <span>
       <svg
@@ -19,5 +19,3 @@ const QuestionSvg = () => {
     </span>
   );
 };
-
-export default QuestionSvg;

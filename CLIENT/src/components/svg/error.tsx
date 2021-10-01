@@ -1,4 +1,4 @@
-const Error = () => {
+export const Error = () => {
   return (
     <span>
       <svg
@@ -20,5 +20,3 @@ const Error = () => {
     </span>
   );
 };
-
-export default Error;

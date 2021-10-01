@@ -1,7 +1,7 @@
 import Slider from 'react-slick';
 import { Topic } from '../../interfaces';
 import formatTime from '../../utils/formatTime';
-import ClockSvg from '../svg/clocksvg';
+import { ClockSvg } from '../svg';
 
 const settings = {
   dots: false,

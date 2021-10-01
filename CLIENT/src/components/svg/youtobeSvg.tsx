@@ -1,4 +1,4 @@
-const YoutobeSvg = () => {
+export const YoutobeSvg = () => {
   return (
     <span>
       <svg
@@ -19,5 +19,3 @@ const YoutobeSvg = () => {
     </span>
   );
 };
-
-export default YoutobeSvg;

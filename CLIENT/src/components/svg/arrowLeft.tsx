@@ -1,4 +1,4 @@
-const ArrowLeft = () => {
+export const ArrowLeft = () => {
   return (
     <span>
       <svg
@@ -13,5 +13,3 @@ const ArrowLeft = () => {
     </span>
   );
 };
-
-export default ArrowLeft;

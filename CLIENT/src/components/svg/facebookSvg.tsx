@@ -1,4 +1,4 @@
-const FacebookSvg = () => {
+export const FacebookSvg = () => {
   return (
     <span>
       <svg
@@ -19,5 +19,3 @@ const FacebookSvg = () => {
     </span>
   );
 };
-
-export default FacebookSvg;

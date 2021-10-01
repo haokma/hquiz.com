@@ -1,4 +1,4 @@
-const ViewSvg = () => {
+export const ViewSvg = () => {
   return (
     <span>
       <svg
@@ -18,5 +18,3 @@ const ViewSvg = () => {
     </span>
   );
 };
-
-export default ViewSvg;

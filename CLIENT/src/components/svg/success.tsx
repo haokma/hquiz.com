@@ -1,4 +1,4 @@
-const Success = () => {
+export const Success = () => {
   return (
     <span>
       <svg
@@ -16,5 +16,3 @@ const Success = () => {
     </span>
   );
 };
-
-export default Success;

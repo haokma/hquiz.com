@@ -1,15 +1,12 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import historyApi from '../../../apis/historyApi';
 import topicApi from '../../../apis/topicApi';
 import AttemptButton from '../../../components/attempt/attemptButton';
 import LayoutAttempt from '../../../components/common/LayoutAttempt';
 import LoadingApp from '../../../components/common/Loading/LoadingAttempt';
-import ArrowLeft from '../../../components/svg/arrowLeft';
-import ArrowRight from '../../../components/svg/arrowRight';
-import Error from '../../../components/svg/error';
-import Success from '../../../components/svg/success';
-import Waring from '../../../components/svg/waring';
+import { ArrowLeft, ArrowRight, Error, Waring, Success } from '../../../components/svg';
 import { QUESTION, Topic } from '../../../interfaces';
 import formatTime from '../../../utils/formatTime';
 
@@ -22,6 +19,7 @@ const TopicResult: any = () => {
   const [questionIndex, setQuestionIndex] = useState<number>(0);
   const [questionList, setQuestionList] = useState<QUESTION[]>([]);
   const [topic, setTopic] = useState<Topic>();
+  const [history, setHistory] = useState<any>();
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -48,6 +46,18 @@ const TopicResult: any = () => {
     }
   }, [slug]);
 
+  useEffect(() => {
+    const fetchHistory = async () => {
+      try {
+        const res = await historyApi.get('6151fea542d9d51d503b587a', '6153b8941178d114ddf7668a');
+        const { history } = res.data;
+
+        setHistory(history);
+      } catch (error) {}
+    };
+    fetchHistory();
+  }, [slug]);
+
   function renderContent() {
     return (
       <>
@@ -68,7 +78,7 @@ const TopicResult: any = () => {
             </div>
             <p className="result-title">Số câu hoàn thành</p>
             <div className="result-total">
-              <span>{questionList.length}</span>
+              <span>00</span>
               <span>/</span>
               <span>{topic?.questionCount}</span>
             </div>

@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import { Topic } from '../../interfaces';
 import SampleNextArrow from '../arrowSlider/sampleNextArrow';
 import SamplePrevArrow from '../arrowSlider/samplePreveArrow';
-import UserSvg from '../svg/userSvg';
+import { UserSvg } from '../svg';
 
 const settings = {
   dots: false,

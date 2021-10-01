@@ -1,4 +1,4 @@
-const ClockSvg = () => {
+export const ClockSvg = () => {
   return (
     <span>
       <svg
@@ -24,5 +24,3 @@ const ClockSvg = () => {
     </span>
   );
 };
-
-export default ClockSvg;

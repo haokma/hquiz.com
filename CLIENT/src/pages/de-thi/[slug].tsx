@@ -6,9 +6,8 @@ import { useEffect, useState } from 'react';
 import rankingApi from '../../apis/rankingApi';
 import topicApi from '../../apis/topicApi';
 import Loading from '../../components/common/Loading/Loading';
-import QuestionSvg from '../../components/svg/questionSvg';
-import TimeSvg from '../../components/svg/time';
-import ViewSvg from '../../components/svg/viewSvg';
+import { QuestionSvg, TimeSvg, ViewSvg } from '../../components/svg';
+
 import formatTime from '../../utils/formatTime';
 
 const TopicDetails: NextPage = () => {

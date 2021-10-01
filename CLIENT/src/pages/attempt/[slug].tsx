@@ -2,14 +2,14 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import historyApi from '../../apis/historyApi';
 import rankingApi from '../../apis/rankingApi';
 import topicApi from '../../apis/topicApi';
 import AttemptInfo from '../../components/attempt/attemptInfo';
 import AttemptQueston from '../../components/attempt/attemptQuestion';
 import LayoutAttempt from '../../components/common/LayoutAttempt';
 import LoadingApp from '../../components/common/Loading/LoadingAttempt';
-import ArrowLeft from '../../components/svg/arrowLeft';
-import ArrowRight from '../../components/svg/arrowRight';
+import { ArrowLeft, ArrowRight } from '../../components/svg';
 import { QUESTION, Topic } from '../../interfaces';
 import formatTime from '../../utils/formatTime';
 
@@ -104,7 +104,17 @@ const Attempt: any = () => {
       score: 10,
       time: 1800,
     };
+
+    const history = {
+      topicId: topic?._id,
+      answers,
+      userId: '6151fea542d9d51d503b587a',
+      timespan: 1200,
+      isSubmit: true,
+    };
+
     try {
+      await historyApi.create(history);
       await rankingApi.create(ranking);
       router.push(`/attempt/ket-qua/${topic?.slug}`);
     } catch (error) {}

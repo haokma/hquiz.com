@@ -1,4 +1,4 @@
-const UserSvg = () => {
+export const UserSvg = () => {
   return (
     <span>
       <svg
@@ -20,4 +20,3 @@ const UserSvg = () => {
     </span>
   );
 };
-export default UserSvg;

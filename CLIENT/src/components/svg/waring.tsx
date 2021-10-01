@@ -1,4 +1,4 @@
-const Waring = () => {
+export const Waring = () => {
   return (
     <span>
       <svg
@@ -28,5 +28,3 @@ const Waring = () => {
     </span>
   );
 };
-
-export default Waring;
