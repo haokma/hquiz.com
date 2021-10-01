@@ -2,6 +2,7 @@ import { NextPage } from 'next';
 import Link from 'next/link';
 import { QuestionSvg, TimeSvg, ViewSvg } from 'src/components/svg';
 import { Topic } from 'src/interfaces';
+import { formatTime } from 'src/utils';
 interface Props {
   topic: Topic;
 }
@@ -24,7 +25,9 @@ const TopicItem: NextPage<Props> = (props: Props) => {
             </div>
             <div>
               <TimeSvg />
-              <span>{topic.time.toString().slice(0, 2)}:00</span>
+              <span>
+                {formatTime(topic.time / 60)}:{formatTime(topic.time % 60)}
+              </span>
             </div>
             <div>
               <ViewSvg />

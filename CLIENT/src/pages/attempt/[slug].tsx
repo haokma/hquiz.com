@@ -11,7 +11,7 @@ import LayoutAttempt from 'src/components/common/LayoutAttempt';
 import LoadingApp from 'src/components/common/Loading/LoadingAttempt';
 import { ArrowLeft, ArrowRight } from 'src/components/svg';
 import { QUESTION, Topic } from 'src/interfaces';
-import { formatTime } from 'src/utils/index';
+import { answersEmpty, answersError, answersSuccess, calceScore, formatTime } from 'src/utils';
 
 const Attempt: any = () => {
   const router = useRouter();
@@ -34,42 +34,40 @@ const Attempt: any = () => {
           const res = await topicApi.getBySlug(slug);
           const { topic } = res.data;
 
+          const oldAnswers = JSON.parse(sessionStorage.getItem('answers') as string);
+
+          const answersList = [];
+          for (let i = 0; i < 60; i++) answersList[i] = -1;
+          if (!answers.length && !oldAnswers) {
+            setAnswers(answersList);
+          } else if (!answers.length && oldAnswers) {
+            setAnswers(oldAnswers);
+          }
+
           setTopic(topic);
           setMinutes(topic.time / 60);
           setSeconds(topic.time % 60);
           setQuestionList(topic.questions);
           setLoading(false);
         } catch (error) {
-          setLoading(false);
-          setQuestionList([]);
           router.push('/');
         }
       };
       fetchTopicSlug();
     }
   }, [slug]);
-
   useEffect(() => {
     if (slug) {
       const oldSlug = sessionStorage.getItem('slug');
       sessionStorage.setItem('slug', JSON.stringify(slug));
 
       if (JSON.parse(oldSlug as string) !== slug) {
-        console.log({
-          oldSlug,
-          slug,
-        });
         sessionStorage.removeItem('answers');
         setAnswers([]);
       }
     }
   }, [slug]);
-
   useEffect(() => {
-    if (!answers.length) {
-      const oldAnsers = JSON.parse(sessionStorage.getItem('answers') as string) || [];
-      setAnswers(oldAnsers);
-    }
     return () => {
       sessionStorage.removeItem('answers');
       sessionStorage.removeItem('slug');
@@ -77,23 +75,42 @@ const Attempt: any = () => {
   }, []);
 
   const checkAnswer = (index: number): boolean => {
-    if (answers[index] === undefined || answers[index] === null) return false;
+    if (answers[index] === undefined || answers[index] === null || answers[index] === -1)
+      return false;
     return true;
   };
-
   const handleAnswer = (index: number): void => {
-    const newAnswers = [...answers];
+    let newAnswers = [...answers];
     newAnswers[questionIndex] = index;
     setAnswers(newAnswers);
 
-    const result = newAnswers.filter((item) => item !== (null || undefined));
+    const result = newAnswers.filter((item) => item !== (null || undefined || -1));
     setQuestionComplete(result.length);
 
     sessionStorage.setItem('answers', JSON.stringify(newAnswers));
   };
-
   const selectQuestion = (index: number): void => {
     setQuestionIndex(index);
+  };
+
+  const createHistory = () => {
+    const totalSuccess = answersSuccess(topic?.questions, answers);
+    const totalError = answersError(topic?.questions, answers);
+    const totalEmpty = answersEmpty(totalSuccess, totalError, topic?.questions);
+
+    const history = {
+      topicId: topic?._id,
+      answers,
+      userId: '6151fea542d9d51d503b587a',
+      timespan: 1200,
+      isSubmit: true,
+      totalComplete: questionComplete,
+      totalSuccess,
+      totalError,
+      totalEmpty,
+      score: calceScore(totalSuccess, topic?.questions),
+    };
+    return history;
   };
 
   const handleEndExam = async () => {
@@ -104,15 +121,7 @@ const Attempt: any = () => {
       score: 10,
       time: 1800,
     };
-
-    const history = {
-      topicId: topic?._id,
-      answers,
-      userId: '6151fea542d9d51d503b587a',
-      timespan: 1200,
-      isSubmit: true,
-    };
-
+    const history = createHistory();
     try {
       await historyApi.create(history);
       await rankingApi.create(ranking);

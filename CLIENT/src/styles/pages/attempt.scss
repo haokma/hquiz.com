@@ -372,12 +372,21 @@
             width: 20px;
           }
         }
-        div{
+        .progress-line{
           flex: 1;
           height: 8px;
           background-color: $color-text;
           margin: 0 20px;
           border-radius: 4px;
+          position: relative;
+          max-width: 180px;
+          div{
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            border-radius: 4px;
+          }
         }
       }
     }
@@ -452,9 +461,6 @@
         span{
           display: block;
           margin-bottom: 5px;
-        }
-        svg{
-          color: yellow;
         }
       }
     }

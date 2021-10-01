@@ -2,6 +2,7 @@ export const Success = () => {
   return (
     <span>
       <svg
+        style={{ color: '#00A86B' }}
         stroke="currentColor"
         fill="none"
         strokeWidth="2"

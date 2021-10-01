@@ -72,7 +72,7 @@ const TopicHighlight = (props: PROPS) => {
                   </div>
                   <div className="topic-highlight-content">
                     <h3 className="topic-highlight-title">
-                      <Link href={`de-thi/${item.slug}`}>{item.name}</Link>
+                      <Link href={`/de-thi/${item.slug}`}>{item.name}</Link>
                     </h3>
                     <div className="topic-highlight-view">
                       <UserSvg />

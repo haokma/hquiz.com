@@ -22,7 +22,7 @@ const Pagination = (props: PROPS) => {
   function renderPagination(beforePage: number, afterPage: number) {
     const results = [];
     results.push(
-      <li key={0}>
+      <li key={TOTAL_PAGE + 2}>
         <button
           className="prev btn"
           onClick={() =>
