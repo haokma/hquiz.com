@@ -197,7 +197,12 @@ const Attempt: any = () => {
                 </>
               )}
             </div>
-            <div className="attempt-controls-mid">
+            <div
+              className="attempt-controls-mid"
+              onClick={() => {
+                handleEndExam();
+              }}
+            >
               <span>Kết thúc bài thi</span>
             </div>
             <div

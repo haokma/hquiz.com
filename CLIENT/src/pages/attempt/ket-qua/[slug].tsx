@@ -8,7 +8,7 @@ import LayoutAttempt from 'src/components/common/LayoutAttempt';
 import LoadingApp from 'src/components/common/Loading/LoadingAttempt';
 import { ArrowLeft, ArrowRight, Error, Success, Waring } from 'src/components/svg';
 import { QUESTION, Topic } from 'src/interfaces';
-import { calcProgress, checkAnswersList, formatTime } from 'src/utils';
+import { checkAnswersList, formatTime } from 'src/utils';
 
 const TopicResult: any = () => {
   const router = useRouter();
@@ -23,41 +23,41 @@ const TopicResult: any = () => {
   const [loading, setLoading] = useState(false);
   const [answers, setAnswers] = useState<number[]>();
 
-  const fetchHistory = async () => {
+  const fetchHistory = async (topicList: any) => {
+    setLoading(true);
     try {
       const res = await historyApi.get('6151fea542d9d51d503b587a', '6153b8941178d114ddf7668a');
       const { history } = res.data;
-
-      setLoading(true);
+      setLoading(false);
       setHistory(history);
-      // setAnswers(checkAnswersList(topic?.questions, history.answers));
+      setAnswers(checkAnswersList(topicList.questions, history.answers));
+      setAnswers(history.answers);
     } catch (error) {
-      console.log(error);
-      // router.push('/');
+      router.push('/');
       setLoading(false);
     }
   };
   useEffect(() => {
     if (slug) {
-      const fetchTopicSlug = async () => {
-        setLoading(true);
-        try {
-          const res = await topicApi.getBySlug(slug);
+      setLoading(true);
+      topicApi
+        .getBySlug(slug)
+        .then((res) => {
           const { topic } = res.data;
 
           setTopic(topic);
           setQuestionList(topic.questions);
+          fetchHistory(topic);
           setLoading(false);
-        } catch (error) {
+        })
+        .catch((err) => {
           setLoading(false);
-        }
-      };
-      fetchTopicSlug();
+        });
     }
   }, [slug]);
-  useEffect(() => {
-    fetchHistory();
-  }, [slug]);
+  // useEffect(() => {
+
+  // }, []);
 
   function renderContent() {
     return (

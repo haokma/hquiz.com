@@ -1,6 +1,6 @@
 export const answersSuccess = (questions: any, data: number[]) => {
   let totalSuccess = 0;
-  if (!data) return totalSuccess;
+  if (!data || !questions) return totalSuccess;
   data.forEach((item, index) => {
     if (item === (null || undefined || -1)) return;
     const result = questions[index].answers[item];
@@ -13,6 +13,7 @@ export const answersSuccess = (questions: any, data: number[]) => {
 
 export const answersError = (questions: any, data: number[]) => {
   let totalError = 0;
+  if (!data || !questions) return totalError;
   data.forEach((item, index) => {
     if (item === (null || undefined || -1)) return;
     const result = questions[index].answers[item];
@@ -35,7 +36,6 @@ export const checkAnswersList = (questions: any, data: number[]) => {
   const newAnswers = [...data];
   data.forEach((item, index) => {
     if (item === (null || undefined || -1)) return;
-    console.log(questions);
     const result = questions[index].answers[item];
     if (!result.isCorrect) {
       newAnswers[index] = 0;
