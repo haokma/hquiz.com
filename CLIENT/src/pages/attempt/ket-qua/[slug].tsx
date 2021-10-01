@@ -197,7 +197,7 @@ const TopicResult: any = () => {
     );
   }
 
-  if (loading || !router.query.slug) {
+  if (loading) {
     return <LoadingApp />;
   }
   return (
