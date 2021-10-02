@@ -1,15 +1,15 @@
-import { Topic } from 'src/interfaces';
+import Link from 'next/link';
 import { formatTime } from 'src/utils';
 import { PlaySvg, QuestionSvg, TimeSvg, ViewSvg } from '../svg';
-import Link from 'next/link';
 
 interface PROPS {
   topic: any;
   slug: string;
+  startTopic: () => void;
 }
 
 export const TopicDetailsInfo = (props: PROPS) => {
-  const { topic, slug } = props;
+  const { topic, slug, startTopic } = props;
 
   return (
     <div className="topic-details-info">
@@ -35,12 +35,12 @@ export const TopicDetailsInfo = (props: PROPS) => {
           </div>
         </div>
         <div className="topic-details-exam">
-          <Link href={`/attempt/${slug}`}>
+          <div onClick={() => startTopic()}>
             <a>
               <PlaySvg />
               <span>Bắt đầu thi</span>
             </a>
-          </Link>
+          </div>
         </div>
       </div>
     </div>

@@ -63,6 +63,7 @@ const TopicResult: any = () => {
             <RenderContent
               history={history}
               setIsModalResult={setIsModalResult}
+              id={id as string}
             />
           )}
         </div>

@@ -228,8 +228,8 @@
       margin-top: 20px;
       width: 100%;
       div{
-        width: 45px;
-        height: 45px;
+        width: 30px;
+        height: 30px;
         border-radius: 5px;
         background-color: $color-text;
         margin: 5px;
@@ -518,6 +518,12 @@
     padding: 5px 0;&
     &-controls{
       display: flex;
+      &-left,&-right{
+        width: 80px;
+      }
+      &-mid{
+        cursor: pointer;
+      }
     }
     &-heading{
       padding: 20px 0;
@@ -525,11 +531,6 @@
       background-color: #1C1C1C;
       &-time{
         display: flex;
-      }
-    }
-    &-map{
-      &-picture {
-        flex: 1;
       }
     }
     &-question-mobile{
@@ -558,6 +559,7 @@
         }
       }
       &-picture{
+        flex: 1;
         margin:0 ;
         div{
           width: 15px;

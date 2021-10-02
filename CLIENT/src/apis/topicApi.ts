@@ -11,6 +11,9 @@ const topicApi = {
   getBySlug: async (slug: string | string[]) => {
     return api.get(`${URL_API}/topic/${slug}`);
   },
+  update: async (topicId: string | string[], views: number) => {
+    return api.patch(`${URL_API}/topic/${topicId}`, { views: views + 1 });
+  },
 };
 
 export default topicApi;

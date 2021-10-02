@@ -7,10 +7,11 @@ import { ArrowLeft, ArrowRight, Error, Success, Waring } from '../svg';
 interface PROPS {
   history: History;
   setIsModalResult: Dispatch<boolean>;
+  id: string;
 }
 
 export const RenderContent = (props: PROPS) => {
-  const { history, setIsModalResult } = props;
+  const { history, setIsModalResult, id } = props;
   return (
     <>
       <div className="topic-result-heading">
@@ -114,8 +115,8 @@ export const RenderContent = (props: PROPS) => {
             <ArrowRight />
           </div>
           <div className="result-button">
-            <Link href="/de-thi/1">
-              <a>Thi lai</a>
+            <Link href={`/de-thi`}>
+              <a>Danh sách đề thi</a>
             </Link>
           </div>
         </div>

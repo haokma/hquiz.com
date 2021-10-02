@@ -35,6 +35,26 @@ const Attempt: any = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    if (seconds === 0 && minutes === 0) {
+      handleEndExam();
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setSeconds(seconds - 1);
+
+      if (seconds === 0 && minutes > 0) {
+        setMinutes(minutes - 1);
+        setSeconds(59);
+      }
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [minutes, seconds]);
+
+  useEffect(() => {
     if (slug) {
       const fetchTopicSlug = async () => {
         setLoading(true);
@@ -108,33 +128,57 @@ const Attempt: any = () => {
     setQuestionIndex(index);
   };
 
-  const createHistory = (user: USER_RESPONSE) => {
+  const createHistory = (user: USER_RESPONSE, timespan: number) => {
     const history = {
       topicId: topic?._id,
       answers,
       userId: user._id,
-      timespan: 1200,
+      timespan,
       isSubmit: true,
     };
     return history;
   };
 
-  const handleEndExam = async () => {
+  const submitExam = async () => {
     const user = getLocalStorage('user');
     const totalSuccess = answersSuccess(topic?.questions, answers);
+    const newTopic = topic as Topic;
+    const timespan = newTopic?.time - (minutes * 60 + seconds);
     const ranking = {
       topicId: topic?._id,
       username: user.username,
       userId: user._id,
       score: calceScore(totalSuccess, topic?.questions),
-      time: 1800,
+      time: timespan,
     };
-    const history = createHistory(user);
+    const history = createHistory(user, timespan);
+    setLoading(true);
     try {
-      await historyApi.create(history);
-      await rankingApi.create(ranking);
-      router.push(`/attempt/ket-qua/${topic?._id}`);
-    } catch (error) {}
+      Promise.all([
+        topicApi.update(topic?._id as string, topic?.views as number),
+        historyApi.create(history),
+        rankingApi.create(ranking),
+      ])
+        .then(() => {
+          setLoading(false);
+          router.push(`/attempt/ket-qua/${topic?._id}`);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } catch (error) {
+      setLoading(false);
+    }
+  };
+
+  const handleEndExam = () => {
+    if (minutes === 0 && seconds === 0) {
+      submitExam();
+      return;
+    }
+    if (window.confirm('Bạn có chắc chắn muốn kết thúc bài thi không')) {
+      submitExam();
+    }
   };
 
   if (loading) {

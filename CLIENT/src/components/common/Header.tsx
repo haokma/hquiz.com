@@ -32,7 +32,10 @@ const Header = (props: PROPS) => {
           <div className="header-left">
             <div className="header-logo">
               <Link href="/">
-                <img src="https://fullstack.edu.vn/assets/icon/f8_icon.png" alt="" />
+                <img
+                  src="https://fullstack.edu.vn/assets/icon/f8_icon.png"
+                  alt=""
+                />
               </Link>
             </div>
           </div>
@@ -66,7 +69,7 @@ const Header = (props: PROPS) => {
               </>
             )} */}
             <div className="header-quiz">
-              <Link href="/">
+              <Link href="/de-thi">
                 <a>Thi nhanh</a>
               </Link>
             </div>
@@ -82,7 +85,9 @@ const Header = (props: PROPS) => {
                     alt={user.username}
                   />
                   <div
-                    className={isModal ? 'header-user-modal active' : 'header-user-modal'}
+                    className={
+                      isModal ? 'header-user-modal active' : 'header-user-modal'
+                    }
                     onClick={(event) => event.stopPropagation()}
                   >
                     <div className="user-modal">

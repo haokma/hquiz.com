@@ -1,5 +1,5 @@
 export interface Topic {
-  _id: number;
+  _id: string;
   typeId: number;
   name: string;
   time: number;
