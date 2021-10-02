@@ -29,7 +29,7 @@ export const answersEmpty = (totalSucess: number, totalError: number, questions:
 };
 
 export const calceScore = (totalSucces: number, question: any) => {
-  return Math.floor(10 * question.length * totalSucces);
+  return Math.floor((10 / question.length) * totalSucces);
 };
 
 export const checkAnswersList = (questions: any, data: number[]) => {

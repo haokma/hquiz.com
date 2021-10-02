@@ -124,7 +124,7 @@ const Attempt: any = () => {
     try {
       await historyApi.create(history);
       await rankingApi.create(ranking);
-      router.push(`/attempt/ket-qua/${topic?.slug}`);
+      router.push(`/attempt/ket-qua/${topic?._id}`);
     } catch (error) {}
   };
 

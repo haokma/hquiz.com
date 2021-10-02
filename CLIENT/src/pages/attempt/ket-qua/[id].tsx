@@ -6,22 +6,23 @@ import AttemptButton from 'src/components/attempt/attemptButton';
 import LayoutAttempt from 'src/components/common/LayoutAttempt';
 import LoadingApp from 'src/components/common/Loading/LoadingAttempt';
 import { ArrowLeft, ArrowRight, Error, Success, Waring } from 'src/components/svg';
-import { formatTime } from 'src/utils';
+import { formatTime, getLocalStorage } from 'src/utils';
 
 const TopicResult: any = () => {
   const router = useRouter();
-  const { slug } = router.query;
+  const { id } = router.query;
 
   const [isModalResult, setIsModalResult] = useState<boolean>(false);
   const [isActive, setIsActive] = useState<boolean>(false);
   const [questionIndex, setQuestionIndex] = useState<number>(0);
-  const [history, setHistory] = useState<any>([]);
+  const [history, setHistory] = useState<any>();
   const [loading, setLoading] = useState(false);
 
-  const fetchHistory = async () => {
+  const fetchHistory = async (id: string) => {
     setLoading(true);
+    const user = getLocalStorage('user');
     try {
-      const res = await historyApi.get('6151fea542d9d51d503b587a', '6153b8941178d114ddf7668a');
+      const res = await historyApi.get(user._id, id);
       const { history } = res.data;
 
       setLoading(false);
@@ -33,8 +34,10 @@ const TopicResult: any = () => {
   };
 
   useEffect(() => {
-    fetchHistory();
-  }, [slug]);
+    if (id) {
+      fetchHistory(id as string);
+    }
+  }, [id]);
 
   function renderContent() {
     return (
@@ -178,9 +181,10 @@ const TopicResult: any = () => {
     );
   }
 
-  if (loading) {
+  if (loading || !history) {
     return <LoadingApp />;
   }
+
   return (
     <>
       <div className="topic-result">
