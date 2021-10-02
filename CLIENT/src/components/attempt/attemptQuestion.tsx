@@ -7,7 +7,7 @@ interface PROPS {
   answers: number[];
 }
 
-const AttemptQueston = (props: PROPS) => {
+export const AttemptQueston = (props: PROPS) => {
   const { questionIndex, questionList, handleAnswer, answers } = props;
 
   if (!questionList.length) {
@@ -53,5 +53,3 @@ const AttemptQueston = (props: PROPS) => {
     </div>
   );
 };
-
-export default AttemptQueston;

@@ -5,15 +5,16 @@ import { useEffect, useState } from 'react';
 import historyApi from 'src/apis/historyApi';
 import rankingApi from 'src/apis/rankingApi';
 import topicApi from 'src/apis/topicApi';
-import AttemptInfo from 'src/components/attempt/attemptInfo';
-import AttemptQueston from 'src/components/attempt/attemptQuestion';
+import {
+  AttemptControls,
+  AttemptInfo,
+  AttemptQueston,
+} from 'src/components/attempt';
 import LayoutAttempt from 'src/components/common/LayoutAttempt';
 import LoadingApp from 'src/components/common/Loading/LoadingAttempt';
-import { ArrowLeft, ArrowRight } from 'src/components/svg';
+import { ArrowLeft } from 'src/components/svg';
 import { QUESTION, Topic, USER_RESPONSE } from 'src/interfaces';
 import {
-  answersEmpty,
-  answersError,
   answersSuccess,
   calceScore,
   formatTime,
@@ -40,7 +41,9 @@ const Attempt: any = () => {
         try {
           const res = await topicApi.getBySlug(slug);
           const { topic } = res.data;
-          const oldAnswers = JSON.parse(sessionStorage.getItem('answers') as string);
+          const oldAnswers = JSON.parse(
+            sessionStorage.getItem('answers') as string
+          );
 
           const answersList = [];
           for (let i = 0; i < 60; i++) answersList[i] = -1;
@@ -81,7 +84,11 @@ const Attempt: any = () => {
   }, []);
 
   const checkAnswer = (index: number): boolean => {
-    if (answers[index] === undefined || answers[index] === null || answers[index] === -1)
+    if (
+      answers[index] === undefined ||
+      answers[index] === null ||
+      answers[index] === -1
+    )
       return false;
     return true;
   };
@@ -90,7 +97,9 @@ const Attempt: any = () => {
     newAnswers[questionIndex] = index;
     setAnswers(newAnswers);
 
-    const result = newAnswers.filter((item) => item !== (null || undefined || -1));
+    const result = newAnswers.filter(
+      (item) => item !== (null || undefined || -1)
+    );
     setQuestionComplete(result.length);
 
     sessionStorage.setItem('answers', JSON.stringify(newAnswers));
@@ -141,20 +150,8 @@ const Attempt: any = () => {
           <div className="attempt-heading">
             <Link href="/">
               <a>
-                <span>
-                  <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    strokeWidth="0"
-                    viewBox="0 0 24 24"
-                    height="1em"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M21 11H6.83l3.58-3.59L9 6l-6 6 6 6 1.41-1.41L6.83 13H21z"></path>
-                  </svg>
-                  <span>Trang chủ</span>
-                </span>
+                <ArrowLeft />
+                <span>Trang chủ</span>
               </a>
             </Link>
             <div className="attempt-heading-time">
@@ -185,38 +182,12 @@ const Attempt: any = () => {
               />
             </div>
           </div>
-          <div className="attempt-controls">
-            <div
-              className="attempt-controls-left"
-              onClick={() => setQuestionIndex(questionIndex - 1)}
-            >
-              {questionIndex > 0 && (
-                <>
-                  <ArrowLeft />
-                  <span>Câu {questionIndex}</span>
-                </>
-              )}
-            </div>
-            <div
-              className="attempt-controls-mid"
-              onClick={() => {
-                handleEndExam();
-              }}
-            >
-              <span>Kết thúc bài thi</span>
-            </div>
-            <div
-              className="attempt-controls-right"
-              onClick={() => setQuestionIndex(questionIndex + 1)}
-            >
-              {questionIndex < Number(topic?.questionCount) - 1 && (
-                <>
-                  <span>Câu {questionIndex + 2}</span>
-                  <ArrowRight />
-                </>
-              )}
-            </div>
-          </div>
+          <AttemptControls
+            topic={topic}
+            questionIndex={questionIndex}
+            setQuestionIndex={setQuestionIndex}
+            handleEndExam={handleEndExam}
+          />
         </div>
       </div>
     </>

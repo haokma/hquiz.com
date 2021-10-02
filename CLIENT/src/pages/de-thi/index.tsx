@@ -2,10 +2,8 @@ import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import categoryApi from 'src/apis/catgoryApi';
 import topicApi from 'src/apis/topicApi';
-import TopicItemSkeletion from 'src/components/common/Skeleton/topicItemSkeletion';
-import Pagination from 'src/components/pagination/Pagination';
+import { TopicList } from 'src/components/topic';
 import Sidebar from 'src/components/topic/Sidebar';
-import TopicItem from 'src/components/topic/TopicItem';
 import { LIMIT } from 'src/constants';
 import { Topic } from 'src/interfaces';
 import { CATEGORY, FILTERCATEGORY, TOPICTYPE } from 'src/interfaces/category';
@@ -25,7 +23,7 @@ const TopicPage: any = () => {
     page: 1,
     categoryId: '',
   });
-
+  //  Check mobile desktop
   useEffect(() => {
     const width = window.innerWidth;
     if (width < 1024) {
@@ -38,7 +36,7 @@ const TopicPage: any = () => {
       }
     });
   }, []);
-
+  // Fetch Topic List
   useEffect(() => {
     const fetchTopic = async () => {
       setIsLoading(true);
@@ -61,7 +59,7 @@ const TopicPage: any = () => {
     };
     fetchTopic();
   }, [filter.page, filter.categoryId]);
-
+  // Fetch Category
   useEffect(() => {
     const fetchCategory = async () => {
       try {
@@ -82,55 +80,15 @@ const TopicPage: any = () => {
           className={isActive ? 'modal active' : 'modal'}
           onClick={() => setIsActive(false)}
         ></div>
-        <div className="topic-wrap">
-          <div className="topic-content">
-            <div className="topic-heading">
-              <div className="topic-toggle">
-                <button onClick={() => setIsActive(!isActive)}>Bộ lọc</button>
-              </div>
-            </div>
-            <div className="topic-list">
-              <div className="row margin-0">
-                {!isLoading ? (
-                  <>
-                    {topicList.map((item, index) => {
-                      return (
-                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4" key={index}>
-                          <TopicItem topic={item} />
-                        </div>
-                      );
-                    })}
-                  </>
-                ) : (
-                  <>
-                    {Array.from(new Array(6)).map((item, index) => {
-                      return (
-                        <div className="col-xl-6 col-lg-6 col-sm-12 pb-4" key={index}>
-                          <TopicItemSkeletion />
-                        </div>
-                      );
-                    })}
-                  </>
-                )}
-                {!isLoading && !topicList.length ? (
-                  <div className="topic-empty">
-                    <span>Hiện không có đề thi nào phù hợp!</span>
-                  </div>
-                ) : null}
-              </div>
-            </div>
-            {!isLoading && topicList.length ? (
-              <div className="topic-pagination">
-                <Pagination
-                  TOTAL_PAGE={totalPage}
-                  SHOW_PAGE={5}
-                  PAGE={filter.page}
-                  SET_PAGE={setFilter}
-                />
-              </div>
-            ) : null}
-          </div>
-        </div>
+        <TopicList
+          setIsActive={setIsActive}
+          isActive={isActive}
+          isLoading={isLoading}
+          topicList={topicList}
+          totalPage={totalPage}
+          setFilter={setFilter}
+          filter={filter}
+        />
         <div className={isActive ? 'sidebar active' : 'sidebar'}>
           <Sidebar
             filter={filter}

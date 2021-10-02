@@ -47,12 +47,12 @@ interface PROPS {
   selectQuestion: (index: number) => void;
   minutes: number;
   seconds: number;
-  handleEndExam: any;
+  handleEndExam: () => void;
   questionComplete: number;
   topic: Topic;
 }
 
-const AttemptInfo = (props: PROPS) => {
+export const AttemptInfo = (props: PROPS) => {
   const {
     questionIndex,
     checkAnswer,
@@ -99,18 +99,24 @@ const AttemptInfo = (props: PROPS) => {
             </div>
           </div>
           <div className="attempt-map-picture">
-            {Array.from(Array(topic?.questionCount).keys()).map((item, index) => {
-              let className = '';
-              if (index === questionIndex) {
-                className += ' active';
+            {Array.from(Array(topic?.questionCount).keys()).map(
+              (item, index) => {
+                let className = '';
+                if (index === questionIndex) {
+                  className += ' active';
+                }
+                if (checkAnswer(index)) {
+                  className += ' math';
+                }
+                return (
+                  <div
+                    className={className}
+                    onClick={() => selectQuestion(index)}
+                    key={index}
+                  ></div>
+                );
               }
-              if (checkAnswer(index)) {
-                className += ' math';
-              }
-              return (
-                <div className={className} onClick={() => selectQuestion(index)} key={index}></div>
-              );
-            })}
+            )}
           </div>
         </div>
         <div className="attempt-button">
@@ -118,20 +124,24 @@ const AttemptInfo = (props: PROPS) => {
         </div>
         <div className="attempt-question-mobile">
           <Slider {...settings}>
-            {Array.from(Array(topic?.questionCount).keys()).map((item, index) => {
-              let className = '';
-              if (index === questionIndex) className += 'active';
-              return (
-                <div className={className} onClick={() => selectQuestion(index)} key={index}>
-                  Câu {index + 1}
-                </div>
-              );
-            })}
+            {Array.from(Array(topic?.questionCount).keys()).map(
+              (item, index) => {
+                let className = '';
+                if (index === questionIndex) className += 'active';
+                return (
+                  <div
+                    className={className}
+                    onClick={() => selectQuestion(index)}
+                    key={index}
+                  >
+                    Câu {index + 1}
+                  </div>
+                );
+              }
+            )}
           </Slider>
         </div>
       </div>
     </div>
   );
 };
-
-export default AttemptInfo;

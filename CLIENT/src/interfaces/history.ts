@@ -1,3 +1,5 @@
+import { QUESTION } from './index';
+
 export interface History {
   _id: string;
   isSubmit: boolean;
@@ -6,8 +8,9 @@ export interface History {
   totalEmpty: number;
   totalComplete: number;
   score: number;
-  questions: Array<any>;
-  answersResult: Array<any>;
+  questions: QUESTION[];
+  answers: number[];
+  answersResult: number[];
   timespan: number;
   topicId: string;
   userId: string;

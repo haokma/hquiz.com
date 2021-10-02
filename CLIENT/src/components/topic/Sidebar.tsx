@@ -19,7 +19,9 @@ const Sidebar = (props: PROPS) => {
         <h4>Tìm kiếm bằng từ khóa</h4>
         <input type="text" placeholder="Tìm kiếm" />
       </div>
-      <div className={isSelectedType ? 'sidebar-select active' : 'sidebar-select'}>
+      <div
+        className={isSelectedType ? 'sidebar-select active' : 'sidebar-select'}
+      >
         <h4>Chọn loại đề thi</h4>
         <div
           onClick={() => {
