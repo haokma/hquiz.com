@@ -2,13 +2,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import historyApi from 'src/apis/historyApi';
-import topicApi from 'src/apis/topicApi';
 import AttemptButton from 'src/components/attempt/attemptButton';
 import LayoutAttempt from 'src/components/common/LayoutAttempt';
 import LoadingApp from 'src/components/common/Loading/LoadingAttempt';
 import { ArrowLeft, ArrowRight, Error, Success, Waring } from 'src/components/svg';
-import { QUESTION, Topic } from 'src/interfaces';
-import { checkAnswersList, formatTime } from 'src/utils';
+import { formatTime } from 'src/utils';
 
 const TopicResult: any = () => {
   const router = useRouter();
@@ -17,47 +15,26 @@ const TopicResult: any = () => {
   const [isModalResult, setIsModalResult] = useState<boolean>(false);
   const [isActive, setIsActive] = useState<boolean>(false);
   const [questionIndex, setQuestionIndex] = useState<number>(0);
-  const [questionList, setQuestionList] = useState<QUESTION[]>([]);
-  const [topic, setTopic] = useState<Topic>();
   const [history, setHistory] = useState<any>([]);
   const [loading, setLoading] = useState(false);
-  const [answers, setAnswers] = useState<number[]>();
 
-  const fetchHistory = async (topicList: any) => {
+  const fetchHistory = async () => {
     setLoading(true);
     try {
       const res = await historyApi.get('6151fea542d9d51d503b587a', '6153b8941178d114ddf7668a');
       const { history } = res.data;
+
       setLoading(false);
       setHistory(history);
-      setAnswers(checkAnswersList(topicList.questions, history.answers));
-      setAnswers(history.answers);
     } catch (error) {
       router.push('/');
       setLoading(false);
     }
   };
+
   useEffect(() => {
-    if (slug) {
-      setLoading(true);
-      topicApi
-        .getBySlug(slug)
-        .then((res) => {
-          const { topic } = res.data;
-
-          setTopic(topic);
-          setQuestionList(topic.questions);
-          fetchHistory(topic);
-          setLoading(false);
-        })
-        .catch((err) => {
-          setLoading(false);
-        });
-    }
+    fetchHistory();
   }, [slug]);
-  // useEffect(() => {
-
-  // }, []);
 
   function renderContent() {
     return (
@@ -73,27 +50,27 @@ const TopicResult: any = () => {
         <div className="topic-result-content">
           <div className="result">
             <div className="result-time">
-              <span>{formatTime(Math.floor(history?.timespan / 60))}</span>
+              <span>{formatTime(Math.floor(history.timespan / 60))}</span>
               <span>:</span>
-              <span>{formatTime(history?.timespan % 60)}</span>
+              <span>{formatTime(history.timespan % 60)}</span>
             </div>
             <p className="result-title">Số câu hoàn thành</p>
             <div className="result-total">
-              <span>{history?.totalComplete}</span>
+              <span>{history.totalComplete}</span>
               <span>/</span>
-              <span>{topic?.questionCount}</span>
+              <span>{history.questions?.length}</span>
             </div>
             <h5 className="result-slogan">Chúc mừng! Bạn đã hoàn thành bài thi!</h5>
             <div className="result-table">
               <div className="result-table-item">
                 <p>
                   <Success />
-                  <span>{history?.totalSuccess} câu</span>
+                  <span>{history.totalSuccess} câu</span>
                 </p>
                 <div className="progress-line">
                   <div
                     style={{
-                      width: `${((history?.totalSuccess / topic?.questions.length) * 100).toFixed(
+                      width: `${((history?.totalSuccess / history.questions?.length) * 100).toFixed(
                         2
                       )}%`,
                       backgroundColor: 'rgb(0, 168, 107)',
@@ -101,41 +78,41 @@ const TopicResult: any = () => {
                   ></div>
                 </div>
                 <p className="process">
-                  {((history?.totalSuccess / topic?.questions.length) * 100).toFixed(2)}%
+                  {((history.totalSuccess / history.questions?.length) * 100).toFixed(2)}%
                 </p>
               </div>
               <div className="result-table-item">
                 <p>
                   <Error />
-                  <span>{history?.totalError} câu</span>
+                  <span>{history.totalError} câu</span>
                 </p>
                 <div className="progress-line">
                   <div
                     style={{
-                      width: `${(history?.totalError / topic?.questions.length) * 100}%`,
+                      width: `${(history?.totalError / history.questions?.length) * 100}%`,
                       backgroundColor: 'red',
                     }}
                   ></div>
                 </div>
                 <p className="process">
-                  {((history?.totalError / topic?.questions.length) * 100).toFixed(2)}%
+                  {((history?.totalError / history.questions?.length) * 100).toFixed(2)}%
                 </p>
               </div>
               <div className="result-table-item">
                 <p>
                   <Waring />
-                  <span>{history?.totalEmpty} câu</span>
+                  <span>{history.totalEmpty} câu</span>
                 </p>
                 <div className="progress-line">
                   <div
                     style={{
-                      width: `${(history?.totalEmpty / topic?.questions.length) * 100}%`,
+                      width: `${(history.totalEmpty / history.questions?.length) * 100}%`,
                       backgroundColor: 'yellow',
                     }}
                   ></div>
                 </div>
                 <p className="process">
-                  {((history?.totalEmpty / topic?.questions.length) * 100).toFixed(2)}%
+                  {((history.totalEmpty / history.questions?.length) * 100).toFixed(2)}%
                 </p>
               </div>
             </div>
@@ -173,18 +150,22 @@ const TopicResult: any = () => {
         <div className="question">
           <div className="question-title">
             <span>
-              Câu {questionIndex} : {questionList[questionIndex]?.name}
+              Câu {questionIndex} : {history.questions[questionIndex]?.name}
             </span>
-            {questionList[questionIndex]?.image && (
-              <img src={questionList[questionIndex]?.image} alt="" />
+            {history.questions[questionIndex]?.image && (
+              <img src={history.questions[questionIndex]?.image} alt="" />
             )}
           </div>
           <div className="question-answer">
-            {questionList[questionIndex]?.answers.map((item, index) => {
+            {history.questions[questionIndex]?.answers.map((item: any, index: number) => {
+              console.log(history.answers[questionIndex]);
               return (
                 <div key={item._id}>
                   <input type="radio" name="1" id={`answer_${index}`} checked={item.isCorrect} />
-                  <label htmlFor={`answer_${index}`}>
+                  <label
+                    htmlFor={`answer_${index}`}
+                    className={history.answers[questionIndex] === index ? 'active' : ''}
+                  >
                     <span>{item.name}</span>
                     {item.image && <img src={item.image} alt="" />}
                   </label>
@@ -201,33 +182,32 @@ const TopicResult: any = () => {
     return <LoadingApp />;
   }
   return (
-    <div className="topic-result">
-      <div className="topic-result-left">{isActive ? renderQuestion() : renderContent()}</div>
-      <div className="topic-result-right"></div>
-      <div className={isModalResult ? 'modal-result active' : 'modal-result'}>
-        <div
-          className="modal-result-heading"
-          onClick={() => {
-            setIsModalResult(false);
-            setIsActive(false);
-          }}
-        >
-          <ArrowLeft />
-          <span>Tổng kết</span>
-        </div>
-        <div className="modal-result-content">
-          <AttemptButton
-            answers={answers}
-            history={history}
-            questionList={questionList}
-            setIsActive={setIsActive}
-            setQuestionIndex={setQuestionIndex}
-            setIsModalResult={setIsModalResult}
-            questionCount={topic?.questionCount}
-          />
+    <>
+      <div className="topic-result">
+        <div className="topic-result-left">{isActive ? renderQuestion() : renderContent()}</div>
+        <div className="topic-result-right"></div>
+        <div className={isModalResult ? 'modal-result active' : 'modal-result'}>
+          <div
+            className="modal-result-heading"
+            onClick={() => {
+              setIsModalResult(false);
+              setIsActive(false);
+            }}
+          >
+            <ArrowLeft />
+            <span>Tổng kết</span>
+          </div>
+          <div className="modal-result-content">
+            <AttemptButton
+              history={history}
+              setIsActive={setIsActive}
+              setQuestionIndex={setQuestionIndex}
+              setIsModalResult={setIsModalResult}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

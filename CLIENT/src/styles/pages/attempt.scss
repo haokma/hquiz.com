@@ -491,6 +491,9 @@
       cursor: pointer;
       line-height: 1.6;
       font-size: 16px;
+      &.active{
+        background-color: $color-primary;
+      }
       img{
         border-radius: 8px;
         margin-top: 10px;
@@ -582,7 +585,7 @@
   text-align: center;
 }
 .question-answer input:checked~label {
-  background-color: $color-primary;
+  background-color: green;
 }
 .attempt-answer input:checked~label {
   background-color: $color-primary;

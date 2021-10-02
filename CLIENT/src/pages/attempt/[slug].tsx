@@ -100,21 +100,12 @@ const Attempt: any = () => {
   };
 
   const createHistory = (user: USER_RESPONSE) => {
-    const totalSuccess = answersSuccess(topic?.questions, answers);
-    const totalError = answersError(topic?.questions, answers);
-    const totalEmpty = answersEmpty(totalSuccess, totalError, topic?.questions);
-
     const history = {
       topicId: topic?._id,
       answers,
       userId: user._id,
       timespan: 1200,
       isSubmit: true,
-      totalComplete: questionComplete,
-      totalSuccess,
-      totalError,
-      totalEmpty,
-      score: calceScore(totalSuccess, topic?.questions),
     };
     return history;
   };
@@ -122,7 +113,6 @@ const Attempt: any = () => {
   const handleEndExam = async () => {
     const user = getLocalStorage('user');
     const totalSuccess = answersSuccess(topic?.questions, answers);
-    console.log(calceScore(totalSuccess, topic?.questions));
     const ranking = {
       topicId: topic?._id,
       username: user.username,
