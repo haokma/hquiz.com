@@ -3,8 +3,12 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import LayoutAttempt from 'src/components/common/LayoutAttempt';
-import EmailField from 'src/components/form-controls/EmailFlied';
-import PasswordField from 'src/components/form-controls/PasswordFiled';
+import EmailField from 'src/components/form-controls/EmailField';
+import PasswordField from 'src/components/form-controls/PasswordField';
+import { AUTH_LOGIN } from 'src/interfaces';
+import userApi from 'src/apis/userApi';
+import { setLocalStorage } from 'src/utils';
+import router from 'next/router';
 
 const schema = yup.object().shape({
   email: yup
@@ -17,11 +21,6 @@ const schema = yup.object().shape({
     .required('Vui lòng nhập mật khẩu'),
 });
 
-interface FormValues {
-  email: string;
-  password: string;
-}
-
 const Login: any = () => {
   const { handleSubmit, control } = useForm<any>({
     mode: 'onSubmit',
@@ -33,8 +32,15 @@ const Login: any = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (values: any) => {
-    console.log(values);
+  const onSubmit = async (values: AUTH_LOGIN) => {
+    try {
+      const res = await userApi.login(values);
+      const { data, token } = res.data;
+
+      setLocalStorage('token', JSON.stringify(token));
+      setLocalStorage('user', JSON.stringify(data));
+      router.back();
+    } catch (error) {}
   };
   return (
     <div className="login">

@@ -10,8 +10,15 @@ import AttemptQueston from 'src/components/attempt/attemptQuestion';
 import LayoutAttempt from 'src/components/common/LayoutAttempt';
 import LoadingApp from 'src/components/common/Loading/LoadingAttempt';
 import { ArrowLeft, ArrowRight } from 'src/components/svg';
-import { QUESTION, Topic } from 'src/interfaces';
-import { answersEmpty, answersError, answersSuccess, calceScore, formatTime } from 'src/utils';
+import { QUESTION, Topic, USER_RESPONSE } from 'src/interfaces';
+import {
+  answersEmpty,
+  answersError,
+  answersSuccess,
+  calceScore,
+  formatTime,
+  getLocalStorage,
+} from 'src/utils';
 
 const Attempt: any = () => {
   const router = useRouter();
@@ -92,7 +99,7 @@ const Attempt: any = () => {
     setQuestionIndex(index);
   };
 
-  const createHistory = () => {
+  const createHistory = (user: USER_RESPONSE) => {
     const totalSuccess = answersSuccess(topic?.questions, answers);
     const totalError = answersError(topic?.questions, answers);
     const totalEmpty = answersEmpty(totalSuccess, totalError, topic?.questions);
@@ -100,7 +107,7 @@ const Attempt: any = () => {
     const history = {
       topicId: topic?._id,
       answers,
-      userId: '6151fea542d9d51d503b587a',
+      userId: user._id,
       timespan: 1200,
       isSubmit: true,
       totalComplete: questionComplete,
@@ -113,14 +120,17 @@ const Attempt: any = () => {
   };
 
   const handleEndExam = async () => {
+    const user = getLocalStorage('user');
+    const totalSuccess = answersSuccess(topic?.questions, answers);
+    console.log(calceScore(totalSuccess, topic?.questions));
     const ranking = {
       topicId: topic?._id,
-      username: 'Chí Hào',
-      userId: '6151fea542d9d51d503b587a',
-      score: 10,
+      username: user.username,
+      userId: user._id,
+      score: calceScore(totalSuccess, topic?.questions),
       time: 1800,
     };
-    const history = createHistory();
+    const history = createHistory(user);
     try {
       await historyApi.create(history);
       await rankingApi.create(ranking);

@@ -1,12 +1,27 @@
-import { NextPage } from 'next';
 import Link from 'next/link';
+import { Dispatch, useEffect, useState } from 'react';
+import { USER_RESPONSE } from 'src/interfaces';
+import { getLocalStorage } from 'src/utils';
 
 interface PROPS {
-  setIsActive: any;
+  setIsActive: Dispatch<boolean>;
+  handleLogout: () => void;
+  user: USER_RESPONSE;
 }
 
-const Header: NextPage<PROPS> = (props: PROPS) => {
-  const { setIsActive } = props;
+const Header = (props: PROPS) => {
+  const { setIsActive, user, handleLogout } = props;
+  const [isModal, setIsModal] = useState(false);
+
+  useEffect(() => {
+    if (window !== undefined) {
+      window.addEventListener('click', (event) => {
+        setIsModal(false);
+        event.stopPropagation();
+      });
+    }
+  }, []);
+
   return (
     <div className="header">
       <div className="container-fluid">
@@ -41,16 +56,71 @@ const Header: NextPage<PROPS> = (props: PROPS) => {
             <input type="text" placeholder="Tìm kiếm đề thi" />
           </div>
           <div className="header-right">
-            <div className="header-login">
-              <Link href="/authentication/login">
-                <a>Đăng nhập/Đăng ký</a>
-              </Link>
-            </div>
+            {/* {!user && (
+              <>
+                <div className="header-login">
+                  <Link href="/authentication/login">
+                    <a>Đăng nhập/Đăng ký</a>
+                  </Link>
+                </div>
+              </>
+            )} */}
             <div className="header-quiz">
-              <Link href="/attempt/1">
+              <Link href="/">
                 <a>Thi nhanh</a>
               </Link>
             </div>
+            {user && (
+              <>
+                <div className="header-user">
+                  <img
+                    onClick={(event) => {
+                      setIsModal(true);
+                      event.stopPropagation();
+                    }}
+                    src="https://avatar-redirect.appspot.com/google/118403421965346863995?size=400"
+                    alt={user.username}
+                  />
+                  <div
+                    className={isModal ? 'header-user-modal active' : 'header-user-modal'}
+                    onClick={(event) => event.stopPropagation()}
+                  >
+                    <div className="user-modal">
+                      <div className="user-modal-heading">
+                        <img
+                          src="https://avatar-redirect.appspot.com/google/118403421965346863995?size=400"
+                          alt={user.username}
+                        />
+                        <div>
+                          <p>{user.username}</p>
+                          <span>@nguyenhao</span>
+                        </div>
+                      </div>
+                      <hr />
+                      <ul className="user-modal-list">
+                        <li>
+                          <Link href="/de-thi">
+                            <a>Lịch sử thi</a>
+                          </Link>
+                          <Link href="/de-thi">
+                            <a>Bài viết của tôi</a>
+                          </Link>
+                        </li>
+                        <hr />
+                        <li
+                          onClick={() => {
+                            handleLogout();
+                            setIsModal(false);
+                          }}
+                        >
+                          <span>Đăng xuất</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

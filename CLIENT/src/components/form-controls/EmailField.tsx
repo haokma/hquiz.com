@@ -21,13 +21,13 @@ const EmailField: NextPage<PROPS> = (props: PROPS) => {
             value={value}
             onChange={onChange}
             onBlur={onBlur}
-            name="email"
-            type="text"
+            name={name}
+            type="email"
             placeholder={placeholder}
           />
           <ErrorMessage
             errors={errors}
-            name="email"
+            name={name}
             render={({ message }) => <p className="error">{message}</p>}
           />
         </>

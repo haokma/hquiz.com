@@ -3,6 +3,7 @@ import Footer from 'src/components/common/Footer';
 import Header from 'src/components/common/Header';
 import MenuMobile from 'src/components/common/MenuMobile';
 import Sidebar from 'src/components/common/Sidebar';
+import { getLocalStorage } from 'src/utils';
 
 interface IPropsLayout {
   children: React.ReactNode;
@@ -10,14 +11,27 @@ interface IPropsLayout {
 
 const Layout = ({ children }: IPropsLayout) => {
   const [isActive, setIsActive] = useState(false);
+
+  const [user, setUser] = useState(getLocalStorage('user'));
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    setUser('');
+  };
   return (
     <>
-      <Header setIsActive={setIsActive} />
+      <Header setIsActive={setIsActive} handleLogout={handleLogout} user={user} />
       <div className="home">
         <Sidebar />
         <div className="content">{children}</div>
         <Footer />
-        <MenuMobile isActive={isActive} setIsActive={setIsActive} />
+        <MenuMobile
+          isActive={isActive}
+          setIsActive={setIsActive}
+          user={user}
+          handleLogout={handleLogout}
+        />
       </div>
     </>
   );

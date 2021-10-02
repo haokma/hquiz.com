@@ -21,8 +21,8 @@ const PasswordField: NextPage<PROPS> = (props: PROPS) => {
             value={value}
             onChange={onChange}
             onBlur={onBlur}
-            name="password"
-            type="text"
+            name={name}
+            type="password"
             placeholder={placeholder}
           />
           <ErrorMessage

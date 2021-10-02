@@ -1,12 +1,18 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import LayoutAttempt from 'src/components/common/LayoutAttempt';
-import EmailField from 'src/components/form-controls/EmailFlied';
-import PasswordField from 'src/components/form-controls/PasswordFiled';
+import EmailField from 'src/components/form-controls/EmailField';
+import PasswordField from 'src/components/form-controls/PasswordField';
+import * as yup from 'yup';
+import TextField from 'src/components/form-controls/TextField';
+import { AUTH_REGISTER } from 'src/interfaces';
+import userApi from 'src/apis/userApi';
+import router from 'next/router';
+import { setLocalStorage } from 'src/utils';
 
 const schema = yup.object().shape({
+  username: yup.string().required('Vui lòng nhập tên người dùng'),
   email: yup
     .string()
     .email('Vui lòng nhập đúng định dạng email')
@@ -36,8 +42,14 @@ const Register: any = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (values: any) => {
-    console.log(values);
+  const onSubmit = async (values: AUTH_REGISTER) => {
+    try {
+      const res = await userApi.register(values);
+      const { data, token } = res.data;
+      setLocalStorage('token', JSON.stringify(token));
+      setLocalStorage('user', JSON.stringify(data));
+      router.push('/');
+    } catch (error) {}
   };
   return (
     <div className="login">
@@ -50,6 +62,9 @@ const Register: any = () => {
           </div>
           <h1 className="login-title">Chào mừng đến với F8</h1>
           <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
+            <div className="login-form-group">
+              <TextField placeholder="Tên người dùng" name="username" control={control} />
+            </div>
             <div className="login-form-group">
               <EmailField placeholder="Địa chỉ email" name="email" control={control} />
             </div>

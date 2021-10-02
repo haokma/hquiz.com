@@ -90,6 +90,40 @@
       }
     }
   }
+  &-user{
+    img{
+      margin-right: 15px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+    }
+    display: flex;
+    align-items: flex-start;
+    div{
+      margin-top: 5px;
+    }
+    p{
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+  }
+  &-footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-text;
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    span{
+      margin:  0 2px;
+      svg{
+        margin-top: 2px;
+      }
+    }
+  }
 }
 
 @media (max-width:320px){
