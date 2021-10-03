@@ -20,6 +20,7 @@ import {
   formatTime,
   getLocalStorage,
 } from 'src/utils';
+import { toast } from 'react-toastify';
 
 const Attempt: any = () => {
   const router = useRouter();
@@ -79,6 +80,7 @@ const Attempt: any = () => {
           setQuestionList(topic.questions);
           setLoading(false);
         } catch (error) {
+          toast.error('Có lỗi xảy ra!');
           router.push('/');
         }
       };

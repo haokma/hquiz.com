@@ -9,6 +9,7 @@ import { QuestionSvg, TimeSvg } from 'src/components/svg';
 import { TopicDetailRanking, TopicDetailsInfo } from 'src/components/topic';
 import { RANKING } from 'src/interfaces';
 import { getLocalStorage } from 'src/utils';
+import { toast } from 'react-toastify';
 
 const TopicDetails: NextPage = () => {
   const router = useRouter();
@@ -38,6 +39,8 @@ const TopicDetails: NextPage = () => {
         setTopic(topic);
         setLoading(false);
       } catch (error) {
+        toast.error('Có lỗi xảy ra!');
+        router.push('/');
         setLoading(false);
       }
     };

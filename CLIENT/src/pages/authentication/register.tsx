@@ -10,6 +10,7 @@ import { AUTH_REGISTER } from 'src/interfaces';
 import userApi from 'src/apis/userApi';
 import router from 'next/router';
 import { setLocalStorage } from 'src/utils';
+import { toast } from 'react-toastify';
 
 const schema = yup.object().shape({
   username: yup.string().required('Vui lòng nhập tên người dùng'),
@@ -21,14 +22,10 @@ const schema = yup.object().shape({
     .string()
     .min(6, 'Mật khẩu chứa tối thiểu 6 kí tự')
     .required('Vui lòng nhập mật khẩu'),
-  confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'Mật khẩu không trùng khớp'),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref('password'), null], 'Mật khẩu không trùng khớp'),
 });
-
-interface FormValues {
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
 
 const Register: any = () => {
   const { handleSubmit, control } = useForm<any>({
@@ -49,7 +46,10 @@ const Register: any = () => {
       setLocalStorage('token', JSON.stringify(token));
       setLocalStorage('user', JSON.stringify(data));
       router.push('/');
-    } catch (error) {}
+      toast.success('Đăng kí tài khoản thành công');
+    } catch (error) {
+      toast.error('Có lỗi xảy ra!');
+    }
   };
   return (
     <div className="login">
@@ -57,19 +57,34 @@ const Register: any = () => {
         <div className="login-header">
           <div className="login-logo">
             <Link href="/">
-              <img src="https://fullstack.edu.vn/assets/icon/f8_icon.png" alt="" />
+              <img
+                src="https://fullstack.edu.vn/assets/icon/f8_icon.png"
+                alt=""
+              />
             </Link>
           </div>
           <h1 className="login-title">Chào mừng đến với F8</h1>
           <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
             <div className="login-form-group">
-              <TextField placeholder="Tên người dùng" name="username" control={control} />
+              <TextField
+                placeholder="Tên người dùng"
+                name="username"
+                control={control}
+              />
             </div>
             <div className="login-form-group">
-              <EmailField placeholder="Địa chỉ email" name="email" control={control} />
+              <EmailField
+                placeholder="Địa chỉ email"
+                name="email"
+                control={control}
+              />
             </div>
             <div className="login-form-group">
-              <PasswordField placeholder="Mật khẩu" name="password" control={control} />
+              <PasswordField
+                placeholder="Mật khẩu"
+                name="password"
+                control={control}
+              />
             </div>
             <div className="login-form-group">
               <PasswordField

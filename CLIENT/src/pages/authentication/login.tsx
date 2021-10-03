@@ -9,6 +9,7 @@ import { AUTH_LOGIN } from 'src/interfaces';
 import userApi from 'src/apis/userApi';
 import { setLocalStorage } from 'src/utils';
 import router from 'next/router';
+import { toast } from 'react-toastify';
 
 const schema = yup.object().shape({
   email: yup
@@ -39,8 +40,11 @@ const Login: any = () => {
 
       setLocalStorage('token', JSON.stringify(token));
       setLocalStorage('user', JSON.stringify(data));
+      toast.success('Đăng nhập thành công');
       router.back();
-    } catch (error) {}
+    } catch (error) {
+      toast.error('Có lỗi xảy ra!');
+    }
   };
   return (
     <div className="login">
@@ -48,16 +52,27 @@ const Login: any = () => {
         <div className="login-header">
           <div className="login-logo">
             <Link href="/">
-              <img src="https://fullstack.edu.vn/assets/icon/f8_icon.png" alt="" />
+              <img
+                src="https://fullstack.edu.vn/assets/icon/f8_icon.png"
+                alt=""
+              />
             </Link>
           </div>
           <h1 className="login-title">Chào mừng đến với F8</h1>
           <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
             <div className="login-form-group">
-              <EmailField placeholder="Địa chỉ email" name="email" control={control} />
+              <EmailField
+                placeholder="Địa chỉ email"
+                name="email"
+                control={control}
+              />
             </div>
             <div className="login-form-group">
-              <PasswordField placeholder="Mật khẩu" name="password" control={control} />
+              <PasswordField
+                placeholder="Mật khẩu"
+                name="password"
+                control={control}
+              />
             </div>
             <div className="login-form-group">
               <button type="submit">Đăng nhập</button>

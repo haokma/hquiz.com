@@ -9,6 +9,7 @@ import {
   RenderQuestion,
 } from 'src/components/results/';
 import { getLocalStorage } from 'src/utils';
+import { toast } from 'react-toastify';
 
 const TopicResult: any = () => {
   const router = useRouter();
@@ -35,6 +36,7 @@ const TopicResult: any = () => {
     } catch (error) {
       router.push('/');
       setLoading(false);
+      toast.error('Có lỗi xảy ra!');
     }
   };
 

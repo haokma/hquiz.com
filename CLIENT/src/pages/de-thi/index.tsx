@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import router from 'next/router';
 import { useEffect, useState } from 'react';
 import categoryApi from 'src/apis/catgoryApi';
 import topicApi from 'src/apis/topicApi';
@@ -7,6 +8,7 @@ import Sidebar from 'src/components/topic/Sidebar';
 import { LIMIT } from 'src/constants';
 import { Topic } from 'src/interfaces';
 import { CATEGORY, FILTERCATEGORY, TOPICTYPE } from 'src/interfaces/category';
+import { toast } from 'react-toastify';
 
 const TopicPage: any = () => {
   const [isActive, setIsActive] = useState(false);
@@ -54,7 +56,9 @@ const TopicPage: any = () => {
         }));
         setIsLoading(false);
       } catch (error) {
+        router.push('/');
         setIsLoading(false);
+        toast.error('Có lỗi xảy ra!');
       }
     };
     fetchTopic();
@@ -66,7 +70,10 @@ const TopicPage: any = () => {
         const res = await categoryApi.getList();
 
         setCategories(res.data.categories);
-      } catch (error) {}
+      } catch (error) {
+        toast.error('Có lỗi xảy ra!');
+        router.push('/');
+      }
     };
     fetchCategory();
   }, []);
