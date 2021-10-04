@@ -6,13 +6,12 @@ interface PAGINATIONPROPS {
   TOTAL_PAGE: number;
   SHOW_PAGE: number;
   PAGE: number;
-  SET_PAGE: any;
   filter: FILTERCATEGORY;
   setFilter: Dispatch<any>;
 }
 
 const Pagination = (props: PAGINATIONPROPS) => {
-  const { TOTAL_PAGE, SHOW_PAGE, PAGE, SET_PAGE, setFilter, filter } = props;
+  const { TOTAL_PAGE, SHOW_PAGE, PAGE, setFilter, filter } = props;
 
   const diff = Math.floor(SHOW_PAGE / 2);
   let beforePage = Math.max(PAGE - diff, 0);
@@ -45,7 +44,7 @@ const Pagination = (props: PAGINATIONPROPS) => {
           key={i}
           className={PAGE - 1 === i ? 'number active' : 'number'}
           onClick={() =>
-            SET_PAGE({
+            setFilter({
               limit: LIMIT,
               page: i + 1,
             })

@@ -5,7 +5,6 @@ import { api } from './axiosClient';
 export const topicApi = {
   getList: async (params: any) => {
     const paramsString = queryString.stringify(params);
-    console.log(paramsString);
     return api.get(`${URL_API}/topic?${paramsString}`);
   },
   getBySlug: async (slug: string | string[]) => {

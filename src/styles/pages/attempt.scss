@@ -30,6 +30,7 @@
         display: block;
         padding:8px 12px;
         border-radius: 5px;
+        cursor: pointer;
       }
     }
   }
@@ -245,27 +246,6 @@
         &.active.math{
           background-color: $color-text-secondary;
         }
-      }
-    }
-  }
-  &-button{
-    margin:  0 auto;
-    margin-top: 40px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-    button{
-      padding: 10px 25px;
-      transition: .2s ease;
-      border: none;
-      outline: none;
-      font-size: 16px;
-      border-radius: 4px;
-      cursor: pointer;
-      &:hover{
-        color: $color-white;
-        background-color: $color-primary;
       }
     }
   }
@@ -534,9 +514,6 @@
       max-width: 100%;
       &-left,&-right{
         width: 80px;
-      }
-      &-mid{
-        cursor: pointer;
       }
     }
     &-heading{

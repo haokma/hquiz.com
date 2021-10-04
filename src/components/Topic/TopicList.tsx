@@ -74,7 +74,6 @@ export const TopicList = (props: TOPICLISTPROPS) => {
               TOTAL_PAGE={totalPage}
               SHOW_PAGE={5}
               PAGE={filter.page}
-              SET_PAGE={setFilter}
               filter={filter}
               setFilter={setFilter}
             />

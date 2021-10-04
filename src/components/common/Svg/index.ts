@@ -11,3 +11,4 @@ export * from './userSvg';
 export * from './viewSvg';
 export * from './youtobeSvg';
 export * from './playSvg';
+export * from './shareSvg';

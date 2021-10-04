@@ -52,7 +52,7 @@ const Sidebar: NextPage = () => {
             </ActiveLink>
           </li>
           <li>
-            <ActiveLink activeClassName="active" href="/ket-qua">
+            <ActiveLink activeClassName="active" href="/lich-su-thi">
               <a href="">
                 <svg
                   style={{ width: '15px' }}
@@ -75,10 +75,7 @@ const Sidebar: NextPage = () => {
             </ActiveLink>
           </li>
           <li>
-            <ActiveLink
-              activeClassName="active"
-              href="/bang-xep-hang"
-            >
+            <ActiveLink activeClassName="active" href="/bang-xep-hang">
               <a>
                 <svg
                   aria-hidden="true"
@@ -100,10 +97,7 @@ const Sidebar: NextPage = () => {
             </ActiveLink>
           </li>
           <li>
-            <ActiveLink
-              activeClassName="active"
-              href="https://www.kmait.tk/"
-            >
+            <ActiveLink activeClassName="active" href="https://www.kmait.tk/">
               <a>
                 <svg
                   aria-hidden="true"
@@ -125,10 +119,7 @@ const Sidebar: NextPage = () => {
             </ActiveLink>
           </li>
           <li>
-            <ActiveLink
-              activeClassName="active"
-              href="https://www.kmait.tk/"
-            >
+            <ActiveLink activeClassName="active" href="https://www.kmait.tk/">
               <a>
                 <svg
                   aria-hidden="true"

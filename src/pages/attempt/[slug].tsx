@@ -133,6 +133,8 @@ const Attempt: any = () => {
       userId: user._id,
       timespan,
       isSubmit: true,
+      username: user.username,
+      topicName: topic?.name,
     };
     return history;
   };

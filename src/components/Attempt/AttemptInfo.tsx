@@ -119,9 +119,6 @@ const AttemptInfo = (props: ATTEMPTINFOPROPS) => {
             )}
           </div>
         </div>
-        <div className="attempt-button">
-          <button onClick={() => handleEndExam()}>Kết thúc bài thi</button>
-        </div>
         <div className="attempt-question-mobile">
           <Slider {...settings}>
             {Array.from(Array(topic?.questionCount).keys()).map(
