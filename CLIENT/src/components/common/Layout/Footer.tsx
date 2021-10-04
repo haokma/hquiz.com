@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
-import { FacebookSvg, YoutobeSvg } from 'src/components/svg';
 import Link from 'next/link';
+import { FacebookSvg, YoutobeSvg } from 'src/components/common/Svg';
 
 const Footer: NextPage = () => {
   return (

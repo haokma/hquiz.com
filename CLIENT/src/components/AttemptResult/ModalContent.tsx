@@ -1,17 +1,17 @@
 import { Dispatch } from 'react';
-import { History } from 'src/interfaces';
-import { AttemptButton } from '../attempt/attemptButton';
-import { ArrowLeft } from '../svg';
+import { AttemptButton } from 'src/components/Attempt/AttemptButton';
+import { ArrowLeft } from 'src/components/common/Svg';
+import { HISTORY } from 'src/interfaces';
 
-interface PROPS {
+interface MODALCONTENTPROPS {
   isModalResult: boolean;
   setIsModalResult: Dispatch<boolean>;
   setIsActive: Dispatch<boolean>;
   setQuestionIndex: Dispatch<number>;
-  history: History;
+  history: HISTORY;
 }
 
-export const ModalContent = (props: PROPS) => {
+export const ModalContent = (props: MODALCONTENTPROPS) => {
   const {
     isModalResult,
     setIsModalResult,
@@ -19,9 +19,12 @@ export const ModalContent = (props: PROPS) => {
     setQuestionIndex,
     history,
   } = props;
-  console.log(isModalResult);
   return (
-    <div className={isModalResult ? 'modal-result active' : 'modal-result'}>
+    <div
+      className={
+        isModalResult ? 'modal-result active' : 'modal-result'
+      }
+    >
       <div
         className="modal-result-heading"
         onClick={() => {

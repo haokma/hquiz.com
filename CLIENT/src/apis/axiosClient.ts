@@ -13,7 +13,9 @@ const setHeaderAuthorization = (token: string) => {
   api.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
-setHeaderAuthorization(getLocalStorage(process.env.USER_TOKEN || 'USER_TOKEN'));
+setHeaderAuthorization(
+  getLocalStorage(process.env.USER_TOKEN || 'USER_TOKEN')
+);
 
 export const setToken = (token: string) => {
   setLocalStorage(process.env.USER_TOKEN || 'USER_TOKEN', token);

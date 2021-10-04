@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import Slider from 'react-slick';
-import { Topic } from 'src/interfaces';
-import SampleNextArrow from 'src/components/arrowSlider/sampleNextArrow';
-import SamplePrevArrow from 'src/components/arrowSlider/samplePreveArrow';
-import { UserSvg } from '../svg';
+import NextArrow from 'src/components/common/ArrowSlider/NextArrow';
+import PrevArrow from 'src/components/common/ArrowSlider/PreveArrow';
+import { TOPIC } from 'src/interfaces';
+import { UserSvg } from '../common/Svg';
 
 const settings = {
   dots: false,
@@ -11,8 +11,8 @@ const settings = {
   speed: 500,
   slidesToShow: 4,
   slidesToScroll: 1,
-  nextArrow: <SampleNextArrow newClass="top" />,
-  prevArrow: <SamplePrevArrow newClass="top" />,
+  nextArrow: <NextArrow newClass="top" />,
+  prevArrow: <PrevArrow newClass="top" />,
   responsive: [
     {
       breakpoint: 1500,
@@ -45,10 +45,10 @@ const settings = {
   ],
 };
 
-interface PROPS {
-  topicList: Topic[];
+interface TOPICHIGHLIGHTPROPS {
+  topicList: TOPIC[];
 }
-const TopicHighlight = (props: PROPS) => {
+export const TopicHighlight = (props: TOPICHIGHLIGHTPROPS) => {
   const { topicList } = props;
   return (
     <div className="topic-highlight">
@@ -63,7 +63,7 @@ const TopicHighlight = (props: PROPS) => {
       </div>
       <div className="slider">
         <Slider {...settings}>
-          {topicList.map((item: Topic, index: number) => {
+          {topicList.map((item: TOPIC, index: number) => {
             return (
               <div className="topic-highlight-item" key={index}>
                 <div>
@@ -72,7 +72,9 @@ const TopicHighlight = (props: PROPS) => {
                   </div>
                   <div className="topic-highlight-content">
                     <h3 className="topic-highlight-title">
-                      <Link href={`/de-thi/${item.slug}`}>{item.name}</Link>
+                      <Link href={`/de-thi/${item.slug}`}>
+                        {item.name}
+                      </Link>
                     </h3>
                     <div className="topic-highlight-view">
                       <UserSvg />
@@ -88,5 +90,3 @@ const TopicHighlight = (props: PROPS) => {
     </div>
   );
 };
-
-export default TopicHighlight;

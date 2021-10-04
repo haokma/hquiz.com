@@ -43,7 +43,11 @@ export default function PaginationUltimate(props: PROPS) {
       }
       results.push(<li key={Math.random()}>...</li>);
 
-      for (let i = TOTAL_PAGE - BOUNDARY - 1 - SKIP * 2; i <= TOTAL_PAGE; i++) {
+      for (
+        let i = TOTAL_PAGE - BOUNDARY - 1 - SKIP * 2;
+        i <= TOTAL_PAGE;
+        i++
+      ) {
         results.push(paginationItem(currentPage, i));
       }
     } else {

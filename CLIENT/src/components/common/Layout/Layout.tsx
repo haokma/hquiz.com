@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Footer from 'src/components/common/Footer';
-import Header from 'src/components/common/Header';
-import MenuMobile from 'src/components/common/MenuMobile';
-import Sidebar from 'src/components/common/Sidebar';
+import Footer from 'src/components/common/Layout/Footer';
+import Header from 'src/components/common/Layout/Header';
+import MenuMobile from 'src/components/common/Layout/MenuMobile';
+import Sidebar from 'src/components/common/Layout/Sidebar';
 import { getLocalStorage } from 'src/utils';
 
 interface IPropsLayout {
@@ -21,7 +21,11 @@ const Layout = ({ children }: IPropsLayout) => {
   };
   return (
     <>
-      <Header setIsActive={setIsActive} handleLogout={handleLogout} user={user} />
+      <Header
+        setIsActive={setIsActive}
+        handleLogout={handleLogout}
+        user={user}
+      />
       <div className="home">
         <Sidebar />
         <div className="content">{children}</div>

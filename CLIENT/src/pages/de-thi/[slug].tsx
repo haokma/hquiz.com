@@ -2,14 +2,16 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import rankingApi from 'src/apis/rankingApi';
-import topicApi from 'src/apis/topicApi';
+import { toast } from 'react-toastify';
+import { rankingApi, topicApi } from 'src/apis';
 import Loading from 'src/components/common/Loading/Loading';
-import { QuestionSvg, TimeSvg } from 'src/components/svg';
-import { TopicDetailRanking, TopicDetailsInfo } from 'src/components/topic';
+import { QuestionSvg, TimeSvg } from 'src/components/common/Svg';
+import {
+  TopicDetailRanking,
+  TopicDetailsInfo,
+} from 'src/components/Topic';
 import { RANKING } from 'src/interfaces';
 import { getLocalStorage } from 'src/utils';
-import { toast } from 'react-toastify';
 
 const TopicDetails: NextPage = () => {
   const router = useRouter();
@@ -76,8 +78,14 @@ const TopicDetails: NextPage = () => {
             <div className="topic-details-left ">
               <div className="topic-details-content">
                 <h2 className="topic-details-title">{topic.name}</h2>
-                <img className="topic-details-img" src={topic.image} alt="" />
-                <p className="topic-details-desc">{topic.description}</p>
+                <img
+                  className="topic-details-img"
+                  src={topic.image}
+                  alt=""
+                />
+                <p className="topic-details-desc">
+                  {topic.description}
+                </p>
               </div>
             </div>
             <div className="topic-details-right ">
@@ -90,10 +98,14 @@ const TopicDetails: NextPage = () => {
             </div>
           </div>
         </div>
-        <div className={isModal ? 'modal-confirm active' : 'modal-confirm'}>
+        <div
+          className={
+            isModal ? 'modal-confirm active' : 'modal-confirm'
+          }
+        >
           <div
             className="modal-confirm-overlay"
-            onClick={() => setIsModal(!false)}
+            onClick={() => setIsModal(false)}
           ></div>
           <div className="modal-confirm-content">
             <div className="modal-confirm-heading">
@@ -117,10 +129,16 @@ const TopicDetails: NextPage = () => {
               </div>
             </div>
             <div className="modal-confirm-button">
-              <button className="cancle" onClick={() => setIsModal(false)}>
+              <button
+                className="cancle"
+                onClick={() => setIsModal(false)}
+              >
                 Hủy
               </button>
-              <button className="agreed" onClick={() => handleAgreed()}>
+              <button
+                className="agreed"
+                onClick={() => handleAgreed()}
+              >
                 Thi ngay
               </button>
             </div>

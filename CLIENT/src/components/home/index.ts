@@ -1,3 +1,3 @@
-export * from './topicHighlight';
-export * from './topicWork';
-export * from './postHighlight';
+export * from 'src/components/Home/PostHighlight';
+export * from 'src/components/Home/TopicHighlight';
+export * from 'src/components/Home/TopicWork';

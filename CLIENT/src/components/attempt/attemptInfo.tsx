@@ -1,7 +1,7 @@
 import Slider from 'react-slick';
-import { Topic } from 'src/interfaces';
+import { TOPIC } from 'src/interfaces';
 import { formatTime } from 'src/utils';
-import { ClockSvg } from '../svg';
+import { ClockSvg } from '../common/Svg';
 
 const settings = {
   dots: false,
@@ -41,7 +41,7 @@ const settings = {
   ],
 };
 
-interface PROPS {
+interface ATTEMPTINFOPROPS {
   questionIndex: number;
   checkAnswer: (index: number) => boolean;
   selectQuestion: (index: number) => void;
@@ -49,10 +49,10 @@ interface PROPS {
   seconds: number;
   handleEndExam: () => void;
   questionComplete: number;
-  topic: Topic;
+  topic: TOPIC;
 }
 
-export const AttemptInfo = (props: PROPS) => {
+export const AttemptInfo = (props: ATTEMPTINFOPROPS) => {
   const {
     questionIndex,
     checkAnswer,
@@ -120,7 +120,9 @@ export const AttemptInfo = (props: PROPS) => {
           </div>
         </div>
         <div className="attempt-button">
-          <button onClick={() => handleEndExam()}>Kết thúc bài thi</button>
+          <button onClick={() => handleEndExam()}>
+            Kết thúc bài thi
+          </button>
         </div>
         <div className="attempt-question-mobile">
           <Slider {...settings}>

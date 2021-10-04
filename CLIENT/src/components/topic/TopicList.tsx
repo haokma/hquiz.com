@@ -1,20 +1,20 @@
 import { Dispatch } from 'react';
-import { FILTERCATEGORY, Topic } from 'src/interfaces';
-import TopicItemSkeletion from '../common/Skeleton/topicItemSkeletion';
-import Pagination from '../pagination/Pagination';
-import TopicItem from './TopicItem';
+import TopicItemSkeletion from 'src/components/common/Skeleton/TopicItemSkeletion';
+import Pagination from 'src/components/Pagination/Pagination';
+import TopicItem from 'src/components/Topic/TopicItem';
+import { FILTERCATEGORY, TOPIC } from 'src/interfaces';
 
-interface PROPS {
+interface TOPICLISTPROPS {
   setIsActive: Dispatch<boolean>;
   isActive: boolean;
   isLoading: boolean;
-  topicList: Topic[];
+  topicList: TOPIC[];
   totalPage: number;
   setFilter: Dispatch<FILTERCATEGORY>;
   filter: FILTERCATEGORY;
 }
 
-export const TopicList = (props: PROPS) => {
+export const TopicList = (props: TOPICLISTPROPS) => {
   const {
     isLoading,
     topicList,
@@ -75,6 +75,8 @@ export const TopicList = (props: PROPS) => {
               SHOW_PAGE={5}
               PAGE={filter.page}
               SET_PAGE={setFilter}
+              filter={filter}
+              setFilter={setFilter}
             />
           </div>
         ) : null}

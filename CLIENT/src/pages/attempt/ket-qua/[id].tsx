@@ -1,15 +1,15 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import historyApi from 'src/apis/historyApi';
-import LayoutAttempt from 'src/components/common/LayoutAttempt';
-import LoadingApp from 'src/components/common/Loading/LoadingAttempt';
+import { toast } from 'react-toastify';
+import { historyApi } from 'src/apis';
 import {
   ModalContent,
   RenderContent,
   RenderQuestion,
-} from 'src/components/results/';
+} from 'src/components/AttemptResult';
+import LayoutAttempt from 'src/components/common/Layout/LayoutAttempt';
+import LoadingApp from 'src/components/common/Loading/LoadingAttempt';
 import { getLocalStorage } from 'src/utils';
-import { toast } from 'react-toastify';
 
 const TopicResult: any = () => {
   const router = useRouter();

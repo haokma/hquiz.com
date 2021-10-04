@@ -2,25 +2,23 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import historyApi from 'src/apis/historyApi';
-import rankingApi from 'src/apis/rankingApi';
-import topicApi from 'src/apis/topicApi';
+import { toast } from 'react-toastify';
+import { historyApi, rankingApi, topicApi } from 'src/apis';
 import {
   AttemptControls,
   AttemptInfo,
-  AttemptQueston,
-} from 'src/components/attempt';
-import LayoutAttempt from 'src/components/common/LayoutAttempt';
+  AttemptQuestion,
+} from 'src/components/Attempt';
+import LayoutAttempt from 'src/components/common//Layout/LayoutAttempt';
 import LoadingApp from 'src/components/common/Loading/LoadingAttempt';
-import { ArrowLeft } from 'src/components/svg';
-import { QUESTION, Topic, USER_RESPONSE } from 'src/interfaces';
+import { ArrowLeft } from 'src/components/common/Svg';
+import { QUESTION, TOPIC, USER_RESPONSE } from 'src/interfaces';
 import {
   answersSuccess,
   calceScore,
   formatTime,
   getLocalStorage,
 } from 'src/utils';
-import { toast } from 'react-toastify';
 
 const Attempt: any = () => {
   const router = useRouter();
@@ -32,7 +30,7 @@ const Attempt: any = () => {
   const [minutes, setMinutes] = useState(30);
   const [seconds, setSeconds] = useState(0);
   const [questionList, setQuestionList] = useState<QUESTION[]>([]);
-  const [topic, setTopic] = useState<Topic>();
+  const [topic, setTopic] = useState<TOPIC>();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -144,8 +142,9 @@ const Attempt: any = () => {
   const submitExam = async () => {
     const user = getLocalStorage('user');
     const totalSuccess = answersSuccess(topic?.questions, answers);
-    const newTopic = topic as Topic;
+    const newTopic = topic as TOPIC;
     const timespan = newTopic?.time - (minutes * 60 + seconds);
+
     const ranking = {
       topicId: topic?._id,
       username: user.username,
@@ -165,8 +164,9 @@ const Attempt: any = () => {
           setLoading(false);
           router.push(`/attempt/ket-qua/${topic?._id}`);
         })
-        .catch((error) => {
-          console.log(error);
+        .catch(() => {
+          toast.error('Có lỗi xảy ra');
+          router.push('/');
         });
     } catch (error) {
       setLoading(false);
@@ -178,7 +178,9 @@ const Attempt: any = () => {
       submitExam();
       return;
     }
-    if (window.confirm('Bạn có chắc chắn muốn kết thúc bài thi không')) {
+    if (
+      window.confirm('Bạn có chắc chắn muốn kết thúc bài thi không')
+    ) {
       submitExam();
     }
   };
@@ -208,7 +210,7 @@ const Attempt: any = () => {
           </div>
           <div className="row-reverse ">
             <div className="col-xl-9 col-lg-8">
-              <AttemptQueston
+              <AttemptQuestion
                 questionIndex={questionIndex}
                 questionList={questionList}
                 handleAnswer={handleAnswer}
@@ -217,7 +219,7 @@ const Attempt: any = () => {
             </div>
             <div className="col-xl-3 col-lg-4 ">
               <AttemptInfo
-                topic={topic as Topic}
+                topic={topic as TOPIC}
                 minutes={minutes}
                 seconds={seconds}
                 checkAnswer={checkAnswer}

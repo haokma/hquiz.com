@@ -1,14 +1,15 @@
 import { QUESTION } from 'src/interfaces';
 
-interface PROPS {
+interface ATTEMPTQUESTIONPROPS {
   questionIndex: number;
   questionList: QUESTION[];
   handleAnswer: (index: number) => void;
   answers: number[];
 }
 
-export const AttemptQueston = (props: PROPS) => {
-  const { questionIndex, questionList, handleAnswer, answers } = props;
+export const AttemptQuestion = (props: ATTEMPTQUESTIONPROPS) => {
+  const { questionIndex, questionList, handleAnswer, answers } =
+    props;
 
   if (!questionList.length) {
     return (
@@ -31,7 +32,9 @@ export const AttemptQueston = (props: PROPS) => {
         <form name={`question_${questionIndex}`}>
           {questionList[questionIndex]?.answers.map((item, index) => {
             return (
-              <div key={`${questionList[questionIndex]._id}_${index}`}>
+              <div
+                key={`${questionList[questionIndex]._id}_${index}`}
+              >
                 <input
                   type="radio"
                   id={`answer_${index}`}
@@ -40,7 +43,9 @@ export const AttemptQueston = (props: PROPS) => {
                 />
                 <label
                   htmlFor={`answer_${index}`}
-                  className={answers[questionIndex] === index ? 'active' : ''}
+                  className={
+                    answers[questionIndex] === index ? 'active' : ''
+                  }
                 >
                   <span>{item.name}</span>
                   {item.image && <img src={item.image} alt="" />}

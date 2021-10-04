@@ -1,4 +1,4 @@
-export default function SamplePrevArrow(props: any) {
+export default function PrevArrow(props: any) {
   const { onClick, newClass } = props;
 
   const className = `${newClass} btn-slick prev-slick`;

@@ -2,7 +2,7 @@ import { api } from './axiosClient';
 import { URL_API } from 'src/constants';
 import { AUTH_LOGIN, AUTH_REGISTER } from 'src/interfaces';
 
-const userApi = {
+export const userApi = {
   register: (data: AUTH_REGISTER) => {
     return api.post(`${URL_API}/auth/register`, data);
   },
@@ -10,5 +10,3 @@ const userApi = {
     return api.post(`${URL_API}/auth/login`, data);
   },
 };
-
-export default userApi;

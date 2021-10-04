@@ -1,4 +1,4 @@
-export interface Topic {
+export interface TOPIC {
   _id: string;
   typeId: number;
   name: string;

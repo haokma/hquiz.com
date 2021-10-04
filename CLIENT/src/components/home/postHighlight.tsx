@@ -1,18 +1,16 @@
-import { NextPage } from 'next';
 import Link from 'next/link';
 import Slider from 'react-slick';
+import NextArrow from 'src/components/common/ArrowSlider/NextArrow';
+import PrevArrow from 'src/components/common/ArrowSlider/PreveArrow';
 import data from 'src/data/blog.json';
-import SampleNextArrow from 'src/components/arrowSlider/sampleNextArrow';
-import SamplePrevArrow from 'src/components/arrowSlider/samplePreveArrow';
-
 const settings = {
   dots: false,
   infinite: true,
   speed: 500,
   slidesToShow: 4,
   slidesToScroll: 1,
-  nextArrow: <SampleNextArrow newClass="top" />,
-  prevArrow: <SamplePrevArrow newClass="top" />,
+  nextArrow: <NextArrow newClass="top" />,
+  prevArrow: <PrevArrow newClass="top" />,
   responsive: [
     {
       breakpoint: 1500,
@@ -44,7 +42,7 @@ const settings = {
     },
   ],
 };
-const PostHightLight: NextPage = () => {
+export const PostHightLight = () => {
   return (
     <div className="post">
       <div className="topic-highlight-heading">
@@ -67,7 +65,9 @@ const PostHightLight: NextPage = () => {
                   </div>
                   <div className="post-content">
                     <h3 className="post-title">
-                      <Link href="https://www.kmait.tk/">{item.title}</Link>
+                      <Link href="https://www.kmait.tk/">
+                        {item.title}
+                      </Link>
                     </h3>
                     <div className="post-view">
                       <div>
@@ -103,5 +103,3 @@ const PostHightLight: NextPage = () => {
     </div>
   );
 };
-
-export default PostHightLight;

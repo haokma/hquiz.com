@@ -1,16 +1,16 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import Link from 'next/link';
-import { useForm } from 'react-hook-form';
-import LayoutAttempt from 'src/components/common/LayoutAttempt';
-import EmailField from 'src/components/form-controls/EmailField';
-import PasswordField from 'src/components/form-controls/PasswordField';
-import * as yup from 'yup';
-import TextField from 'src/components/form-controls/TextField';
-import { AUTH_REGISTER } from 'src/interfaces';
-import userApi from 'src/apis/userApi';
 import router from 'next/router';
-import { setLocalStorage } from 'src/utils';
+import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import { userApi } from 'src/apis';
+import LayoutAttempt from 'src/components/common/Layout/LayoutAttempt';
+import EmailField from 'src/components/FormControl/EmailField';
+import PasswordField from 'src/components/FormControl/PasswordField';
+import TextField from 'src/components/FormControl/TextField';
+import { AUTH_REGISTER } from 'src/interfaces';
+import { setLocalStorage } from 'src/utils';
+import * as yup from 'yup';
 
 const schema = yup.object().shape({
   username: yup.string().required('Vui lòng nhập tên người dùng'),
@@ -64,7 +64,10 @@ const Register: any = () => {
             </Link>
           </div>
           <h1 className="login-title">Chào mừng đến với F8</h1>
-          <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
+          <form
+            className="login-form"
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <div className="login-form-group">
               <TextField
                 placeholder="Tên người dùng"

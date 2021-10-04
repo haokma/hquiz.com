@@ -1,6 +1,6 @@
 import { QUESTION } from './index';
 
-export interface History {
+export interface HISTORY {
   _id: string;
   isSubmit: boolean;
   totalError: number;

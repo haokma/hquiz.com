@@ -1,11 +1,11 @@
 import { RANKING } from 'src/interfaces';
 import { formatTime } from 'src/utils';
 
-interface PROPS {
+interface TOPICDETAILRANKING {
   rankingList: RANKING[];
 }
 
-export const TopicDetailRanking = (props: PROPS) => {
+export const TopicDetailRanking = (props: TOPICDETAILRANKING) => {
   const { rankingList } = props;
   return (
     <div className="topic-details-ranking">

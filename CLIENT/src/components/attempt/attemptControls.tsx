@@ -1,16 +1,17 @@
 import { Dispatch } from 'react';
-import { Topic } from 'src/interfaces';
-import { ArrowLeft, ArrowRight } from '../svg';
+import { TOPIC } from 'src/interfaces';
+import { ArrowLeft, ArrowRight } from '../common/Svg';
 
-interface PROPS {
+export interface ATTEMPTCONTROLSPROPS {
   setQuestionIndex: Dispatch<number>;
   questionIndex: number;
   handleEndExam: () => void;
-  topic: Topic | undefined;
+  topic: TOPIC | undefined;
 }
 
-export const AttemptControls = (props: PROPS) => {
-  const { setQuestionIndex, questionIndex, handleEndExam, topic } = props;
+export const AttemptControls = (props: ATTEMPTCONTROLSPROPS) => {
+  const { setQuestionIndex, questionIndex, handleEndExam, topic } =
+    props;
   return (
     <div className="attempt-controls">
       <div

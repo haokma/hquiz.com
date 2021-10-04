@@ -1,7 +1,7 @@
 import { Dispatch, useState } from 'react';
 import { CATEGORY, FILTERCATEGORY, TOPICTYPE } from 'src/interfaces/category';
 
-interface PROPS {
+interface SIDEBARPROPS {
   filter: FILTERCATEGORY;
   setFilter: Dispatch<any>;
   categories: CATEGORY[];
@@ -9,7 +9,7 @@ interface PROPS {
   setTopicType: Dispatch<any>;
 }
 
-const Sidebar = (props: PROPS) => {
+const Sidebar = (props: SIDEBARPROPS) => {
   const [isSelectedType, setIsSelectedType] = useState(false);
 
   const { setFilter, categories, setTopicType, topicType } = props;
@@ -54,6 +54,7 @@ const Sidebar = (props: PROPS) => {
               setFilter((prev: FILTERCATEGORY) => ({
                 ...prev,
                 categoryId: '',
+                page: 1,
               }));
               setTopicType((prev: TOPICTYPE) => ({
                 ...prev,
@@ -74,6 +75,7 @@ const Sidebar = (props: PROPS) => {
                 setFilter((prev: FILTERCATEGORY) => ({
                   ...prev,
                   categoryId: item._id,
+                  page: 1,
                 }));
               }}
             >

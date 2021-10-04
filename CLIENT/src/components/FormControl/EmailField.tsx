@@ -2,33 +2,38 @@ import { ErrorMessage } from '@hookform/error-message';
 import { NextPage } from 'next';
 import { Controller } from 'react-hook-form';
 
-interface PROPS {
+interface EMAILFIELDPROPS {
   control: any;
   name: string;
   placeholder: string;
 }
 
-const PasswordField: NextPage<PROPS> = (props: PROPS) => {
+const EmailField = (props: EMAILFIELDPROPS) => {
   const { control, name, placeholder } = props;
 
   return (
     <Controller
       name={name}
       control={control}
-      render={({ field: { onChange, onBlur, value }, formState: { errors } }) => (
+      render={({
+        field: { onChange, onBlur, value },
+        formState: { errors },
+      }) => (
         <>
           <input
             value={value}
             onChange={onChange}
             onBlur={onBlur}
             name={name}
-            type="password"
+            type="email"
             placeholder={placeholder}
           />
           <ErrorMessage
             errors={errors}
             name={name}
-            render={({ message }) => <p className="error">{message}</p>}
+            render={({ message }) => (
+              <p className="error">{message}</p>
+            )}
           />
         </>
       )}
@@ -36,4 +41,4 @@ const PasswordField: NextPage<PROPS> = (props: PROPS) => {
   );
 };
 
-export default PasswordField;
+export default EmailField;

@@ -1,16 +1,18 @@
-import { useState } from 'react';
+import { Dispatch } from 'react';
 import { LIMIT } from 'src/constants';
+import { FILTERCATEGORY } from 'src/interfaces';
 
-interface PROPS {
+interface PAGINATIONPROPS {
   TOTAL_PAGE: number;
   SHOW_PAGE: number;
   PAGE: number;
   SET_PAGE: any;
+  filter: FILTERCATEGORY;
+  setFilter: Dispatch<any>;
 }
 
-const Pagination = (props: PROPS) => {
-  const [currentPage, setCurrentPage] = useState(0);
-  const { TOTAL_PAGE, SHOW_PAGE, PAGE, SET_PAGE } = props;
+const Pagination = (props: PAGINATIONPROPS) => {
+  const { TOTAL_PAGE, SHOW_PAGE, PAGE, SET_PAGE, setFilter, filter } = props;
 
   const diff = Math.floor(SHOW_PAGE / 2);
   let beforePage = Math.max(PAGE - diff, 0);
@@ -26,12 +28,12 @@ const Pagination = (props: PROPS) => {
         <button
           className="prev btn"
           onClick={() =>
-            SET_PAGE({
-              limit: LIMIT,
-              page: PAGE + 1,
-            })
+            setFilter((prev: any) => ({
+              ...prev,
+              page: filter.page - 1,
+            }))
           }
-          disabled={PAGE === 1}
+          disabled={filter.page === 1}
         >
           <i className="bx bx-left-arrow-alt"></i>
         </button>
@@ -57,7 +59,12 @@ const Pagination = (props: PROPS) => {
       <li key={TOTAL_PAGE + 1}>
         <button
           className="next btn"
-          onClick={() => setCurrentPage(currentPage + 1)}
+          onClick={() =>
+            setFilter((prev: any) => ({
+              ...prev,
+              page: filter.page + 1,
+            }))
+          }
           disabled={PAGE === TOTAL_PAGE}
         >
           <i className="bx bx-right-arrow-alt"></i>

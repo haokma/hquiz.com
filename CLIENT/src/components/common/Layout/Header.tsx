@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { Dispatch, useEffect, useState } from 'react';
 import { USER_RESPONSE } from 'src/interfaces';
-import { getLocalStorage } from 'src/utils';
 
 interface PROPS {
   setIsActive: Dispatch<boolean>;
@@ -26,7 +25,10 @@ const Header = (props: PROPS) => {
     <div className="header">
       <div className="container-fluid">
         <div className="header-content">
-          <div className="header-toggle" onClick={() => setIsActive(true)}>
+          <div
+            className="header-toggle"
+            onClick={() => setIsActive(true)}
+          >
             <i className="bx bx-menu"></i>
           </div>
           <div className="header-left">
@@ -86,7 +88,9 @@ const Header = (props: PROPS) => {
                   />
                   <div
                     className={
-                      isModal ? 'header-user-modal active' : 'header-user-modal'
+                      isModal
+                        ? 'header-user-modal active'
+                        : 'header-user-modal'
                     }
                     onClick={(event) => event.stopPropagation()}
                   >

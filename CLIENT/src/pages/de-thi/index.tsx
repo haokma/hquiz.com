@@ -1,18 +1,16 @@
 import Head from 'next/head';
 import router from 'next/router';
 import { useEffect, useState } from 'react';
-import categoryApi from 'src/apis/catgoryApi';
-import topicApi from 'src/apis/topicApi';
-import { TopicList } from 'src/components/topic';
-import Sidebar from 'src/components/topic/Sidebar';
-import { LIMIT } from 'src/constants';
-import { Topic } from 'src/interfaces';
-import { CATEGORY, FILTERCATEGORY, TOPICTYPE } from 'src/interfaces/category';
 import { toast } from 'react-toastify';
+import { categoryApi, topicApi } from 'src/apis';
+import { TopicList } from 'src/components/Topic';
+import Sidebar from 'src/components/Topic/Sidebar';
+import { LIMIT } from 'src/constants';
+import { CATEGORY, FILTERCATEGORY, TOPIC, TOPICTYPE } from 'src/interfaces';
 
 const TopicPage: any = () => {
   const [isActive, setIsActive] = useState(false);
-  const [topicList, setTopicList] = useState<Topic[]>([]);
+  const [topicList, setTopicList] = useState<TOPIC[]>([]);
   const [categories, setCategories] = useState<CATEGORY[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [totalPage, setTotalPage] = useState(1);

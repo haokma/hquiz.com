@@ -1,15 +1,15 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import Link from 'next/link';
-import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
-import LayoutAttempt from 'src/components/common/LayoutAttempt';
-import EmailField from 'src/components/form-controls/EmailField';
-import PasswordField from 'src/components/form-controls/PasswordField';
-import { AUTH_LOGIN } from 'src/interfaces';
-import userApi from 'src/apis/userApi';
-import { setLocalStorage } from 'src/utils';
 import router from 'next/router';
+import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import { userApi } from 'src/apis';
+import LayoutAttempt from 'src/components/common/Layout/LayoutAttempt';
+import EmailField from 'src/components/FormControl/EmailField';
+import PasswordField from 'src/components/FormControl/PasswordField';
+import { AUTH_LOGIN } from 'src/interfaces';
+import { setLocalStorage } from 'src/utils';
+import * as yup from 'yup';
 
 const schema = yup.object().shape({
   email: yup
@@ -59,7 +59,10 @@ const Login: any = () => {
             </Link>
           </div>
           <h1 className="login-title">Chào mừng đến với F8</h1>
-          <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
+          <form
+            className="login-form"
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <div className="login-form-group">
               <EmailField
                 placeholder="Địa chỉ email"

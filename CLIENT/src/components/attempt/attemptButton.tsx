@@ -1,15 +1,16 @@
 import { Dispatch } from 'react';
-import { Error, Success, Waring } from '../svg';
+import { Error, Success, Waring } from '../common/Svg';
 
-interface PROPS {
+interface ATTEMPTBUTTONPROPS {
   setIsModalResult: Dispatch<boolean>;
   setIsActive: Dispatch<boolean>;
   setQuestionIndex: Dispatch<number>;
   history: any;
 }
 
-export const AttemptButton = (props: PROPS) => {
-  const { setIsModalResult, setIsActive, setQuestionIndex, history } = props;
+export const AttemptButton = (props: ATTEMPTBUTTONPROPS) => {
+  const { setIsModalResult, setIsActive, setQuestionIndex, history } =
+    props;
 
   const checkStatus = (index: number) => {
     if (!history.answersResult) return;

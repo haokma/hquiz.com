@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import Slider from 'react-slick';
+import NextArrow from 'src/components/common/ArrowSlider/NextArrow';
+import PrevArrow from 'src/components/common/ArrowSlider/PreveArrow';
 import data from 'src/data/banner.json';
-import SampleNextArrow from 'src/components/arrowSlider/sampleNextArrow';
-import SamplePrevArrow from 'src/components/arrowSlider/samplePreveArrow';
 
 const settings = {
   dots: true,
@@ -12,8 +12,8 @@ const settings = {
   slidesToScroll: 1,
   autoplay: true,
   autoplaySpeed: 2000,
-  nextArrow: <SampleNextArrow />,
-  prevArrow: <SamplePrevArrow />,
+  nextArrow: <NextArrow />,
+  prevArrow: <PrevArrow />,
 };
 const Banner = () => {
   return (

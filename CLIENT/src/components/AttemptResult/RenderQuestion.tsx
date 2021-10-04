@@ -1,13 +1,13 @@
 import { Dispatch } from 'react';
-import { History } from 'src/interfaces';
+import { HISTORY } from 'src/interfaces';
 
-interface PROPS {
-  history: History;
+interface RENDERQUESTIONPROPS {
+  history: HISTORY;
   setIsModalResult: Dispatch<boolean>;
   questionIndex: number;
 }
 
-export const RenderQuestion = (props: PROPS) => {
+export const RenderQuestion = (props: RENDERQUESTIONPROPS) => {
   const { setIsModalResult, questionIndex, history } = props;
 
   return (
@@ -32,16 +32,19 @@ export const RenderQuestion = (props: PROPS) => {
       <div className="question">
         <div className="question-title">
           <span>
-            Câu {questionIndex} : {history.questions[questionIndex]?.name}
+            Câu {questionIndex} :{' '}
+            {history.questions[questionIndex]?.name}
           </span>
           {history.questions[questionIndex]?.image && (
-            <img src={history.questions[questionIndex]?.image} alt="" />
+            <img
+              src={history.questions[questionIndex]?.image}
+              alt=""
+            />
           )}
         </div>
         <div className="question-answer">
           {history.questions[questionIndex]?.answers.map(
             (item: any, index: number) => {
-              console.log(history.answers[questionIndex]);
               return (
                 <div key={item._id}>
                   <input
@@ -53,7 +56,9 @@ export const RenderQuestion = (props: PROPS) => {
                   <label
                     htmlFor={`answer_${index}`}
                     className={
-                      history.answers[questionIndex] === index ? 'active' : ''
+                      history.answers[questionIndex] === index
+                        ? 'active'
+                        : ''
                     }
                   >
                     <span>{item.name}</span>

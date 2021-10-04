@@ -1,13 +1,16 @@
 import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
-import topicApi from 'src/apis/topicApi';
-import Banner from 'src/components/common/Banner';
-import PostHightLight from 'src/components/home/postHighlight';
-import TopicHighlight from 'src/components/home/topicHighlight';
-import TopicWork from 'src/components/home/topicWork';
-import { Topic } from 'src/interfaces';
+import { topicApi } from 'src/apis';
+import Banner from 'src/components/common/Layout/Banner';
+import {
+  PostHightLight,
+  TopicHighlight,
+  TopicWork,
+} from 'src/components/Home';
+import { TOPIC } from 'src/interfaces';
+
 interface PROPS {
-  topicList: Topic[];
+  topicList: TOPIC[];
 }
 
 const Home: NextPage<any> = (props: PROPS) => {

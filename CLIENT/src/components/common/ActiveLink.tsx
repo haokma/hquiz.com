@@ -7,7 +7,11 @@ export interface NavLinkProps extends LinkProps {
   activeClassName: string;
 }
 
-const ActiveLink = ({ children, activeClassName, ...props }: NavLinkProps) => {
+const ActiveLink = ({
+  children,
+  activeClassName,
+  ...props
+}: NavLinkProps) => {
   const { asPath } = useRouter();
 
   const child = Children.only(children);

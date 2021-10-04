@@ -1,4 +1,4 @@
-export default function SampleNextArrow(props: any) {
+export default function NextArrow(props: any) {
   const { onClick, newClass }: any = props;
   const className = `${newClass} btn-slick next-slick`;
   return (

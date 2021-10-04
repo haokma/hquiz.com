@@ -1,13 +1,19 @@
 import { NextPage } from 'next';
 import Link from 'next/link';
-import { QuestionSvg, TimeSvg, ViewSvg } from 'src/components/svg';
-import { Topic } from 'src/interfaces';
+import {
+  QuestionSvg,
+  TimeSvg,
+  ViewSvg,
+} from 'src/components/common/Svg';
+import { TOPIC } from 'src/interfaces';
 import { formatTime } from 'src/utils';
-interface Props {
-  topic: Topic;
+interface TOPICITEMPROPS {
+  topic: TOPIC;
 }
 
-const TopicItem: NextPage<Props> = (props: Props) => {
+const TopicItem: NextPage<TOPICITEMPROPS> = (
+  props: TOPICITEMPROPS
+) => {
   const { topic } = props;
 
   return (
@@ -26,7 +32,8 @@ const TopicItem: NextPage<Props> = (props: Props) => {
             <div>
               <TimeSvg />
               <span>
-                {formatTime(topic.time / 60)}:{formatTime(topic.time % 60)}
+                {formatTime(topic.time / 60)}:
+                {formatTime(topic.time % 60)}
               </span>
             </div>
             <div>
