@@ -52,7 +52,7 @@ interface ATTEMPTINFOPROPS {
   topic: TOPIC;
 }
 
-export const AttemptInfo = (props: ATTEMPTINFOPROPS) => {
+const AttemptInfo = (props: ATTEMPTINFOPROPS) => {
   const {
     questionIndex,
     checkAnswer,
@@ -120,9 +120,7 @@ export const AttemptInfo = (props: ATTEMPTINFOPROPS) => {
           </div>
         </div>
         <div className="attempt-button">
-          <button onClick={() => handleEndExam()}>
-            Kết thúc bài thi
-          </button>
+          <button onClick={() => handleEndExam()}>Kết thúc bài thi</button>
         </div>
         <div className="attempt-question-mobile">
           <Slider {...settings}>
@@ -147,3 +145,5 @@ export const AttemptInfo = (props: ATTEMPTINFOPROPS) => {
     </div>
   );
 };
+
+export default AttemptInfo;

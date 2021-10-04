@@ -9,9 +9,8 @@ export interface ATTEMPTCONTROLSPROPS {
   topic: TOPIC | undefined;
 }
 
-export const AttemptControls = (props: ATTEMPTCONTROLSPROPS) => {
-  const { setQuestionIndex, questionIndex, handleEndExam, topic } =
-    props;
+const AttemptControls = (props: ATTEMPTCONTROLSPROPS) => {
+  const { setQuestionIndex, questionIndex, handleEndExam, topic } = props;
   return (
     <div className="attempt-controls">
       <div
@@ -47,3 +46,5 @@ export const AttemptControls = (props: ATTEMPTCONTROLSPROPS) => {
     </div>
   );
 };
+
+export default AttemptControls;

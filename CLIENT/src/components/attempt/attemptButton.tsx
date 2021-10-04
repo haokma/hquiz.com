@@ -8,9 +8,8 @@ interface ATTEMPTBUTTONPROPS {
   history: any;
 }
 
-export const AttemptButton = (props: ATTEMPTBUTTONPROPS) => {
-  const { setIsModalResult, setIsActive, setQuestionIndex, history } =
-    props;
+const AttemptButton = (props: ATTEMPTBUTTONPROPS) => {
+  const { setIsModalResult, setIsActive, setQuestionIndex, history } = props;
 
   const checkStatus = (index: number) => {
     if (!history.answersResult) return;
@@ -44,3 +43,5 @@ export const AttemptButton = (props: ATTEMPTBUTTONPROPS) => {
     </ul>
   );
 };
+
+export default AttemptButton;

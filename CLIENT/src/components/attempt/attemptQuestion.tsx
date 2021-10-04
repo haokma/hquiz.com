@@ -7,9 +7,8 @@ interface ATTEMPTQUESTIONPROPS {
   answers: number[];
 }
 
-export const AttemptQuestion = (props: ATTEMPTQUESTIONPROPS) => {
-  const { questionIndex, questionList, handleAnswer, answers } =
-    props;
+const AttemptQuestion = (props: ATTEMPTQUESTIONPROPS) => {
+  const { questionIndex, questionList, handleAnswer, answers } = props;
 
   if (!questionList.length) {
     return (
@@ -32,9 +31,7 @@ export const AttemptQuestion = (props: ATTEMPTQUESTIONPROPS) => {
         <form name={`question_${questionIndex}`}>
           {questionList[questionIndex]?.answers.map((item, index) => {
             return (
-              <div
-                key={`${questionList[questionIndex]._id}_${index}`}
-              >
+              <div key={`${questionList[questionIndex]._id}_${index}`}>
                 <input
                   type="radio"
                   id={`answer_${index}`}
@@ -43,9 +40,7 @@ export const AttemptQuestion = (props: ATTEMPTQUESTIONPROPS) => {
                 />
                 <label
                   htmlFor={`answer_${index}`}
-                  className={
-                    answers[questionIndex] === index ? 'active' : ''
-                  }
+                  className={answers[questionIndex] === index ? 'active' : ''}
                 >
                   <span>{item.name}</span>
                   {item.image && <img src={item.image} alt="" />}
@@ -58,3 +53,5 @@ export const AttemptQuestion = (props: ATTEMPTQUESTIONPROPS) => {
     </div>
   );
 };
+
+export default AttemptQuestion;

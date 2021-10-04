@@ -4,11 +4,9 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { historyApi, rankingApi, topicApi } from 'src/apis';
-import {
-  AttemptControls,
-  AttemptInfo,
-  AttemptQuestion,
-} from 'src/components/Attempt';
+import AttemptControls from 'src/components/Attempt/AttemptControls';
+import AttemptInfo from 'src/components/Attempt/AttemptInfo';
+import AttemptQuestion from 'src/components/Attempt/AttemptQuestion';
 import LayoutAttempt from 'src/components/common//Layout/LayoutAttempt';
 import LoadingApp from 'src/components/common/Loading/LoadingAttempt';
 import { ArrowLeft } from 'src/components/common/Svg';
@@ -178,9 +176,7 @@ const Attempt: any = () => {
       submitExam();
       return;
     }
-    if (
-      window.confirm('Bạn có chắc chắn muốn kết thúc bài thi không')
-    ) {
+    if (window.confirm('Bạn có chắc chắn muốn kết thúc bài thi không')) {
       submitExam();
     }
   };
