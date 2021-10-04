@@ -59,10 +59,7 @@ const Login: any = () => {
             </Link>
           </div>
           <h1 className="login-title">Chào mừng đến với F8</h1>
-          <form
-            className="login-form"
-            onSubmit={handleSubmit(onSubmit)}
-          >
+          <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
             <div className="login-form-group">
               <EmailField
                 placeholder="Địa chỉ email"

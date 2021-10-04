@@ -4,7 +4,7 @@
   min-height: 100vh;
   padding: 20px 0;
   &-controls{
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: space-between;
     position: fixed;
@@ -15,6 +15,7 @@
     color: $color-white;
     padding: 20px;
     font-size: 14px;
+    max-width: 75%;
     &-right,&-left{
       cursor: pointer;
       display: flex;
@@ -126,6 +127,7 @@
     height: 100%;
     color: $color-white;
     padding: 20px ;
+    padding-bottom: 50px;
     border-radius: 12px;
     position: fixed;
     top: 0;
@@ -511,13 +513,18 @@
     &-info{
       width: 32%;
     }
+    &-controls{
+      width: 68%;
+    }
   }
 }
 @media (max-width:992px){
   .attempt{
-    padding: 5px 0;&
+    padding: 5px 0;
     &-controls{
+      width: 100%;
       display: flex;
+      max-width: 100%;
       &-left,&-right{
         width: 80px;
       }
