@@ -2,13 +2,7 @@ import Link from 'next/link';
 import { Dispatch } from 'react';
 import { HISTORY } from 'src/interfaces';
 import { formatTime } from 'src/utils';
-import {
-  ArrowLeft,
-  ArrowRight,
-  Error,
-  Success,
-  Waring,
-} from '../common/Svg';
+import { ArrowLeft, ArrowRight, Error, Success, Waring } from '../common/Svg';
 
 interface RENDERCONTENTPROPS {
   history: HISTORY;
@@ -16,7 +10,7 @@ interface RENDERCONTENTPROPS {
   id: string;
 }
 
-export const RenderContent = (props: RENDERCONTENTPROPS) => {
+const RenderContent = (props: RENDERCONTENTPROPS) => {
   const { history, setIsModalResult, id } = props;
   return (
     <>
@@ -31,9 +25,7 @@ export const RenderContent = (props: RENDERCONTENTPROPS) => {
       <div className="topic-result-content">
         <div className="result">
           <div className="result-time">
-            <span>
-              {formatTime(Math.floor(history.timespan / 60))}
-            </span>
+            <span>{formatTime(Math.floor(history.timespan / 60))}</span>
             <span>:</span>
             <span>{formatTime(history.timespan % 60)}</span>
           </div>
@@ -56,8 +48,7 @@ export const RenderContent = (props: RENDERCONTENTPROPS) => {
                 <div
                   style={{
                     width: `${(
-                      (history?.totalSuccess /
-                        history.questions?.length) *
+                      (history?.totalSuccess / history.questions?.length) *
                       100
                     ).toFixed(2)}%`,
                     backgroundColor: 'rgb(0, 168, 107)',
@@ -81,9 +72,7 @@ export const RenderContent = (props: RENDERCONTENTPROPS) => {
                 <div
                   style={{
                     width: `${
-                      (history?.totalError /
-                        history.questions?.length) *
-                      100
+                      (history?.totalError / history.questions?.length) * 100
                     }%`,
                     backgroundColor: 'red',
                   }}
@@ -106,9 +95,7 @@ export const RenderContent = (props: RENDERCONTENTPROPS) => {
                 <div
                   style={{
                     width: `${
-                      (history.totalEmpty /
-                        history.questions?.length) *
-                      100
+                      (history.totalEmpty / history.questions?.length) * 100
                     }%`,
                     backgroundColor: 'yellow',
                   }}
@@ -123,10 +110,7 @@ export const RenderContent = (props: RENDERCONTENTPROPS) => {
               </p>
             </div>
           </div>
-          <div
-            className="result-toggle"
-            onClick={() => setIsModalResult(true)}
-          >
+          <div className="result-toggle" onClick={() => setIsModalResult(true)}>
             <span>Xem kết quả chi tiết</span>
             <ArrowRight />
           </div>
@@ -140,3 +124,5 @@ export const RenderContent = (props: RENDERCONTENTPROPS) => {
     </>
   );
 };
+
+export default RenderContent;

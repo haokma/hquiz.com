@@ -2,11 +2,9 @@ import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import { topicApi } from 'src/apis';
 import Banner from 'src/components/common/Layout/Banner';
-import {
-  PostHightLight,
-  TopicHighlight,
-  TopicWork,
-} from 'src/components/Home';
+import PostHightLight from 'src/components/Home/PostHighlight';
+import TopicHighlight from 'src/components/Home/TopicHighlight';
+import TopicWork from 'src/components/Home/TopicWork';
 import { TOPIC } from 'src/interfaces';
 
 interface PROPS {

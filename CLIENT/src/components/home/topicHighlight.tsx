@@ -48,7 +48,7 @@ const settings = {
 interface TOPICHIGHLIGHTPROPS {
   topicList: TOPIC[];
 }
-export const TopicHighlight = (props: TOPICHIGHLIGHTPROPS) => {
+const TopicHighlight = (props: TOPICHIGHLIGHTPROPS) => {
   const { topicList } = props;
   return (
     <div className="topic-highlight">
@@ -72,9 +72,7 @@ export const TopicHighlight = (props: TOPICHIGHLIGHTPROPS) => {
                   </div>
                   <div className="topic-highlight-content">
                     <h3 className="topic-highlight-title">
-                      <Link href={`/de-thi/${item.slug}`}>
-                        {item.name}
-                      </Link>
+                      <Link href={`/de-thi/${item.slug}`}>{item.name}</Link>
                     </h3>
                     <div className="topic-highlight-view">
                       <UserSvg />
@@ -90,3 +88,5 @@ export const TopicHighlight = (props: TOPICHIGHLIGHTPROPS) => {
     </div>
   );
 };
+
+export default TopicHighlight;

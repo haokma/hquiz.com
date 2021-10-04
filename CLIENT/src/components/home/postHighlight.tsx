@@ -42,7 +42,7 @@ const settings = {
     },
   ],
 };
-export const PostHightLight = () => {
+const PostHightLight = () => {
   return (
     <div className="post">
       <div className="topic-highlight-heading">
@@ -65,9 +65,7 @@ export const PostHightLight = () => {
                   </div>
                   <div className="post-content">
                     <h3 className="post-title">
-                      <Link href="https://www.kmait.tk/">
-                        {item.title}
-                      </Link>
+                      <Link href="https://www.kmait.tk/">{item.title}</Link>
                     </h3>
                     <div className="post-view">
                       <div>
@@ -103,3 +101,5 @@ export const PostHightLight = () => {
     </div>
   );
 };
+
+export default PostHightLight;

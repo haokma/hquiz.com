@@ -2,11 +2,12 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { historyApi } from 'src/apis';
-import {
-  ModalContent,
-  RenderContent,
-  RenderQuestion,
-} from 'src/components/AttemptResult';
+
+import ModalContent from 'src/components/AttemptResult/ModalContent';
+import RenderContent from 'src/components/AttemptResult/RenderContent';
+
+import RenderQuestion from 'src/components/AttemptResult/RenderQuestion';
+
 import LayoutAttempt from 'src/components/common/Layout/LayoutAttempt';
 import LoadingApp from 'src/components/common/Loading/LoadingAttempt';
 import { getLocalStorage } from 'src/utils';
