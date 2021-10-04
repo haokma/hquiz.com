@@ -1,5 +1,5 @@
 import { Dispatch } from 'react';
-import { AttemptButton } from 'src/components/Attempt/AttemptButton';
+import { AttemptButton } from 'src/components/Attempt';
 import { ArrowLeft } from 'src/components/common/Svg';
 import { HISTORY } from 'src/interfaces';
 
@@ -20,11 +20,7 @@ export const ModalContent = (props: MODALCONTENTPROPS) => {
     history,
   } = props;
   return (
-    <div
-      className={
-        isModalResult ? 'modal-result active' : 'modal-result'
-      }
-    >
+    <div className={isModalResult ? 'modal-result active' : 'modal-result'}>
       <div
         className="modal-result-heading"
         onClick={() => {
