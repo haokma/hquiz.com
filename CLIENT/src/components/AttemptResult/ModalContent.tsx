@@ -1,5 +1,5 @@
 import { Dispatch } from 'react';
-import { AttemptButton } from 'src/components/Attempt';
+// import { AttemptButton } from 'src/components/Attempt';
 import { ArrowLeft } from 'src/components/common/Svg';
 import { HISTORY } from 'src/interfaces';
 
@@ -32,12 +32,12 @@ export const ModalContent = (props: MODALCONTENTPROPS) => {
         <span>Tổng kết</span>
       </div>
       <div className="modal-result-content">
-        <AttemptButton
+        {/* <AttemptButton
           history={history}
           setIsActive={setIsActive}
           setQuestionIndex={setQuestionIndex}
           setIsModalResult={setIsModalResult}
-        />
+        /> */}
       </div>
     </div>
   );
