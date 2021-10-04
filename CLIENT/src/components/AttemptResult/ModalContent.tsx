@@ -1,5 +1,5 @@
 import { Dispatch } from 'react';
-import AttemptButton from 'src/components/Attempt/AttemptButton';
+import AttemptButton from '../Attempt/AttemptButton';
 import { ArrowLeft } from 'src/components/common/Svg';
 import { HISTORY } from 'src/interfaces';
 
