@@ -1,0 +1,103 @@
+.exam-history{
+    position: relative;
+    width: 100%;
+    display: -moz-box;
+    display: flex;
+    -moz-box-pack: start;
+    justify-content: flex-start;
+    -moz-box-align: start;
+    align-items: flex-start;
+  .modal{
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+  }
+  &-content{
+    flex: 1 1;
+    padding: 20px 0;
+    padding-right: 25px;
+    z-index: 1;
+    -webkit-transition: 0.2s ease;
+    transition: 0.2s ease;
+  }
+  &-heading{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    button{
+      color: #ffffff;
+      background-color: #f05123;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 5px;
+      font-weight: 500;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  }
+  &-item{
+    --tw-text-opacity: 1;
+    color: rgba(55,65,81,var(--tw-text-opacity));
+    --tw-shadow: 0 1px 3px 0 rgba(0,0,0,0.1),0 1px 2px 0 rgba(0,0,0,0.06);
+    box-shadow: var(--tw-ring-offset-shadow,0 0 transparent),var(--tw-ring-shadow,0 0 transparent),var(--tw-shadow);
+    height: 100%;
+    cursor: pointer;
+    padding: 20px;
+    transition: .2s ease;
+    &:hover{
+      --tw-shadow: 0 10px 15px -3px rgba(0,0,0,0.1),0 4px 6px -2px rgba(0,0,0,0.05);
+    }
+    &-title{
+      color: $color-title;
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    &-main{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10px;
+    }
+    &-result{
+      span{
+        margin-right:2px;
+        font-size: 14px;
+      }
+    }
+    &-time{
+      span{
+        margin-left: 8px;
+        letter-spacing: 1.6px;
+        font-size: 14px;
+      }
+    }
+    &-share{
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+  }
+}
+
+@media (max-width:1200px) {
+  .exam-history{
+    .modal{
+      &.active{
+        display: block;
+      }
+    }
+    &-content{
+      padding-right: 0;
+    }
+  }
+}

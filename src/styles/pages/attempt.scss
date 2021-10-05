@@ -30,6 +30,7 @@
         display: block;
         padding:8px 12px;
         border-radius: 5px;
+        cursor: pointer;
       }
     }
   }
@@ -248,27 +249,6 @@
       }
     }
   }
-  &-button{
-    margin:  0 auto;
-    margin-top: 40px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-    button{
-      padding: 10px 25px;
-      transition: .2s ease;
-      border: none;
-      outline: none;
-      font-size: 16px;
-      border-radius: 4px;
-      cursor: pointer;
-      &:hover{
-        color: $color-white;
-        background-color: $color-primary;
-      }
-    }
-  }
   &-question-mobile{
     display: none;
     margin-top: 10px;
@@ -292,7 +272,7 @@
   &-left{
     width: calc((100%) / 3 * 2);
     width: 100%;
-    padding: 20px 40px;
+    padding: 20px;
   }
   &-heading{
     display: flex;
@@ -378,10 +358,11 @@
           flex: 1;
           height: 8px;
           background-color: $color-text;
-          margin: 0 20px;
+          margin: 0 auto;
           border-radius: 4px;
           position: relative;
           max-width: 180px;
+          margin-left: auto;
           div{
             position: absolute;
             top: 0;
@@ -389,6 +370,10 @@
             height: 100%;
             border-radius: 4px;
           }
+        }
+        p{
+          width: 95px;
+          text-align: right;
         }
       }
     }
@@ -431,6 +416,7 @@
     transition: .2s ease-in;
     transform: translateX(100%);
     padding: 20px;
+    overflow: hidden;
     &.active{
       transform: translateX(0);
     }
@@ -448,9 +434,10 @@
       display: flex;
       margin: 0 -5px;
       flex-wrap: wrap;
-      margin-top: 40px;
+      margin-top: 15px;
       li{
         width: 65px;
+        max-height: 65px;
         background-color: #000;
         color: $color-white;
         margin: 0 5px;
@@ -528,9 +515,6 @@
       &-left,&-right{
         width: 80px;
       }
-      &-mid{
-        cursor: pointer;
-      }
     }
     &-heading{
       padding: 20px 0;
@@ -586,6 +570,20 @@
         margin-right: 50px;
       }
       display: none;
+    }
+  }
+  .topic-result{
+    .modal-result{
+      &-list{
+        li{
+          width: 53px;
+          max-height: 48px;
+          margin:3px;
+        }
+        svg{
+          width: 13px;
+        }
+      }
     }
   }
 }

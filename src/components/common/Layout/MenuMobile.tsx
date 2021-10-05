@@ -16,18 +16,14 @@ const MenuMobile: NextPage<PROPS> = (props: PROPS) => {
   return (
     <>
       <div
-        className={
-          isActive ? 'menu-mobile-modal active' : 'menu-mobile-modal'
-        }
+        className={isActive ? 'menu-mobile-modal active' : 'menu-mobile-modal'}
         onClick={(event) => {
           setIsActive(!isActive);
           event.stopPropagation();
         }}
       ></div>
       <div
-        className={
-          isActive ? 'menu-mobile-body active' : 'menu-mobile-body'
-        }
+        className={isActive ? 'menu-mobile-body active' : 'menu-mobile-body'}
         onClick={(event) => event.stopPropagation()}
       >
         <div
@@ -123,7 +119,7 @@ const MenuMobile: NextPage<PROPS> = (props: PROPS) => {
             </ActiveLink>
           </li>
           <li onClick={() => setIsActive(false)}>
-            <ActiveLink activeClassName="active" href="/ket-qua">
+            <ActiveLink activeClassName="active" href="/lich-su-thi">
               <a href="">
                 <div>
                   <svg
@@ -148,10 +144,7 @@ const MenuMobile: NextPage<PROPS> = (props: PROPS) => {
             </ActiveLink>
           </li>
           <li onClick={() => setIsActive(false)}>
-            <ActiveLink
-              activeClassName="active"
-              href="/bang-xep-hang"
-            >
+            <ActiveLink activeClassName="active" href="/bang-xep-hang">
               <a>
                 <div>
                   <svg
@@ -175,10 +168,7 @@ const MenuMobile: NextPage<PROPS> = (props: PROPS) => {
             </ActiveLink>
           </li>
           <li onClick={() => setIsActive(false)}>
-            <ActiveLink
-              activeClassName="active"
-              href="https://www.kmait.tk/"
-            >
+            <ActiveLink activeClassName="active" href="https://www.kmait.tk/">
               <a>
                 <div>
                   <svg
@@ -202,10 +192,7 @@ const MenuMobile: NextPage<PROPS> = (props: PROPS) => {
             </ActiveLink>
           </li>
           <li onClick={() => setIsActive(false)}>
-            <ActiveLink
-              activeClassName="active"
-              href="https://www.kmait.tk/"
-            >
+            <ActiveLink activeClassName="active" href="https://www.kmait.tk/">
               <a>
                 <div>
                   <svg
@@ -230,10 +217,7 @@ const MenuMobile: NextPage<PROPS> = (props: PROPS) => {
           </li>
         </ul>
         {user && (
-          <div
-            className="menu-mobile-footer"
-            onClick={() => handleLogout()}
-          >
+          <div className="menu-mobile-footer" onClick={() => handleLogout()}>
             <span>
               <svg
                 aria-hidden="true"

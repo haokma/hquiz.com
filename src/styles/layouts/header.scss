@@ -26,6 +26,11 @@
   }
   &-logo{
     cursor: pointer;
+    a{
+      color: $color-primary;
+      font-weight: bold;
+      font-size: 24px;
+    }
     img{
       width: 36px;
     }

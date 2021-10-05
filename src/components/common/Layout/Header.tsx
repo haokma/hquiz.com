@@ -25,19 +25,17 @@ const Header = (props: PROPS) => {
     <div className="header">
       <div className="container-fluid">
         <div className="header-content">
-          <div
-            className="header-toggle"
-            onClick={() => setIsActive(true)}
-          >
+          <div className="header-toggle" onClick={() => setIsActive(true)}>
             <i className="bx bx-menu"></i>
           </div>
           <div className="header-left">
             <div className="header-logo">
               <Link href="/">
-                <img
-                  src="https://fullstack.edu.vn/assets/icon/f8_icon.png"
+                {/* <img
+                  src="https://res.cloudinary.com/nguyenhao/image/upload/v1633405325/Tracnghiem/Tr%E1%BA%AFc_nghi%E1%BB%87m_Online_gfnfbw.png"
                   alt=""
-                />
+                /> */}
+                QUIZZ
               </Link>
             </div>
           </div>
@@ -88,9 +86,7 @@ const Header = (props: PROPS) => {
                   />
                   <div
                     className={
-                      isModal
-                        ? 'header-user-modal active'
-                        : 'header-user-modal'
+                      isModal ? 'header-user-modal active' : 'header-user-modal'
                     }
                     onClick={(event) => event.stopPropagation()}
                   >
