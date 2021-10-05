@@ -26,16 +26,15 @@ function MyApp({ Component, pageProps }: any) {
   return (
     <>
       <Layout>
-        <Head>
-          <Script
-            strategy="afterInteractive"
-            src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
-          />
-          <Script
-            id="gtag-init"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
+        />
+        <Script
+          id="gtag-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
@@ -43,9 +42,8 @@ function MyApp({ Component, pageProps }: any) {
               page_path: window.location.pathname,
             });
           `,
-            }}
-          />
-        </Head>
+          }}
+        />
         <Component {...pageProps} />
         <ToastContainer />
       </Layout>
