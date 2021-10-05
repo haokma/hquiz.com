@@ -1,4 +1,5 @@
 import { NextPage } from 'next';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -85,40 +86,72 @@ const ExamHistory: NextPage = () => {
   }, [topicType._id]);
 
   return (
-    <div className="exam-history">
-      <div className="exam-history-content">
-        <div
-          className={isActive ? 'modal active' : 'modal'}
-          onClick={() => setIsActive(false)}
-        ></div>
-        <div className="exam-history-heading">
-          <button onClick={() => setIsActive(!isActive)}>Bộ lọc</button>
-        </div>
-        <ExamHistoryList
-          examHistoryList={examHistoryList}
-          isLoading={isLoading}
+    <>
+      <Head>
+        <meta lang="UTF-8" />
+        <title>Trắc nghiệm Online – Luyện thi Online miễn phí</title>
+        <meta
+          name="Keywords"
+          content="Trắc nghiệm, Đề Thi Học Kỳ, Đề Thi THPT Quốc Gia, Đề Kiểm Tra, English test, IT test, MBTI test, IQ/EQ test, thi bắng lái, công chức, đại cương, chuyên nghành, kết thúc học phần ĐHCĐ"
         />
-        <div className="pagination">
-          <Pagination
-            TOTAL_PAGE={totalPage}
-            SHOW_PAGE={5}
-            PAGE={filter.page}
+        <meta
+          name="Description"
+          content="Tuyển tập các đề thi trắc nghiệm THPT QG 2020, ngân hàng câu trắc nghiệm các môn từ lớp 1 đến 12, English test, IT test, MBTI test, IQ/EQ test, thi bắng lái, công chức và kết thúc học phần ĐHCĐ"
+        />
+        <meta
+          property="og:title"
+          content="Trắc nghiệm Online – Luyện thi Online miễn phí"
+        />
+        <meta
+          property="og:description"
+          content="Tuyển tập các đề thi trắc nghiệm THPT QG 2020, ngân hàng câu trắc nghiệm các môn từ lớp 1 đến 12, English test, IT test, MBTI test, IQ/EQ test, thi bắng lái, công chức và kết thúc học phần ĐHCĐ"
+        />
+        <meta property="og:type" content="webiste" />
+        <meta property="og:image:type" content="image/jpg" />
+        <meta
+          property="og:image"
+          content="https://res.cloudinary.com/nguyenhao/image/upload/v1633446187/Tracnghiem/416613070518cc469509_oftg5t.jpg"
+        />
+        <meta
+          property="og:image:secure_url"
+          content={`https://res.cloudinary.com/nguyenhao/image/upload/v1633446187/Tracnghiem/416613070518cc469509_oftg5t.jpg`}
+        />
+      </Head>
+      <div className="exam-history">
+        <div className="exam-history-content">
+          <div
+            className={isActive ? 'modal active' : 'modal'}
+            onClick={() => setIsActive(false)}
+          ></div>
+          <div className="exam-history-heading">
+            <button onClick={() => setIsActive(!isActive)}>Bộ lọc</button>
+          </div>
+          <ExamHistoryList
+            examHistoryList={examHistoryList}
+            isLoading={isLoading}
+          />
+          <div className="pagination">
+            <Pagination
+              TOTAL_PAGE={totalPage}
+              SHOW_PAGE={5}
+              PAGE={filter.page}
+              filter={filter}
+              setFilter={setFilter}
+            />
+          </div>
+        </div>
+        <div className={isActive ? 'sidebar active' : 'sidebar'}>
+          <Sidebar
             filter={filter}
             setFilter={setFilter}
+            categories={categories}
+            topicType={topicType}
+            setTopicType={setTopicType}
           />
         </div>
+        <div className={isActive ? 'topic-left active' : 'topic-left'}></div>
       </div>
-      <div className={isActive ? 'sidebar active' : 'sidebar'}>
-        <Sidebar
-          filter={filter}
-          setFilter={setFilter}
-          categories={categories}
-          topicType={topicType}
-          setTopicType={setTopicType}
-        />
-      </div>
-      <div className={isActive ? 'topic-left active' : 'topic-left'}></div>
-    </div>
+    </>
   );
 };
 export default ExamHistory;

@@ -7,7 +7,7 @@ const Footer: NextPage = () => {
     <div className="footer">
       <div className="footer-left">
         <img
-          src="https://fullstack.edu.vn/assets/icon/f8_icon.png"
+          src="https://res.cloudinary.com/nguyenhao/image/upload/v1633446187/Tracnghiem/416613070518cc469509_oftg5t.jpg"
           alt=""
           className="footer-logo"
         />

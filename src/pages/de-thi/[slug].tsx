@@ -71,7 +71,7 @@ const TopicDetails: NextPage = () => {
         <title>Trắc nghiệm Online – Luyện thi Online miễn phí</title>
         <meta
           name="Keywords"
-          content="Trắc nghiệm Online – Luyện thi Online miễn phí"
+          content="Trắc nghiệm, Đề Thi Học Kỳ, Đề Thi THPT Quốc Gia, Đề Kiểm Tra, English test, IT test, MBTI test, IQ/EQ test, thi bắng lái, công chức, đại cương, chuyên nghành, kết thúc học phần ĐHCĐ"
         />
         <meta
           name="Description"
@@ -85,9 +85,15 @@ const TopicDetails: NextPage = () => {
           property="og:description"
           content="Tuyển tập các đề thi trắc nghiệm THPT QG 2020, ngân hàng câu trắc nghiệm các môn từ lớp 1 đến 12, English test, IT test, MBTI test, IQ/EQ test, thi bắng lái, công chức và kết thúc học phần ĐHCĐ"
         />
+        <meta property="og:type" content="webiste" />
+        <meta property="og:image:type" content="image/jpg" />
         <meta
           property="og:image"
-          content="https://s.tracnghiem.net/assets/images/fb-trac-nghiem.jpg"
+          content="https://res.cloudinary.com/nguyenhao/image/upload/v1633446187/Tracnghiem/416613070518cc469509_oftg5t.jpg"
+        />
+        <meta
+          property="og:image:secure_url"
+          content={`https://res.cloudinary.com/nguyenhao/image/upload/v1633446187/Tracnghiem/416613070518cc469509_oftg5t.jpg`}
         />
       </Head>
       <div className="topic-details">

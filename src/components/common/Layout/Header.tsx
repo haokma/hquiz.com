@@ -31,11 +31,11 @@ const Header = (props: PROPS) => {
           <div className="header-left">
             <div className="header-logo">
               <Link href="/">
-                {/* <img
-                  src="https://res.cloudinary.com/nguyenhao/image/upload/v1633405325/Tracnghiem/Tr%E1%BA%AFc_nghi%E1%BB%87m_Online_gfnfbw.png"
+                <img
+                  src="https://res.cloudinary.com/nguyenhao/image/upload/v1633446187/Tracnghiem/416613070518cc469509_oftg5t.jpg"
                   alt=""
-                /> */}
-                QUIZZ
+                />
+                {/* QUIZZ */}
               </Link>
             </div>
           </div>
