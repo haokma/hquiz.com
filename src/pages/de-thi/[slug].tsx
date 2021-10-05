@@ -6,10 +6,7 @@ import { toast } from 'react-toastify';
 import { rankingApi, topicApi } from 'src/apis';
 import Loading from 'src/components/common/Loading/Loading';
 import { QuestionSvg, TimeSvg } from 'src/components/common/Svg';
-import {
-  TopicDetailRanking,
-  TopicDetailsInfo,
-} from 'src/components/Topic';
+import { TopicDetailRanking, TopicDetailsInfo } from 'src/components/Topic';
 import { RANKING } from 'src/interfaces';
 import { getLocalStorage } from 'src/utils';
 
@@ -70,7 +67,28 @@ const TopicDetails: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Đề thi trắc nghiệm THPT Quốc Gia mới nhất</title>
+        <meta lang="UTF-8" />
+        <title>Trắc nghiệm Online – Luyện thi Online miễn phí</title>
+        <meta
+          name="Keywords"
+          content="Trắc nghiệm Online – Luyện thi Online miễn phí"
+        />
+        <meta
+          name="Description"
+          content="Tuyển tập các đề thi trắc nghiệm THPT QG 2020, ngân hàng câu trắc nghiệm các môn từ lớp 1 đến 12, English test, IT test, MBTI test, IQ/EQ test, thi bắng lái, công chức và kết thúc học phần ĐHCĐ"
+        />
+        <meta
+          property="og:title"
+          content="Trắc nghiệm Online – Luyện thi Online miễn phí"
+        />
+        <meta
+          property="og:description"
+          content="Tuyển tập các đề thi trắc nghiệm THPT QG 2020, ngân hàng câu trắc nghiệm các môn từ lớp 1 đến 12, English test, IT test, MBTI test, IQ/EQ test, thi bắng lái, công chức và kết thúc học phần ĐHCĐ"
+        />
+        <meta
+          property="og:image"
+          content="https://s.tracnghiem.net/assets/images/fb-trac-nghiem.jpg"
+        />
       </Head>
       <div className="topic-details">
         <div className="container m-l-auto">
@@ -78,14 +96,8 @@ const TopicDetails: NextPage = () => {
             <div className="topic-details-left ">
               <div className="topic-details-content">
                 <h2 className="topic-details-title">{topic.name}</h2>
-                <img
-                  className="topic-details-img"
-                  src={topic.image}
-                  alt=""
-                />
-                <p className="topic-details-desc">
-                  {topic.description}
-                </p>
+                <img className="topic-details-img" src={topic.image} alt="" />
+                <p className="topic-details-desc">{topic.description}</p>
               </div>
             </div>
             <div className="topic-details-right ">
@@ -98,11 +110,7 @@ const TopicDetails: NextPage = () => {
             </div>
           </div>
         </div>
-        <div
-          className={
-            isModal ? 'modal-confirm active' : 'modal-confirm'
-          }
-        >
+        <div className={isModal ? 'modal-confirm active' : 'modal-confirm'}>
           <div
             className="modal-confirm-overlay"
             onClick={() => setIsModal(false)}
@@ -129,16 +137,10 @@ const TopicDetails: NextPage = () => {
               </div>
             </div>
             <div className="modal-confirm-button">
-              <button
-                className="cancle"
-                onClick={() => setIsModal(false)}
-              >
+              <button className="cancle" onClick={() => setIsModal(false)}>
                 Hủy
               </button>
-              <button
-                className="agreed"
-                onClick={() => handleAgreed()}
-              >
+              <button className="agreed" onClick={() => handleAgreed()}>
                 Thi ngay
               </button>
             </div>
